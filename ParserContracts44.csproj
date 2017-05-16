@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="GetSettings.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="ParserContr44.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeArguments.cs" />

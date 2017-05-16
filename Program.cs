@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Win32;
-using System.Collections.Generic;
 using System.IO;
 
 namespace ParserContracts44
@@ -23,6 +22,7 @@ namespace ParserContracts44
         private static readonly DateTime LocalDate = DateTime.Now;
         public static string FileLog;
         public static TypeArguments Periodparsing;
+        public static string StrArg;
 
         public static void Main(string[] args)
         {
@@ -33,22 +33,23 @@ namespace ParserContracts44
                 return;
             }
 
+            StrArg = args[0];
             switch (args[0])
             {
                 case "last":
                     Periodparsing = TypeArguments.Last;
                     Init(Periodparsing);
-                    ParserContracts44(Periodparsing);
+                    ParserC44(Periodparsing);
                     break;
                 case "prev":
                     Periodparsing = TypeArguments.Prev;
                     Init(Periodparsing);
-                    ParserContracts44(Periodparsing);
+                    ParserC44(Periodparsing);
                     break;
                 case "curr":
                     Periodparsing = TypeArguments.Curr;
                     Init(Periodparsing);
-                    ParserContracts44(Periodparsing);
+                    ParserC44(Periodparsing);
                     break;
             }
         }
@@ -77,12 +78,12 @@ namespace ParserContracts44
                 Directory.CreateDirectory(LogPath);
             }
             FileLog = $"{LogPath}/Contracts44_{LocalDate:dd_MM_yyyy}.log";
-
         }
 
-        private static void ParserContracts44(TypeArguments arg)
+        private static void ParserC44(TypeArguments arg)
         {
             Log.Logger("Время начала парсинга Contracts44");
+            ParserContr44 c44 = new ParserContr44();
         }
     }
 }
