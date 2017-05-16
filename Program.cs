@@ -9,14 +9,14 @@ namespace ParserContracts44
     internal class Program
     {
         private static string _database;
-        private static string _tempdir;
-        private static string _logdir;
+        private static string _tempPath;
+        private static string _logPath;
         private static string _prefix;
         private static string _user;
         private static string _pass;
         public static string Database => _database;
-        public static string Tempdir => _tempdir;
-        public static string Logdir => _logdir;
+        public static string TempPath => _tempPath;
+        public static string LogPath => _logPath;
         public static string Prefix => _prefix;
         public static string User => _user;
         public static string Pass => _pass;
@@ -38,14 +38,17 @@ namespace ParserContracts44
                 case "last":
                     Periodparsing = TypeArguments.Last;
                     Init(Periodparsing);
+                    ParserContracts44(Periodparsing);
                     break;
                 case "prev":
                     Periodparsing = TypeArguments.Prev;
                     Init(Periodparsing);
+                    ParserContracts44(Periodparsing);
                     break;
                 case "curr":
                     Periodparsing = TypeArguments.Curr;
                     Init(Periodparsing);
+                    ParserContracts44(Periodparsing);
                     break;
             }
         }
@@ -54,27 +57,32 @@ namespace ParserContracts44
         {
             GetSettings set = new GetSettings();
             _database = set.Database;
-            _logdir = set.LogdirContracts44;
+            _logPath = set.LogPathContracts44;
             _prefix = set.Prefix;
             _user = set.UserDB;
             _pass = set.PassDB;
-            _tempdir = set.TempdirContracts44;
-            if (Directory.Exists(Tempdir))
+            _tempPath = set.TempPathContracts44;
+            if (Directory.Exists(TempPath))
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(Tempdir);
+                DirectoryInfo dirInfo = new DirectoryInfo(TempPath);
                 dirInfo.Delete(true);
-                Directory.CreateDirectory(Tempdir);
+                Directory.CreateDirectory(TempPath);
             }
             else
             {
-                Directory.CreateDirectory(Tempdir);
+                Directory.CreateDirectory(TempPath);
             }
-            if (!Directory.Exists(Logdir))
+            if (!Directory.Exists(LogPath))
             {
-                Directory.CreateDirectory(Logdir);
+                Directory.CreateDirectory(LogPath);
             }
-            FileLog = $"{Logdir}/{arg}_{LocalDate:dd_MM_yyyy}.log";
+            FileLog = $"{LogPath}/Contracts44_{LocalDate:dd_MM_yyyy}.log";
 
+        }
+
+        private static void ParserContracts44(TypeArguments arg)
+        {
+            Log.Logger("Время начала парсинга Contracts44");
         }
     }
 }

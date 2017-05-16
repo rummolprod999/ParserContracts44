@@ -6,8 +6,8 @@ namespace ParserContracts44
     public class GetSettings
     {
         public readonly string Database;
-        public readonly string TempdirContracts44;
-        public readonly string LogdirContracts44;
+        public readonly string TempPathContracts44;
+        public readonly string LogPathContracts44;
         public readonly string Prefix;
         public readonly string UserDB;
         public readonly string PassDB;
@@ -28,10 +28,10 @@ namespace ParserContracts44
                             Database = xnode.InnerText;
                             break;
                         case "tempdir_contracts44":
-                            TempdirContracts44 = $"{Environment.CurrentDirectory}/{xnode.InnerText}";
+                            TempPathContracts44 = $"{Environment.CurrentDirectory}/{xnode.InnerText}";
                             break;
                         case "logdir_contracts44":
-                            LogdirContracts44 = $"{Environment.CurrentDirectory}/{xnode.InnerText}";
+                            LogPathContracts44 = $"{Environment.CurrentDirectory}/{xnode.InnerText}";
                             break;
                         case "prefix":
                             Prefix = xnode.InnerText;
@@ -44,6 +44,12 @@ namespace ParserContracts44
                             break;
                     }
                 }
+            }
+
+            if (LogPathContracts44 == "" || TempPathContracts44 == "" || Database == "" || UserDB == "")
+            {
+                Console.WriteLine("Некоторые поля в файле настройки пустые");
+                Environment.Exit(0);
             }
         }
     }
