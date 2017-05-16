@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<setting>
+	<datebase>tenders_test</datebase>
+	<tempdir_contract223>temp_contract223</tempdir_contract223>
+	<tempdir_customer>temp_customer</tempdir_customer>
+	<tempdir_supplier>temp_supplier</tempdir_supplier>
+	<logdir>log_parsing</logdir>
+	<suffix></suffix>
+	<user>root</user>
+	<pass>1234</pass>
+</setting>
