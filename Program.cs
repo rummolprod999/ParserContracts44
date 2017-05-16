@@ -73,8 +73,8 @@ namespace ParserContracts44
             {
                 Directory.CreateDirectory(Logdir);
             }
-            FileLog = $"./{Logdir}/{arg}_{LocalDate:dd_MM_yyyy}.log";
-            Console.WriteLine(Tempdir +Logdir + Prefix + User + Pass + Database);
+            FileLog = $"{Logdir}/{arg}_{LocalDate:dd_MM_yyyy}.log";
+
         }
     }
 }

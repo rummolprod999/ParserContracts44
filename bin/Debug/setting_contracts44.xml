@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<setting>
+	<database>tenders_test</database>
+	<tempdir_contracts44>temp_contracts44</tempdir_contracts44>
+	<logdir_contracts44>log_contracts44</logdir_contracts44>
+	<prefix></prefix>
+	<userdb>root</userdb>
+	<passdb>1234</passdb>
+</setting>
