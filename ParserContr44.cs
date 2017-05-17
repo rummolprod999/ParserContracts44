@@ -7,12 +7,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using MySql.Data.MySqlClient;
 
 namespace ParserContracts44
 {
     public class ParserContr44 : Parser
     {
         protected DataTable DtRegion;
+        public readonly string[] years = new[] {"2016", "2017"};
 
         public ParserContr44(string arg) : base(arg)
         {
@@ -24,39 +26,98 @@ namespace ParserContracts44
             foreach (DataRow row in DtRegion.Rows)
             {
                 List<String> arch = new List<string>();
+                string PathParse = "";
+                string RegionPath = (string) row["path"];
 
-                if (Program.Periodparsing == TypeArguments.Last)
+                switch (Program.Periodparsing)
                 {
-                    arch = GetListArchLast((string) row["path"]);
+                    case TypeArguments.Last:
+                        PathParse = $"/fcs_regions/{RegionPath}/contracts/";
+                        arch = GetListArchLast(PathParse, RegionPath);
+                        break;
+                    case TypeArguments.Curr:
+                        PathParse = $"/fcs_regions/{RegionPath}/contracts/currMonth/";
+                        arch = GetListArchCurr(PathParse, RegionPath);
+                        break;
+                    case TypeArguments.Prev:
+                        PathParse = $"/fcs_regions/{RegionPath}/contracts/prevMonth/";
+                        arch = GetListArchPrev(PathParse, RegionPath);
+                        break;
                 }
-                else if (Program.Periodparsing == TypeArguments.Curr)
+
+                if (arch.Capacity == 0)
                 {
-                    arch = GetListArchCurr((string) row["path"]);
+                    Log.Logger("Не получили список архивов по региону", row["path"]);
                 }
-                else if (Program.Periodparsing == TypeArguments.Prev)
+                foreach (var v in arch)
                 {
-                    arch = GetListArchPrev((string) row["path"]);
+                    Console.WriteLine(v);
                 }
             }
         }
 
-        public override List<String> GetListArchLast(string RegionPath)
+        public override List<String> GetListArchLast(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
-            string PathParse = $"fcs_regions/{RegionPath}/contracts/";
+
+            WorkWithFtp ftp = ClientFtp44();
+            ftp.ChangeWorkingDirectory(PathParse);
+            List<String> archtemp = ftp.ListDirectory();
+            foreach (var a in archtemp)
+            {
+                if (years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1))
+                {
+                    arch.Add(a);
+                }
+            }
+
             return arch;
         }
 
-        public override List<String> GetListArchCurr(string RegionPath)
+        public override List<String> GetListArchCurr(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
-            string PathParse = $"fcs_regions/{RegionPath}/contracts/currMonth/";
+
+            WorkWithFtp ftp = ClientFtp44();
+            ftp.ChangeWorkingDirectory(PathParse);
+            List<String> archtemp = ftp.ListDirectory();
+            foreach (var a in archtemp)
+            {
+                if (years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1))
+                {
+                    using (MySqlConnection connect = ConnectToDb.GetDBConnection())
+                    {
+                        string select_arch =
+                            $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
+                        MySqlCommand cmd = new MySqlCommand(select_arch, connect);
+                        cmd.Prepare();
+                        cmd.Parameters.AddWithValue("@archive", a);
+                        cmd.Parameters.AddWithValue("@region", RegionPath);
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        bool res_read = reader.HasRows;
+                        reader.Close();
+                        if (!res_read)
+                        {
+                            string add_arch =
+                                $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
+                            MySqlCommand cmd1 = new MySqlCommand(add_arch, connect);
+                            cmd1.Prepare();
+                            cmd1.Parameters.AddWithValue("@archive", a);
+                            cmd1.Parameters.AddWithValue("@region", RegionPath);
+                            cmd1.ExecuteNonQuery();
+                            arch.Add(a);
+                        }
+                    }
+                }
+            }
+
             return arch;
         }
-        public override List<String> GetListArchPrev(string RegionPath)
+
+        public override List<String> GetListArchPrev(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
-            string PathParse = $"fcs_regions/{RegionPath}/contracts/prevMonth/";
+
             return arch;
         }
     }

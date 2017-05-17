@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient.Memcached;
 
 namespace ParserContracts44
 {
@@ -36,25 +37,31 @@ namespace ParserContracts44
             return dt;
         }
 
-        public virtual List<String> GetListArchLast(string RegionPath)
+        public virtual List<String> GetListArchLast(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
 
             return arch;
         }
 
-        public virtual List<String> GetListArchCurr(string RegionPath)
+        public virtual List<String> GetListArchCurr(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
 
             return arch;
         }
 
-        public virtual List<String> GetListArchPrev(string RegionPath)
+        public virtual List<String> GetListArchPrev(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
 
             return arch;
+        }
+
+        public WorkWithFtp ClientFtp44()
+        {
+            WorkWithFtp ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "free", "free");
+            return ftpCl;
         }
     }
 }
