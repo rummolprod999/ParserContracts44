@@ -4,12 +4,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using MySql.Data.MySqlClient;
 using MySql.Data.MySqlClient.Memcached;
 
 namespace ParserContracts44
 {
-    public class Parser: IParser
+    public class Parser : IParser
     {
         protected string arg;
 
@@ -62,6 +63,42 @@ namespace ParserContracts44
         {
             WorkWithFtp ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "free", "free");
             return ftpCl;
+        }
+
+        public virtual void GetListFileArch(string Arch, string PathParse, string region)
+        {
+        }
+
+        public string GetArch(string Arch, string PathParse)
+        {
+            string file = "";
+            int count = 0;
+            while (true)
+            {
+                try
+                {
+                    string FileOnServer = $"{PathParse}/{Arch}";
+                    file = $"{Program.TempPath}/{Arch}";
+                    WorkWithFtp ftp = ClientFtp44();
+                    ftp.DownloadFile(FileOnServer, file);
+                    if (count > 0)
+                    {
+                        Log.Logger("Удалось скачать архив после попытки", count);
+                    }
+                    return file;
+                }
+                catch (Exception e)
+                {
+                    Log.Logger("Не удалось скачать файл", Arch, e);
+                    if (count > 50)
+                    {
+                        return file;
+                    }
+                    count++;
+                    Thread.Sleep(5000);
+                }
+            }
+
         }
     }
 }
