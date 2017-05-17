@@ -87,6 +87,7 @@ namespace ParserContracts44
                 {
                     using (MySqlConnection connect = ConnectToDb.GetDBConnection())
                     {
+                        connect.Open();
                         string select_arch =
                             $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
                         MySqlCommand cmd = new MySqlCommand(select_arch, connect);
@@ -99,7 +100,7 @@ namespace ParserContracts44
                         if (!res_read)
                         {
                             string add_arch =
-                                $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
+                                $"INSERT INTO {Program.Prefix}arhiv_contract SET arhiv = @archive, region =  @region";
                             MySqlCommand cmd1 = new MySqlCommand(add_arch, connect);
                             cmd1.Prepare();
                             cmd1.Parameters.AddWithValue("@archive", a);
