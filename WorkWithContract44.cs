@@ -79,14 +79,18 @@ namespace ParserContracts44
                     MySqlCommand cmd = new MySqlCommand(select_get_max, connect);
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@regnum", regnum);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    bool res_read = reader.HasRows;
-
-                    if (res_read)
+                    object resultm = cmd.ExecuteScalar();
+                    int? max_number = (int?)(!Convert.IsDBNull(resultm) ? resultm : null);
+                    if (max_number != null )
                     {
-                        int? max_number = (int?)reader["m"];
-                        Console.WriteLine(max_number);
-                        reader.Close();
+                        if (version_number > max_number)
+                        {
+                            string update_c = $"UPDATE {Program.Prefix}od_contract SET cancel=1 WHERE regnum= @regnum";
+                            MySqlCommand cmd2 = new MySqlCommand(update_c, connect);
+                            cmd2.Prepare();
+                            cmd2.Parameters.AddWithValue("@regnum", regnum);
+                            cmd2.ExecuteNonQuery();
+                        }
                     }
                 }
             }
