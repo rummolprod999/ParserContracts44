@@ -19,7 +19,7 @@ namespace ParserContracts44
         public static string Prefix => _prefix;
         public static string User => _user;
         public static string Pass => _pass;
-        private static readonly DateTime LocalDate = DateTime.Now;
+        public static readonly DateTime LocalDate = DateTime.Now;
         public static string FileLog;
         public static TypeArguments Periodparsing;
         public static string StrArg;

@@ -7,7 +7,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Xml;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ParserContracts44
 {
@@ -106,6 +109,22 @@ namespace ParserContracts44
 
         public void ParsingXML(string f, string region)
         {
+            FileInfo fileInf = new FileInfo(f);
+            if (fileInf.Exists)
+            {
+                using (StreamReader sr = new StreamReader(f, System.Text.Encoding.Default))
+                {
+                    string ftext;
+                    ftext = sr.ReadToEnd();
+                    ftext = ClearText.ClearString(ftext);
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(ftext);
+                    string jsons = JsonConvert.SerializeXmlNode(doc);
+                    JObject json = JObject.Parse(jsons);
+                    WorkWithContract44 c = new WorkWithContract44(json, f, region);
+                    c.Work44();
+                }
+            }
         }
 
 
@@ -170,9 +189,11 @@ namespace ParserContracts44
             WorkWithFtp ftp = ClientFtp44();
             ftp.ChangeWorkingDirectory(PathParse);
             List<String> archtemp = ftp.ListDirectory();
-            foreach (var a in archtemp.Where(a => years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
+            string serachd = $"{Program.LocalDate:yyyyMMdd}";
+            foreach (var a in archtemp.Where(a => a.IndexOf(serachd, StringComparison.Ordinal) != -1))
             {
                 string prev_a = $"prev_{a}";
+
                 using (MySqlConnection connect = ConnectToDb.GetDBConnection())
                 {
                     connect.Open();
