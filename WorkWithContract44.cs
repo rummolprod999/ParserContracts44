@@ -30,10 +30,10 @@ namespace ParserContracts44
             string regnum = ((string) j44.SelectToken("export.contract.regNum") ?? "").Trim();
             string current_contract_stage = ((string) j44.SelectToken("export.contract.currentContractStage") ?? "")
                 .Trim();
-            string placing = ((string) j44.SelectToken("export.contract.foundation.fcsOrder.order.placing") ?? "");
+            string placing = ((string) j44.SelectToken("export.contract.foundation.fcsOrder.order.placing") ?? "").Trim();
             if (placing == "")
             {
-                placing = ((string) j44.SelectToken("export.contract.foundation.oosOrder.order.placing") ?? "");
+                placing = ((string) j44.SelectToken("export.contract.foundation.oosOrder.order.placing") ?? "").Trim();
             }
         }
     }
