@@ -1,0 +1,14 @@
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Test.dll
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Test.pdb
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/nunit.framework.dll
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/nunit.framework.xml
+/home/alex/RiderProjects/ParserContracts44/Test/obj/Debug/Test.csprojResolveAssemblyReference.cache
+/home/alex/RiderProjects/ParserContracts44/Test/obj/Debug/Test.csproj.CoreCompileInputs.cache
+/home/alex/RiderProjects/ParserContracts44/Test/obj/Debug/Test.dll
+/home/alex/RiderProjects/ParserContracts44/Test/obj/Debug/Test.pdb
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/ParserContracts44.exe
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/MySql.Data.dll
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Newtonsoft.Json.dll
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/ParserContracts44.pdb
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/ParserContracts44.exe.config
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Newtonsoft.Json.xml

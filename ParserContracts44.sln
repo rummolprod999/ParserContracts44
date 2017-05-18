@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserContracts44", "ParserContracts44.csproj", "{039B8AE1-D80C-4B81-82A1-2D1FAFFE0F71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{D2954A7F-5A77-402D-8A81-8F9E2058BBA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{039B8AE1-D80C-4B81-82A1-2D1FAFFE0F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{039B8AE1-D80C-4B81-82A1-2D1FAFFE0F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{039B8AE1-D80C-4B81-82A1-2D1FAFFE0F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2954A7F-5A77-402D-8A81-8F9E2058BBA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2954A7F-5A77-402D-8A81-8F9E2058BBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2954A7F-5A77-402D-8A81-8F9E2058BBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2954A7F-5A77-402D-8A81-8F9E2058BBA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

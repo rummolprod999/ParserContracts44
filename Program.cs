@@ -83,8 +83,10 @@ namespace ParserContracts44
         private static void ParserC44(TypeArguments arg)
         {
             Log.Logger("Время начала парсинга Contracts44");
-            ParserContr44 c44 = new ParserContr44(StrArg);
-            c44.Parsing();
+            /*ParserContr44 c44 = new ParserContr44(StrArg);
+            c44.Parsing();*/
+            ParserContr44 p = new ParserContr44("last");
+            p.ParsingXML("contract_2366200608816001262_30400522.xml", "32");
         }
     }
 }
