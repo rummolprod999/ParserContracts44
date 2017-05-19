@@ -164,8 +164,8 @@ namespace ParserContracts44
                         cmd4.Parameters.AddWithValue("@email_customer", email_customer);
                         cmd4.Parameters.AddWithValue("@contact_name_customer", contact_name_customer);
                         int add_c = cmd4.ExecuteNonQuery();
-                        id_customer = (int)cmd4.LastInsertedId;
-                        Console.WriteLine(id_customer);
+                        id_customer = (int) cmd4.LastInsertedId;
+
                         if (add_c > 0)
                         {
                             Program.AddCustomer++;
@@ -184,10 +184,162 @@ namespace ParserContracts44
                     if (enumerable.Any())
                     {
                         var sup = enumerable.First();
-                        Console.WriteLine(sup);
+                        if (sup.Type == JTokenType.Property)
+                        {
+                            sup = enumerable.First().Parent;
+                        }
+                        string supplier_inn = ((string) sup.SelectToken("legalEntityRF.INN") ?? "").Trim();
+                        if (supplier_inn == "")
+                        {
+                            supplier_inn = ((string) sup.SelectToken("individualPersonRF.INN") ?? "").Trim();
+                        }
+                        if (supplier_inn == "")
+                        {
+                            supplier_inn = ((string) sup.SelectToken("legalEntityForeignState.INN") ?? "").Trim();
+                        }
+                        if (supplier_inn == "")
+                        {
+                            supplier_inn = ((string) sup.SelectToken("legalEntityForeignState.taxPayerCode") ?? "").Trim();
+                        }
+                        if (supplier_inn == "")
+                        {
+                            supplier_inn = ((string) sup.SelectToken("individualPersonForeignState.registerInRFTaxBodies.INN") ?? "").Trim();
+                        }
+                        if (supplier_inn == "")
+                        {
+                            supplier_inn = ((string) sup.SelectToken("individualPersonForeignState.taxPayerCode") ?? "").Trim();
+                        }
+                        if (supplier_inn == "")
+                        {
+                            supplier_inn = ((string) sup.SelectToken("individualPersonForeignState.INN") ?? "").Trim();
+                        }
+                        if (supplier_inn != "")
+                        {
+                            string kpp_supplier  = ((string) sup.SelectToken("legalEntityRF.KPP") ?? "").Trim();
+                            if (kpp_supplier == "")
+                            {
+                                kpp_supplier  = ((string) sup.SelectToken("individualPersonRF.KPP") ?? "").Trim();
+                            }
+                            if (kpp_supplier == "")
+                            {
+                                kpp_supplier  = ((string) sup.SelectToken("individualPersonForeignState.registerInRFTaxBodies.KPP") ?? "").Trim();
+                            }
+                            string select_supplier =
+                                $"SELECT id FROM {Program.Prefix}od_supplier WHERE inn = @supplier_inn AND kpp = @kpp_supplier";
+                            MySqlCommand cmd5 = new MySqlCommand(select_supplier, connect);
+                            cmd5.Prepare();
+                            cmd5.Parameters.AddWithValue("@supplier_inn", supplier_inn);
+                            cmd5.Parameters.AddWithValue("@kpp_supplier", kpp_supplier);
+                            MySqlDataReader reader = cmd5.ExecuteReader();
+                            bool res_read = reader.HasRows;
+                            if (res_read)
+                            {
+                                reader.Read();
+                                id_supplier = reader.GetInt32("id");
+                                reader.Close();
+                            }
+                            else
+                            {
+                                reader.Close();
+                                string contactphone_supplier = ((string) sup.SelectToken("legalEntityRF.contactPhone") ?? "").Trim();
+                                if (contactphone_supplier == "")
+                                {
+                                    contactphone_supplier = ((string) sup.SelectToken("individualPersonRF.contactPhone") ?? "").Trim();
+                                }
+                                if (contactphone_supplier == "")
+                                {
+                                    contactphone_supplier = ((string) sup.SelectToken("legalEntityForeignState.placeOfStayInRegCountry.contactPhone") ?? "").Trim();
+                                }
+                                if (contactphone_supplier == "")
+                                {
+                                    contactphone_supplier = ((string) sup.SelectToken("individualPersonForeignState.placeOfStayInRegCountry.contactPhone") ?? "").Trim();
+                                }
+                                string contactemail_supplier = ((string) sup.SelectToken("legalEntityRF.contactEMail") ?? "").Trim();
+                                if (contactemail_supplier == "")
+                                {
+                                    contactemail_supplier = ((string) sup.SelectToken("individualPersonRF.contactEMail") ?? "").Trim();
+                                }
+                                if (contactemail_supplier == "")
+                                {
+                                    contactemail_supplier = ((string) sup.SelectToken("legalEntityForeignState.placeOfStayInRegCountry.contactEMail") ?? "").Trim();
+                                }
+                                if (contactemail_supplier == "")
+                                {
+                                    contactemail_supplier = ((string) sup.SelectToken("individualPersonForeignState.placeOfStayInRegCountry.contactEMail") ?? "").Trim();
+                                }
+                                string organizationname_supplier = ((string) sup.SelectToken("legalEntityRF.fullName") ?? "").Trim();
+                                if (organizationname_supplier == "")
+                                {
+                                    organizationname_supplier = ((string) sup.SelectToken("legalEntityForeignState.fullName") ?? "").Trim();
+                                }
+                                if (organizationname_supplier == "")
+                                {
+                                    string lastname = ((string) sup.SelectToken("individualPersonRF.lastName") ?? "").Trim();
+                                    if (lastname == "")
+                                    {
+                                        lastname = ((string) sup.SelectToken("individualPersonForeignState.lastName") ?? "").Trim();
+                                    }
+                                    string firsname = ((string) sup.SelectToken("individualPersonRF.firstName") ?? "").Trim();
+                                    if (firsname == "")
+                                    {
+                                        firsname = ((string) sup.SelectToken("individualPersonForeignState.firstName") ?? "").Trim();
+                                    }
+                                    string middlename = ((string) sup.SelectToken("individualPersonRF.middleName") ?? "").Trim();
+                                    if (middlename == "")
+                                    {
+                                        middlename = ((string) sup.SelectToken("individualPersonForeignState.middleName") ?? "").Trim();
+                                    }
+                                    if (lastname != "" || firsname != "" || middlename != "")
+                                    {
+                                        organizationname_supplier = $"{lastname} {firsname} {middlename}".Trim();
+                                    }
+                                }
+                                int contracts_count_supplier = 1;
+                                decimal contracts_sum_supplier = contract_price;
+                                int contracts223_count_supplier = 0;
+                                decimal contracts223_sum_supplier = 0.0m;
+                                string ogrn_supplier = "";
+                                string region_code_supplier = "";
+                                string postal_address_supplier = "";
+                                string contactfax_supplier = "";
+                                string contact_name_supplier = "";
+                                string add_supplier =
+                                    $"INSERT INTO {Program.Prefix}od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, " +
+                                    $"contracts_count = @contracts_count, " +
+                                    $"contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, " +
+                                    $"contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, " +
+                                    $"organizationName = @organizationName,postal_address = @postal_address, " +
+                                    $"contactPhone = @contactPhone,contactFax = @contactFax, " +
+                                    $"contactEMail = @contactEMail,contact_name = @contact_name";
+                                MySqlCommand cmd6 = new MySqlCommand(add_supplier, connect);
+                                cmd6.Prepare();
+                                cmd6.Parameters.AddWithValue("@supplier_inn", supplier_inn);
+                                cmd6.Parameters.AddWithValue("@kpp_supplier", kpp_supplier);
+                                cmd6.Parameters.AddWithValue("@contracts_count", contracts_count_supplier);
+                                cmd6.Parameters.AddWithValue("@contracts223_count", contracts223_count_supplier);
+                                cmd6.Parameters.AddWithValue("@contracts_sum", contracts_sum_supplier);
+                                cmd6.Parameters.AddWithValue("@contracts223_sum", contracts223_sum_supplier);
+                                cmd6.Parameters.AddWithValue("@ogrn", ogrn_supplier);
+                                cmd6.Parameters.AddWithValue("@region_code", region_code_supplier);
+                                cmd6.Parameters.AddWithValue("@organizationName", organizationname_supplier);
+                                cmd6.Parameters.AddWithValue("@postal_address", postal_address_supplier);
+                                cmd6.Parameters.AddWithValue("@contactPhone", contactphone_supplier);
+                                cmd6.Parameters.AddWithValue("@contactFax", contactfax_supplier);
+                                cmd6.Parameters.AddWithValue("@contactEMail", contactemail_supplier);
+                                cmd6.Parameters.AddWithValue("@contact_name", contact_name_supplier);
+                                int add_s = cmd6.ExecuteNonQuery();
+                                id_supplier = (int)cmd6.LastInsertedId;
+                                if (add_s > 0)
+                                {
+                                    Program.AddSupplier++;
+                                }
+                                else
+                                {
+                                    Log.Logger("Не удалось добавить supplier", file);
+                                }
+                            }
+                        }
                     }
-                    
-                    
                 }
             }
         }

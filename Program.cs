@@ -24,6 +24,7 @@ namespace ParserContracts44
         public static TypeArguments Periodparsing;
         public static string StrArg;
         public static int AddCustomer = 0;
+        public static int AddSupplier = 0;
 
         public static void Main(string[] args)
         {
