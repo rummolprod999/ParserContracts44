@@ -1,5 +1,4 @@
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/ParserContracts44.exe
-/home/alex/RiderProjects/ParserContracts44/bin/Debug/ParserContracts44.pdb
 /home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.csprojResolveAssemblyReference.cache
 /home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.csproj.CoreCompileInputs.cache
 /home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.exe
@@ -8,3 +7,4 @@
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/MySql.Data.dll
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/Newtonsoft.Json.dll
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/Newtonsoft.Json.xml
+/home/alex/RiderProjects/ParserContracts44/bin/Debug//ParserContracts44.pdb

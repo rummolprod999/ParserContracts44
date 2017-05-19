@@ -23,6 +23,7 @@ namespace ParserContracts44
         public static string FileLog;
         public static TypeArguments Periodparsing;
         public static string StrArg;
+        public static int AddCustomer = 0;
 
         public static void Main(string[] args)
         {
@@ -86,7 +87,7 @@ namespace ParserContracts44
             /*ParserContr44 c44 = new ParserContr44(StrArg);
             c44.Parsing();*/
             ParserContr44 p = new ParserContr44("last");
-            p.ParsingXML("contract_2366200608816001262_30400522.xml", "32");
+            p.ParsingXML("/home/alex/RiderProjects/ParserContracts44/bin/Debug/contract_2366200608816001262_30400522.xml", "32");
         }
     }
 }
