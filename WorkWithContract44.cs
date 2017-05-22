@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
+
 
 namespace ParserContracts44
 {
@@ -83,8 +85,8 @@ namespace ParserContracts44
                 lot_number = (int?) j44.SelectToken("export.contract.foundation.oosOrder.order.lotNumber") ?? 0;
             if (lot_number == 0)
                 lot_number = 1;
-            decimal contract_price = (decimal?) j44.SelectToken("export.contract.priceInfo.price") ?? 0.0m;
-
+            string contract_price = ((string) j44.SelectToken("export.contract.priceInfo.price") ?? "").Trim();
+            /*decimal contract_price = decimal.Parse(contract_price_s, NumberStyles.Any, CultureInfo.InvariantCulture);*/
             string currency = ((string) j44.SelectToken("export.contract.priceInfo.currency.name") ?? "").Trim();
             int version_number = (int?) j44.SelectToken("export.contract.versionNumber") ?? 0;
             int cancel = 0;
@@ -145,7 +147,7 @@ namespace ParserContracts44
                             ((string) j44.SelectToken("export.contract.customer.fullName") ?? "").Trim();
                         string postal_address_customer = "";
                         int contracts_count_customer = 1;
-                        decimal contracts_sum_customer = contract_price;
+                        string contracts_sum_customer = contract_price;
                         int contracts223_count_customer = 0;
                         decimal contracts223_sum_customer = 0.0m;
                         string ogrn_customer = "";
@@ -334,7 +336,7 @@ namespace ParserContracts44
                                     }
                                 }
                                 int contracts_count_supplier = 1;
-                                decimal contracts_sum_supplier = contract_price;
+                                string contracts_sum_supplier = contract_price;
                                 int contracts223_count_supplier = 0;
                                 decimal contracts223_sum_supplier = 0.0m;
                                 string ogrn_supplier = "";
@@ -494,9 +496,60 @@ namespace ParserContracts44
 
                         foreach (var prod in list_p)
                         {
-                            string name_p = (string) prod.SelectToken("name") ?? "".Trim();
+                            int okpd2_group_code = 0;
+                            string okpd2_group_level1_code = "";
+                            int okpd_group_code = 0;
+                            string okpd_group_level1_code = "";
+                            string name_p = ((string) prod.SelectToken("name") ?? "").Trim();
                             name_p = Regex.Replace(name_p, @"\t|\n|\r", "");
-                            Console.WriteLine(name_p);
+                            if (String.IsNullOrEmpty(name_p))
+                                name_p = "Нет названия";
+                            string okpd2_code = ((string) prod.SelectToken("OKPD2.code") ?? "").Trim();
+                            if (!String.IsNullOrEmpty(okpd2_code))
+                            {
+                                GetOKPD(okpd2_code, out okpd2_group_code, out okpd2_group_level1_code);
+                            }
+                            string okpd2_name = ((string) prod.SelectToken("OKPD2.name") ?? "").Trim();
+                            string okpd_code = ((string) prod.SelectToken("OKPD.code") ?? "").Trim();
+                            if (!String.IsNullOrEmpty(okpd_code))
+                            {
+                                GetOKPD(okpd_code, out okpd_group_code, out okpd_group_level1_code);
+                            }
+                            string okpd_name = ((string) prod.SelectToken("OKPD.name") ?? "").Trim();
+                            string price = ((string) prod.SelectToken("price") ?? "").Trim();
+                            /*decimal price = decimal.Parse(price_s, NumberStyles.Any, CultureInfo.InvariantCulture);*/
+                            string quantity = ((string) prod.SelectToken("quantity") ?? "").Trim();
+                            /*decimal quantity =
+                                decimal.Parse(quantity_s, NumberStyles.Any, CultureInfo.InvariantCulture);*/
+                            string sum_p = ((string) prod.SelectToken("sum") ?? "").Trim();
+                            /*decimal sum_p = decimal.Parse(sum_p_s, NumberStyles.Any, CultureInfo.InvariantCulture);*/
+                            string sid = ((string) prod.SelectToken("sid") ?? "").Trim();
+                            string okei = ((string) prod.SelectToken("OKEI.nationalCode") ?? "").Trim();
+                            string insert_prod =
+                                $"INSERT INTO {Program.Prefix}od_contract_product SET id_od_contract = @id_od_contract, " +
+                                $"name = @name_p, okpd2_code = @okpd2_code, okpd_code = @okpd_code, okpd2_group_code = @okpd2_group_code, " +
+                                $"okpd_group_code = @okpd_group_code, okpd2_group_level1_code = @okpd2_group_level1_code, " +
+                                $"okpd_group_level1_code = @okpd_group_level1_code, price = @price, okpd2_name = @okpd2_name, " +
+                                $"okpd_name = @okpd_name, quantity = @quantity, okei = @okei, sum = @sum, sid = @sid";
+                            MySqlCommand cmd11 = new MySqlCommand(insert_prod, connect);
+                            cmd11.Prepare();
+                            cmd11.Parameters.AddWithValue("@id_od_contract", id_od_contract);
+                            cmd11.Parameters.AddWithValue("@name_p", name_p);
+                            cmd11.Parameters.AddWithValue("@okpd2_code", okpd2_code);
+                            cmd11.Parameters.AddWithValue("@okpd_code", okpd_code);
+                            cmd11.Parameters.AddWithValue("@okpd2_group_code", okpd2_group_code);
+                            cmd11.Parameters.AddWithValue("@okpd_group_code", okpd_group_code);
+                            cmd11.Parameters.AddWithValue("@okpd2_group_level1_code", okpd2_group_level1_code);
+                            cmd11.Parameters.AddWithValue("@okpd_group_level1_code", okpd_group_level1_code);
+                            cmd11.Parameters.AddWithValue("@price", price);
+                            cmd11.Parameters.AddWithValue("@okpd2_name", okpd2_name);
+                            cmd11.Parameters.AddWithValue("@okpd_name", okpd_name);
+                            cmd11.Parameters.AddWithValue("@quantity", quantity);
+                            cmd11.Parameters.AddWithValue("@okei", okei);
+                            cmd11.Parameters.AddWithValue("@sum", sum_p);
+                            cmd11.Parameters.AddWithValue("@sid", sid);
+                            int add_p = cmd11.ExecuteNonQuery();
+                            AddProductEvent?.Invoke(add_p);
                         }
                     }
                 }
@@ -568,6 +621,49 @@ namespace ParserContracts44
             else
             {
                 Log.Logger("Не удалось обновить contact", file);
+            }
+        }
+
+        private void GetOKPD(string okpd2_code, out int okpd2_group_code, out string okpd2_group_level1_code)
+        {
+            if (okpd2_code.Length > 1)
+            {
+                int dot = okpd2_code.IndexOf(".");
+                if (dot != -1)
+                {
+                    string okpd2_group_code_temp = okpd2_code.Substring(0, dot);
+                    okpd2_group_code_temp = okpd2_group_code_temp.Substring(0, 2);
+                    int temp_okpd2_group_code;
+                    if (!Int32.TryParse(okpd2_group_code_temp, out temp_okpd2_group_code))
+                    {
+                        temp_okpd2_group_code = 0;
+                    }
+                    okpd2_group_code = temp_okpd2_group_code;
+                }
+                else
+                {
+                    okpd2_group_code = 0;
+                }
+            }
+            else
+            {
+                okpd2_group_code = 0;
+            }
+            if (okpd2_code.Length > 3)
+            {
+                int dot = okpd2_code.IndexOf(".");
+                if (dot != -1)
+                {
+                    okpd2_group_level1_code = okpd2_code.Substring(dot + 1, 1);
+                }
+                else
+                {
+                    okpd2_group_level1_code = "";
+                }
+            }
+            else
+            {
+                okpd2_group_level1_code = "";
             }
         }
     }

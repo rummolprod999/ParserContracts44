@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Win32;
 using System.IO;
+using System.Globalization;
 
 namespace ParserContracts44
 {
@@ -88,10 +89,11 @@ namespace ParserContracts44
         private static void ParserC44(TypeArguments arg)
         {
             Log.Logger("Время начала парсинга Contracts44");
-            /*ParserContr44 c44 = new ParserContr44(StrArg);
-            c44.Parsing();*/
-            ParserContr44 p = new ParserContr44("last");
-            p.ParsingXML("/home/alex/RiderProjects/ParserContracts44/bin/Debug/contract_2366200608816001262_30400522.xml", "32");
+            ParserContr44 c44 = new ParserContr44(StrArg);
+            c44.Parsing();
+            /*ParserContr44 p = new ParserContr44("last");
+            p.ParsingXML("/home/alex/RiderProjects/ParserContracts44/bin/Debug/contract_3312100001816000003_25649142.xml", "32");*/
+
         }
     }
 }
