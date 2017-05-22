@@ -25,6 +25,9 @@ namespace ParserContracts44
         public static string StrArg;
         public static int AddCustomer = 0;
         public static int AddSupplier = 0;
+        public static int AddContract = 0;
+        public static int AddProduct = 0;
+        public static int UpdateContract = 0;
 
         public static void Main(string[] args)
         {

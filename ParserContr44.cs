@@ -65,7 +65,7 @@ namespace ParserContracts44
             string filea = "";
             string path_unzip = "";
             filea = GetArch(Arch, PathParse);
-            if (filea != "")
+            if (!String.IsNullOrEmpty(filea))
             {
                 path_unzip = Unzipped.Unzip(filea);
                 if (path_unzip != "")

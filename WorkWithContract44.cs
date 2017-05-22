@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 
@@ -12,11 +13,25 @@ namespace ParserContracts44
         private readonly string file;
         private readonly string region;
 
+        public delegate void AddData(int d);
+
+        public event AddData AddSupplierEvent;
+        public event AddData AddCustomerEvent;
+        public event AddData UpdateContractEvent;
+        public event AddData AddContractEvent;
+        public event AddData AddProductEvent;
+
+
         public WorkWithContract44(JObject json, string f, string r)
         {
             j44 = json;
             file = f;
             region = r;
+            AddCustomerEvent += AddCustomer;
+            AddSupplierEvent += AddSupplier;
+            UpdateContractEvent += UpdateContract;
+            AddContractEvent += AddContract;
+            AddProductEvent += AddProduct;
         }
 
         public void Work44()
@@ -25,7 +40,7 @@ namespace ParserContracts44
             int id_customer = 0;
             int id_supplier = 0;
             string id_contract = ((string) j44.SelectToken("export.contract.id") ?? "").Trim();
-            if (id_contract == "")
+            if (String.IsNullOrEmpty(id_contract))
             {
                 Log.Logger("У контракта нет id", file);
                 return;
@@ -36,32 +51,32 @@ namespace ParserContracts44
                 .Trim();
             string placing =
                 ((string) j44.SelectToken("export.contract.foundation.fcsOrder.order.placing") ?? "").Trim();
-            if (placing == "")
+            if (String.IsNullOrEmpty(placing))
                 placing = ((string) j44.SelectToken("export.contract.foundation.oosOrder.order.placing") ?? "").Trim();
             string url = ((string) j44.SelectToken("export.contract.href") ?? "").Trim();
             string sign_date = ((string) j44.SelectToken("export.contract.signDate") ?? "").Trim();
             string single_customer_reason_code =
                 ((string) j44.SelectToken("export.contract.foundation.fcsOrder.order.singleCustomer.reason.code") ?? "")
                 .Trim();
-            if (single_customer_reason_code == "")
+            if (String.IsNullOrEmpty(single_customer_reason_code))
                 single_customer_reason_code =
                 ((string) j44.SelectToken("export.contract.foundation.oosOrder.order.singleCustomer.reason.code") ??
                  "").Trim();
             string single_customer_reason_name =
                 ((string) j44.SelectToken("export.contract.foundation.fcsOrder.order.singleCustomer.reason.name") ?? "")
                 .Trim();
-            if (single_customer_reason_name == "")
+            if (String.IsNullOrEmpty(single_customer_reason_name))
                 single_customer_reason_name =
                 ((string) j44.SelectToken("export.contract.foundation.oosOrder.order.singleCustomer.reason.name") ??
                  "").Trim();
             string fz = "44";
             string notification_number =
                 ((string) j44.SelectToken("export.contract.foundation.fcsOrder.order.notificationNumber") ?? "").Trim();
-            if (notification_number == "")
+            if (String.IsNullOrEmpty(notification_number))
                 notification_number =
                     ((string) j44.SelectToken("export.contract.foundation.oosOrder.order.notificationNumber") ?? "")
                     .Trim();
-            if (notification_number == "")
+            if (String.IsNullOrEmpty(notification_number))
                 notification_number = "Нет номера";
             int lot_number = (int?) j44.SelectToken("export.contract.foundation.fcsOrder.order.lotNumber") ?? 0;
             if (lot_number == 0)
@@ -74,13 +89,13 @@ namespace ParserContracts44
             int version_number = (int?) j44.SelectToken("export.contract.versionNumber") ?? 0;
             int cancel = 0;
             string execution_start_date =
-                ((string) j44.SelectToken("export.contract.executionPeriod.currency.startDate") ?? "").Trim();
-            string execution_end_date = ((string) j44.SelectToken("export.contract.executionPeriod.currency.endDate") ??
+                ((string) j44.SelectToken("export.contract.executionPeriod.startDate") ?? "").Trim();
+            string execution_end_date = ((string) j44.SelectToken("export.contract.executionPeriod.endDate") ??
                                          "").Trim();
             using (MySqlConnection connect = ConnectToDb.GetDBConnection())
             {
                 connect.Open();
-                if (regnum != "" && version_number != 0)
+                if (!String.IsNullOrEmpty(regnum) && version_number != 0)
                 {
                     string select_get_max =
                         $"SELECT MAX(version_number) as m FROM {Program.Prefix}od_contract WHERE regnum = @regnum";
@@ -106,7 +121,7 @@ namespace ParserContracts44
                     }
                 }
                 string customer_regnumber = ((string) j44.SelectToken("export.contract.customer.regNum") ?? "").Trim();
-                if (customer_regnumber != "")
+                if (!String.IsNullOrEmpty(customer_regnumber))
                 {
                     string select_customer =
                         $"SELECT id FROM {Program.Prefix}od_customer WHERE regNumber = @customer_regnumber";
@@ -166,14 +181,7 @@ namespace ParserContracts44
                         int add_c = cmd4.ExecuteNonQuery();
                         id_customer = (int) cmd4.LastInsertedId;
 
-                        if (add_c > 0)
-                        {
-                            Program.AddCustomer++;
-                        }
-                        else
-                        {
-                            Log.Logger("Не удалось добавить customer", file);
-                        }
+                        AddCustomerEvent?.Invoke(add_c);
                     }
                 }
                 var test_sup = j44.SelectToken("export.contract.suppliers");
@@ -189,40 +197,46 @@ namespace ParserContracts44
                             sup = enumerable.First().Parent;
                         }
                         string supplier_inn = ((string) sup.SelectToken("legalEntityRF.INN") ?? "").Trim();
-                        if (supplier_inn == "")
+                        if (String.IsNullOrEmpty(supplier_inn))
                         {
                             supplier_inn = ((string) sup.SelectToken("individualPersonRF.INN") ?? "").Trim();
                         }
-                        if (supplier_inn == "")
+                        if (String.IsNullOrEmpty(supplier_inn))
                         {
                             supplier_inn = ((string) sup.SelectToken("legalEntityForeignState.INN") ?? "").Trim();
                         }
-                        if (supplier_inn == "")
+                        if (String.IsNullOrEmpty(supplier_inn))
                         {
-                            supplier_inn = ((string) sup.SelectToken("legalEntityForeignState.taxPayerCode") ?? "").Trim();
+                            supplier_inn =
+                                ((string) sup.SelectToken("legalEntityForeignState.taxPayerCode") ?? "").Trim();
                         }
-                        if (supplier_inn == "")
+                        if (String.IsNullOrEmpty(supplier_inn))
                         {
-                            supplier_inn = ((string) sup.SelectToken("individualPersonForeignState.registerInRFTaxBodies.INN") ?? "").Trim();
+                            supplier_inn =
+                            ((string) sup.SelectToken("individualPersonForeignState.registerInRFTaxBodies.INN") ??
+                             "").Trim();
                         }
-                        if (supplier_inn == "")
+                        if (String.IsNullOrEmpty(supplier_inn))
                         {
-                            supplier_inn = ((string) sup.SelectToken("individualPersonForeignState.taxPayerCode") ?? "").Trim();
+                            supplier_inn = ((string) sup.SelectToken("individualPersonForeignState.taxPayerCode") ?? "")
+                                .Trim();
                         }
-                        if (supplier_inn == "")
+                        if (String.IsNullOrEmpty(supplier_inn))
                         {
                             supplier_inn = ((string) sup.SelectToken("individualPersonForeignState.INN") ?? "").Trim();
                         }
-                        if (supplier_inn != "")
+                        if (!String.IsNullOrEmpty(supplier_inn))
                         {
-                            string kpp_supplier  = ((string) sup.SelectToken("legalEntityRF.KPP") ?? "").Trim();
-                            if (kpp_supplier == "")
+                            string kpp_supplier = ((string) sup.SelectToken("legalEntityRF.KPP") ?? "").Trim();
+                            if (String.IsNullOrEmpty(kpp_supplier))
                             {
-                                kpp_supplier  = ((string) sup.SelectToken("individualPersonRF.KPP") ?? "").Trim();
+                                kpp_supplier = ((string) sup.SelectToken("individualPersonRF.KPP") ?? "").Trim();
                             }
-                            if (kpp_supplier == "")
+                            if (String.IsNullOrEmpty(kpp_supplier))
                             {
-                                kpp_supplier  = ((string) sup.SelectToken("individualPersonForeignState.registerInRFTaxBodies.KPP") ?? "").Trim();
+                                kpp_supplier =
+                                ((string) sup.SelectToken(
+                                     "individualPersonForeignState.registerInRFTaxBodies.KPP") ?? "").Trim();
                             }
                             string select_supplier =
                                 $"SELECT id FROM {Program.Prefix}od_supplier WHERE inn = @supplier_inn AND kpp = @kpp_supplier";
@@ -241,55 +255,80 @@ namespace ParserContracts44
                             else
                             {
                                 reader.Close();
-                                string contactphone_supplier = ((string) sup.SelectToken("legalEntityRF.contactPhone") ?? "").Trim();
-                                if (contactphone_supplier == "")
+                                string contactphone_supplier =
+                                    ((string) sup.SelectToken("legalEntityRF.contactPhone") ?? "").Trim();
+                                if (String.IsNullOrEmpty(contactphone_supplier))
                                 {
-                                    contactphone_supplier = ((string) sup.SelectToken("individualPersonRF.contactPhone") ?? "").Trim();
+                                    contactphone_supplier =
+                                        ((string) sup.SelectToken("individualPersonRF.contactPhone") ?? "").Trim();
                                 }
-                                if (contactphone_supplier == "")
+                                if (String.IsNullOrEmpty(contactphone_supplier))
                                 {
-                                    contactphone_supplier = ((string) sup.SelectToken("legalEntityForeignState.placeOfStayInRegCountry.contactPhone") ?? "").Trim();
+                                    contactphone_supplier =
+                                    ((string) sup.SelectToken(
+                                         "legalEntityForeignState.placeOfStayInRegCountry.contactPhone") ?? "").Trim();
                                 }
-                                if (contactphone_supplier == "")
+                                if (String.IsNullOrEmpty(contactphone_supplier))
                                 {
-                                    contactphone_supplier = ((string) sup.SelectToken("individualPersonForeignState.placeOfStayInRegCountry.contactPhone") ?? "").Trim();
+                                    contactphone_supplier =
+                                        ((string) sup.SelectToken(
+                                             "individualPersonForeignState.placeOfStayInRegCountry.contactPhone") ?? "")
+                                        .Trim();
                                 }
-                                string contactemail_supplier = ((string) sup.SelectToken("legalEntityRF.contactEMail") ?? "").Trim();
-                                if (contactemail_supplier == "")
+                                string contactemail_supplier =
+                                    ((string) sup.SelectToken("legalEntityRF.contactEMail") ?? "").Trim();
+                                if (String.IsNullOrEmpty(contactemail_supplier))
                                 {
-                                    contactemail_supplier = ((string) sup.SelectToken("individualPersonRF.contactEMail") ?? "").Trim();
+                                    contactemail_supplier =
+                                        ((string) sup.SelectToken("individualPersonRF.contactEMail") ?? "").Trim();
                                 }
-                                if (contactemail_supplier == "")
+                                if (String.IsNullOrEmpty(contactemail_supplier))
                                 {
-                                    contactemail_supplier = ((string) sup.SelectToken("legalEntityForeignState.placeOfStayInRegCountry.contactEMail") ?? "").Trim();
+                                    contactemail_supplier =
+                                    ((string) sup.SelectToken(
+                                         "legalEntityForeignState.placeOfStayInRegCountry.contactEMail") ?? "").Trim();
                                 }
-                                if (contactemail_supplier == "")
+                                if (String.IsNullOrEmpty(contactemail_supplier))
                                 {
-                                    contactemail_supplier = ((string) sup.SelectToken("individualPersonForeignState.placeOfStayInRegCountry.contactEMail") ?? "").Trim();
+                                    contactemail_supplier =
+                                        ((string) sup.SelectToken(
+                                             "individualPersonForeignState.placeOfStayInRegCountry.contactEMail") ?? "")
+                                        .Trim();
                                 }
-                                string organizationname_supplier = ((string) sup.SelectToken("legalEntityRF.fullName") ?? "").Trim();
-                                if (organizationname_supplier == "")
+                                string organizationname_supplier =
+                                    ((string) sup.SelectToken("legalEntityRF.fullName") ?? "").Trim();
+                                if (String.IsNullOrEmpty(organizationname_supplier))
                                 {
-                                    organizationname_supplier = ((string) sup.SelectToken("legalEntityForeignState.fullName") ?? "").Trim();
+                                    organizationname_supplier =
+                                        ((string) sup.SelectToken("legalEntityForeignState.fullName") ?? "").Trim();
                                 }
-                                if (organizationname_supplier == "")
+                                if (String.IsNullOrEmpty(organizationname_supplier))
                                 {
-                                    string lastname = ((string) sup.SelectToken("individualPersonRF.lastName") ?? "").Trim();
-                                    if (lastname == "")
+                                    string lastname = ((string) sup.SelectToken("individualPersonRF.lastName") ?? "")
+                                        .Trim();
+                                    if (String.IsNullOrEmpty(lastname))
                                     {
-                                        lastname = ((string) sup.SelectToken("individualPersonForeignState.lastName") ?? "").Trim();
+                                        lastname = ((string) sup.SelectToken("individualPersonForeignState.lastName") ??
+                                                    "").Trim();
                                     }
-                                    string firsname = ((string) sup.SelectToken("individualPersonRF.firstName") ?? "").Trim();
-                                    if (firsname == "")
+                                    string firsname = ((string) sup.SelectToken("individualPersonRF.firstName") ?? "")
+                                        .Trim();
+                                    if (String.IsNullOrEmpty(firsname))
                                     {
-                                        firsname = ((string) sup.SelectToken("individualPersonForeignState.firstName") ?? "").Trim();
+                                        firsname =
+                                            ((string) sup.SelectToken("individualPersonForeignState.firstName") ?? "")
+                                            .Trim();
                                     }
-                                    string middlename = ((string) sup.SelectToken("individualPersonRF.middleName") ?? "").Trim();
-                                    if (middlename == "")
+                                    string middlename =
+                                        ((string) sup.SelectToken("individualPersonRF.middleName") ?? "").Trim();
+                                    if (String.IsNullOrEmpty(middlename))
                                     {
-                                        middlename = ((string) sup.SelectToken("individualPersonForeignState.middleName") ?? "").Trim();
+                                        middlename =
+                                            ((string) sup.SelectToken("individualPersonForeignState.middleName") ?? "")
+                                            .Trim();
                                     }
-                                    if (lastname != "" || firsname != "" || middlename != "")
+                                    if (!String.IsNullOrEmpty(lastname) || !String.IsNullOrEmpty(firsname) ||
+                                        !String.IsNullOrEmpty(middlename))
                                     {
                                         organizationname_supplier = $"{lastname} {firsname} {middlename}".Trim();
                                     }
@@ -328,16 +367,136 @@ namespace ParserContracts44
                                 cmd6.Parameters.AddWithValue("@contactEMail", contactemail_supplier);
                                 cmd6.Parameters.AddWithValue("@contact_name", contact_name_supplier);
                                 int add_s = cmd6.ExecuteNonQuery();
-                                id_supplier = (int)cmd6.LastInsertedId;
-                                if (add_s > 0)
-                                {
-                                    Program.AddSupplier++;
-                                }
-                                else
-                                {
-                                    Log.Logger("Не удалось добавить supplier", file);
-                                }
+                                id_supplier = (int) cmd6.LastInsertedId;
+                                AddSupplierEvent?.Invoke(add_s);
                             }
+                        }
+                    }
+                }
+                int id_od_contract = 0;
+                string select_contract =
+                    $"SELECT id FROM {Program.Prefix}od_contract WHERE id_contract = @id_contract AND region_code = @region_code";
+                MySqlCommand cmd7 = new MySqlCommand(select_contract, connect);
+                cmd7.Prepare();
+                cmd7.Parameters.AddWithValue("@id_contract", id_contract);
+                cmd7.Parameters.AddWithValue("@region_code", region);
+                MySqlDataReader reader_c = cmd7.ExecuteReader();
+                if (reader_c.HasRows)
+                {
+                    reader_c.Read();
+                    id_od_contract = reader_c.GetInt32("id");
+                    reader_c.Close();
+                    string delete_products =
+                        $"DELETE FROM {Program.Prefix}od_contract_product WHERE id_od_contract = @id_od_contract";
+                    MySqlCommand cmd8 = new MySqlCommand(delete_products, connect);
+                    cmd8.Prepare();
+                    cmd8.Parameters.AddWithValue("@id_od_contract", id_od_contract);
+                    cmd8.ExecuteNonQuery();
+                    string update_contract =
+                        $"UPDATE {Program.Prefix}od_contract SET p_number = @p_number, regnum = @regnum, " +
+                        $"current_contract_stage = @current_contract_stage, placing = @placing, " +
+                        $"region_code = @region_code, url = @url, sign_date = @sign_date, " +
+                        $"single_customer_reason_code = @single_customer_reason_code, single_customer_reason_name = @single_customer_reason_name, " +
+                        $"fz = @fz, notification_number = @notification_number, lot_number = @lot_number, " +
+                        $"contract_price = @contract_price, currency = @currency, version_number = @version_number, " +
+                        $"execution_start_date = @execution_start_date, execution_end_date = @execution_end_date, " +
+                        $"id_customer = @id_customer, id_supplier = @id_supplier, xml = @xml WHERE id = @id_od_contract";
+                    MySqlCommand cmd9 = new MySqlCommand(update_contract, connect);
+                    cmd9.Prepare();
+                    cmd9.Parameters.AddWithValue("@p_number", p_number);
+                    cmd9.Parameters.AddWithValue("@regnum", regnum);
+                    cmd9.Parameters.AddWithValue("@current_contract_stage", current_contract_stage);
+                    cmd9.Parameters.AddWithValue("@placing", placing);
+                    cmd9.Parameters.AddWithValue("@region_code", region);
+                    cmd9.Parameters.AddWithValue("@url", url);
+                    cmd9.Parameters.AddWithValue("@sign_date", sign_date);
+                    cmd9.Parameters.AddWithValue("@single_customer_reason_code", single_customer_reason_code);
+                    cmd9.Parameters.AddWithValue("@single_customer_reason_name", single_customer_reason_name);
+                    cmd9.Parameters.AddWithValue("@fz", fz);
+                    cmd9.Parameters.AddWithValue("@notification_number", notification_number);
+                    cmd9.Parameters.AddWithValue("@lot_number", lot_number);
+                    cmd9.Parameters.AddWithValue("@contract_price", contract_price);
+                    cmd9.Parameters.AddWithValue("@currency", currency);
+                    cmd9.Parameters.AddWithValue("@version_number", version_number);
+                    cmd9.Parameters.AddWithValue("@execution_start_date", execution_start_date);
+                    cmd9.Parameters.AddWithValue("@execution_end_date", execution_end_date);
+                    cmd9.Parameters.AddWithValue("@id_customer", id_customer);
+                    cmd9.Parameters.AddWithValue("@id_supplier", id_supplier);
+                    cmd9.Parameters.AddWithValue("@xml", xml);
+                    cmd9.Parameters.AddWithValue("@id_od_contract", id_od_contract);
+                    int upd_c = cmd9.ExecuteNonQuery();
+                    UpdateContractEvent?.Invoke(upd_c);
+                }
+                else
+                {
+                    reader_c.Close();
+                    string insert_contract =
+                        $"INSERT INTO {Program.Prefix}od_contract SET id_contract = @id_contract, p_number = @p_number, regnum = @regnum, " +
+                        $"current_contract_stage = @current_contract_stage, placing = @placing, " +
+                        $"region_code = @region_code, url = @url, sign_date = @sign_date, " +
+                        $"single_customer_reason_code = @single_customer_reason_code, single_customer_reason_name = @single_customer_reason_name, " +
+                        $"fz = @fz, notification_number = @notification_number, lot_number = @lot_number, " +
+                        $"contract_price = @contract_price, currency = @currency, version_number = @version_number, " +
+                        $"execution_start_date = @execution_start_date, execution_end_date = @execution_end_date, " +
+                        $"id_customer = @id_customer, id_supplier = @id_supplier, cancel = @cancel, xml = @xml";
+                    MySqlCommand cmd10 = new MySqlCommand(insert_contract, connect);
+                    cmd10.Prepare();
+                    cmd10.Parameters.AddWithValue("@id_contract", id_contract);
+                    cmd10.Parameters.AddWithValue("@p_number", p_number);
+                    cmd10.Parameters.AddWithValue("@regnum", regnum);
+                    cmd10.Parameters.AddWithValue("@current_contract_stage", current_contract_stage);
+                    cmd10.Parameters.AddWithValue("@placing", placing);
+                    cmd10.Parameters.AddWithValue("@region_code", region);
+                    cmd10.Parameters.AddWithValue("@url", url);
+                    cmd10.Parameters.AddWithValue("@sign_date", sign_date);
+                    cmd10.Parameters.AddWithValue("@single_customer_reason_code", single_customer_reason_code);
+                    cmd10.Parameters.AddWithValue("@single_customer_reason_name", single_customer_reason_name);
+                    cmd10.Parameters.AddWithValue("@fz", fz);
+                    cmd10.Parameters.AddWithValue("@notification_number", notification_number);
+                    cmd10.Parameters.AddWithValue("@lot_number", lot_number);
+                    cmd10.Parameters.AddWithValue("@contract_price", contract_price);
+                    cmd10.Parameters.AddWithValue("@currency", currency);
+                    cmd10.Parameters.AddWithValue("@version_number", version_number);
+                    cmd10.Parameters.AddWithValue("@execution_start_date", execution_start_date);
+                    cmd10.Parameters.AddWithValue("@execution_end_date", execution_end_date);
+                    cmd10.Parameters.AddWithValue("@id_customer", id_customer);
+                    cmd10.Parameters.AddWithValue("@id_supplier", id_supplier);
+                    cmd10.Parameters.AddWithValue("@cancel", cancel);
+                    cmd10.Parameters.AddWithValue("@xml", xml);
+                    int add_contr = cmd10.ExecuteNonQuery();
+                    id_od_contract = (int) cmd10.LastInsertedId;
+                    AddContractEvent?.Invoke(add_contr);
+                }
+                var test_prod = j44.SelectToken("export.contract.products");
+                if (test_prod != null && test_prod.Type != JTokenType.Null)
+                {
+                    var products = test_prod.SelectToken("product");
+                    if (products.Any())
+                    {
+                        List<JToken> list_p = new List<JToken>();
+                        if (products.Type == JTokenType.Array)
+                        {
+                            foreach (var p in products)
+                            {
+                                list_p.Add(p);
+                            }
+                        }
+                        else
+                        {
+                            list_p.Add(products);
+                        }
+
+                        if (list_p.Count == 0)
+                        {
+                            Log.Logger("У контракта нет продуктов", file);
+                            return;
+                        }
+
+                        foreach (var prod in list_p)
+                        {
+                            string name_p = (string) prod.SelectToken("name") ?? "".Trim();
+                            name_p = Regex.Replace(name_p, @"\t|\n|\r", "");
+                            Console.WriteLine(name_p);
                         }
                     }
                 }
@@ -350,6 +509,66 @@ namespace ParserContracts44
             int t = xmlt.Length;
             xml = xmlt[t - 2] + "/" + xmlt[t - 1];
             return xml;
+        }
+
+        private void AddCustomer(int d)
+        {
+            if (d > 0)
+            {
+                Program.AddCustomer++;
+            }
+            else
+            {
+                Log.Logger("Не удалось добавить customer", file);
+            }
+        }
+
+        private void AddSupplier(int d)
+        {
+            if (d > 0)
+            {
+                Program.AddSupplier++;
+            }
+            else
+            {
+                Log.Logger("Не удалось добавить supplier", file);
+            }
+        }
+
+        private void AddContract(int d)
+        {
+            if (d > 0)
+            {
+                Program.AddContract++;
+            }
+            else
+            {
+                Log.Logger("Не удалось добавить contract", file);
+            }
+        }
+
+        private void AddProduct(int d)
+        {
+            if (d > 0)
+            {
+                Program.AddProduct++;
+            }
+            else
+            {
+                Log.Logger("Не удалось добавить product", file);
+            }
+        }
+
+        private void UpdateContract(int d)
+        {
+            if (d > 0)
+            {
+                Program.UpdateContract++;
+            }
+            else
+            {
+                Log.Logger("Не удалось обновить contact", file);
+            }
         }
     }
 }

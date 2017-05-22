@@ -46,7 +46,7 @@ namespace ParserContracts44
                 }
             }
 
-            if (LogPathContracts44 == "" || TempPathContracts44 == "" || Database == "" || UserDB == "")
+            if (String.IsNullOrEmpty(LogPathContracts44) || String.IsNullOrEmpty(TempPathContracts44) || String.IsNullOrEmpty(Database) || String.IsNullOrEmpty(UserDB))
             {
                 Console.WriteLine("Некоторые поля в файле настройки пустые");
                 Environment.Exit(0);
