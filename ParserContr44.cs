@@ -130,8 +130,10 @@ namespace ParserContracts44
                     JObject json = JObject.Parse(jsons);
                     /*WorkWithContract44 c = new WorkWithContract44(json, f, region);
                     c.Work44();*/
-                    WorkWithContract44Parralel p = new WorkWithContract44Parralel(json, f, region);
-                    p.Work44();
+                    /*WorkWithContract44Parralel p = new WorkWithContract44Parralel(json, f, region);
+                    p.Work44();*/
+                    WorkWithContract44Async a = new WorkWithContract44Async(json, f, region);
+                    a.Work44();
                 }
             }
         }

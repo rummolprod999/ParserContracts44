@@ -564,7 +564,7 @@ namespace ParserContracts44
             return xml;
         }
 
-        private void AddCustomer(int d)
+        protected void AddCustomer(int d)
         {
             if (d > 0)
             {
@@ -576,7 +576,7 @@ namespace ParserContracts44
             }
         }
 
-        private void AddSupplier(int d)
+        protected void AddSupplier(int d)
         {
             if (d > 0)
             {
@@ -588,7 +588,7 @@ namespace ParserContracts44
             }
         }
 
-        private void AddContract(int d)
+        protected void AddContract(int d)
         {
             if (d > 0)
             {
@@ -600,7 +600,7 @@ namespace ParserContracts44
             }
         }
 
-        private void AddProduct(int d)
+        protected void AddProduct(int d)
         {
             if (d > 0)
             {
@@ -612,7 +612,7 @@ namespace ParserContracts44
             }
         }
 
-        private void UpdateContract(int d)
+        protected void UpdateContract(int d)
         {
             if (d > 0)
             {
