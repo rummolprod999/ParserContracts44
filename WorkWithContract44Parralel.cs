@@ -18,6 +18,7 @@ namespace ParserContracts44
         public event AddData AddProductEvent;
         public int IdOdContract;
         public List<JToken> List_p = new List<JToken>();
+        object locker = new object();
 
 
         public WorkWithContract44Parralel(JObject json, string f, string r):base(json, f, r)
@@ -536,13 +537,17 @@ namespace ParserContracts44
 
         private void AddProduct(int d)
         {
-            if (d > 0)
+            lock (locker)
             {
-                Program.AddProduct++;
-            }
-            else
-            {
-                Log.Logger("Не удалось добавить product", file);
+
+                if (d > 0)
+                {
+                    Program.AddProduct++;
+                }
+                else
+                {
+                    Log.Logger("Не удалось добавить product", file);
+                }
             }
         }
 
@@ -618,6 +623,7 @@ namespace ParserContracts44
                 cmd11.Parameters.AddWithValue("@sid", sid);
                 int add_p = cmd11.ExecuteNonQuery();
                 AddProductEvent?.Invoke(add_p);
+
             }
         }
     }
