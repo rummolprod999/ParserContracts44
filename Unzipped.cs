@@ -26,8 +26,10 @@ namespace ParserContracts44
                     Log.Logger("Не удалось извлечь файл", e);
                     try
                     {
-                        Process.Start("unzip", $"{filea} -d {l_dir}");
+                        var MyProcess = new Process {StartInfo = new ProcessStartInfo("unzip", $"{filea} -d {l_dir}")};
+                        MyProcess.Start();
                         Log.Logger("Извлекли файл альтернативным методом", filea);
+                        MyProcess.WaitForExit();
                         return l_dir;
                     }
                     catch (Exception exception)

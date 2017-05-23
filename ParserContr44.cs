@@ -76,7 +76,14 @@ namespace ParserContracts44
                         FileInfo[] filelist = dirInfo.GetFiles();
                         foreach (var f in filelist)
                         {
-                            Bolter(f.ToString(), region);
+                            try
+                            {
+                                Bolter(f.ToString(), region);
+                            }
+                            catch (Exception e)
+                            {
+                                Log.Logger("Не удалось обработать файл", f, filea);
+                            }
                         }
                         dirInfo.Delete(true);
                     }
@@ -121,8 +128,10 @@ namespace ParserContracts44
                     doc.LoadXml(ftext);
                     string jsons = JsonConvert.SerializeXmlNode(doc);
                     JObject json = JObject.Parse(jsons);
-                    WorkWithContract44 c = new WorkWithContract44(json, f, region);
-                    c.Work44();
+                    /*WorkWithContract44 c = new WorkWithContract44(json, f, region);
+                    c.Work44();*/
+                    WorkWithContract44Parralel p = new WorkWithContract44Parralel(json, f, region);
+                    p.Work44();
                 }
             }
         }

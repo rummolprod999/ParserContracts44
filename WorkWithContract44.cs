@@ -11,9 +11,9 @@ namespace ParserContracts44
 {
     public class WorkWithContract44
     {
-        private readonly JObject j44;
-        private readonly string file;
-        private readonly string region;
+        protected readonly JObject j44;
+        protected readonly string file;
+        protected readonly string region;
 
         public delegate void AddData(int d);
 
@@ -624,7 +624,7 @@ namespace ParserContracts44
             }
         }
 
-        private void GetOKPD(string okpd2_code, out int okpd2_group_code, out string okpd2_group_level1_code)
+        public void GetOKPD(string okpd2_code, out int okpd2_group_code, out string okpd2_group_level1_code)
         {
             if (okpd2_code.Length > 1)
             {

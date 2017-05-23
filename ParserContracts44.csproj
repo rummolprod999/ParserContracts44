@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Threading.Tasks.Dataflow" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -61,6 +62,7 @@
     <Compile Include="TypeArguments.cs" />
     <Compile Include="Unzipped.cs" />
     <Compile Include="WorkWithContract44.cs" />
+    <Compile Include="WorkWithContract44Parralel.cs" />
     <Compile Include="WorkWithFtp.cs" />
   </ItemGroup>
   <ItemGroup>
