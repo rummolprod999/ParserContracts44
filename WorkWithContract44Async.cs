@@ -544,5 +544,10 @@ namespace ParserContracts44
                 }
             }
         }
+
+        public void AddProductAsync()
+        {
+            
+        }
     }
 }
