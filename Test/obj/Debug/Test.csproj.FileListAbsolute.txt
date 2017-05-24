@@ -1,5 +1,4 @@
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Test.dll
-/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Test.pdb
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/nunit.framework.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/nunit.framework.xml
 /home/alex/RiderProjects/ParserContracts44/Test/obj/Debug/Test.csprojResolveAssemblyReference.cache
@@ -11,3 +10,4 @@
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Newtonsoft.Json.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/ParserContracts44.exe.config
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Debug/Newtonsoft.Json.xml
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Debug//Test.pdb
