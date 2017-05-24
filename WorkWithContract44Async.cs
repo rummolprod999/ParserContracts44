@@ -25,7 +25,7 @@ namespace ParserContracts44
             AddProductEvent += AddProduct;
         }
 
-        public new async void Work44()
+        public new void Work44()
         {
             string xml = GetXml(file);
             int id_customer = 0;
@@ -482,6 +482,7 @@ namespace ParserContracts44
                             Log.Logger("У контракта нет продуктов", file);
                             return;
                         }
+                        MySqlTransaction transaction = connect.BeginTransaction();
 
                         foreach (var prod in list_p)
                         {
@@ -521,6 +522,7 @@ namespace ParserContracts44
                                 $"okpd_group_level1_code = @okpd_group_level1_code, price = @price, okpd2_name = @okpd2_name, " +
                                 $"okpd_name = @okpd_name, quantity = @quantity, okei = @okei, sum = @sum, sid = @sid";
                             MySqlCommand cmd11 = new MySqlCommand(insert_prod, connect);
+                            cmd11.Transaction = transaction;
                             cmd11.Prepare();
                             cmd11.Parameters.AddWithValue("@id_od_contract", id_od_contract);
                             cmd11.Parameters.AddWithValue("@name_p", name_p);
@@ -537,9 +539,11 @@ namespace ParserContracts44
                             cmd11.Parameters.AddWithValue("@okei", okei);
                             cmd11.Parameters.AddWithValue("@sum", sum_p);
                             cmd11.Parameters.AddWithValue("@sid", sid);
-                            int add_p =  await cmd11.ExecuteNonQueryAsync();
+                            int add_p = cmd11.ExecuteNonQuery();
                             AddProductEvent?.Invoke(add_p);
                         }
+
+                        transaction.Commit();
                     }
                 }
             }
@@ -547,7 +551,6 @@ namespace ParserContracts44
 
         public void AddProductAsync()
         {
-            
         }
     }
 }

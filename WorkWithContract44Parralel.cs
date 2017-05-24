@@ -498,7 +498,7 @@ namespace ParserContracts44
             }
             Parallel.ForEach<JToken>(List_p, new ParallelOptions { MaxDegreeOfParallelism = 6 }, AddProductP);
         }
-        
+
         public void AddProductP(JToken prod)
         {
             using (MySqlConnection connect = ConnectToDb.GetDBConnection())
