@@ -52,7 +52,9 @@ namespace ParserContracts44
                 if (arch.Capacity == 0)
                 {
                     Log.Logger("Не получили список архивов по региону", row["path"]);
+                    continue;
                 }
+
                 foreach (var v in arch)
                 {
                     GetListFileArch(v, PathParse, (string) row["conf"]);

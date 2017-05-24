@@ -537,7 +537,7 @@ namespace ParserContracts44
                             cmd11.Parameters.AddWithValue("@okei", okei);
                             cmd11.Parameters.AddWithValue("@sum", sum_p);
                             cmd11.Parameters.AddWithValue("@sid", sid);
-                            int add_p = await cmd11.ExecuteNonQueryAsync();
+                            int add_p =  await cmd11.ExecuteNonQueryAsync();
                             AddProductEvent?.Invoke(add_p);
                         }
                     }
