@@ -6,4 +6,6 @@
 	<prefix></prefix>
 	<userdb>root</userdb>
 	<passdb>1234</passdb>
+	<server>localhost</server>
+	<port>3306</port>
 </setting>

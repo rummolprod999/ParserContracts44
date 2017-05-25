@@ -11,6 +11,8 @@ namespace ParserContracts44
         public readonly string Prefix;
         public readonly string UserDB;
         public readonly string PassDB;
+        public readonly string Server;
+        public readonly int Port;
 
         public GetSettings()
         {
@@ -42,11 +44,17 @@ namespace ParserContracts44
                         case "passdb":
                             PassDB = xnode.InnerText;
                             break;
+                        case "server":
+                            Server = xnode.InnerText;
+                            break;
+                        case "port":
+                            Port = Int32.TryParse(xnode.InnerText, out Port)?Int32.Parse(xnode.InnerText): 3306;
+                            break;
                     }
                 }
             }
 
-            if (String.IsNullOrEmpty(LogPathContracts44) || String.IsNullOrEmpty(TempPathContracts44) || String.IsNullOrEmpty(Database) || String.IsNullOrEmpty(UserDB))
+            if (String.IsNullOrEmpty(LogPathContracts44) || String.IsNullOrEmpty(TempPathContracts44) || String.IsNullOrEmpty(Database) || String.IsNullOrEmpty(UserDB) || String.IsNullOrEmpty(Server))
             {
                 Console.WriteLine("Некоторые поля в файле настройки пустые");
                 Environment.Exit(0);

@@ -14,12 +14,16 @@ namespace ParserContracts44
         private static string _prefix;
         private static string _user;
         private static string _pass;
+        private static string _server;
+        private static int _port;
         public static string Database => _database;
         public static string TempPath => _tempPath;
         public static string LogPath => _logPath;
         public static string Prefix => _prefix;
         public static string User => _user;
         public static string Pass => _pass;
+        public static string Server => _server;
+        public static int Port => _port;
         public static readonly DateTime LocalDate = DateTime.Now;
         public static string FileLog;
         public static TypeArguments Periodparsing;
@@ -69,6 +73,8 @@ namespace ParserContracts44
             _user = set.UserDB;
             _pass = set.PassDB;
             _tempPath = set.TempPathContracts44;
+            _server = set.Server;
+            _port = set.Port;
             if (Directory.Exists(TempPath))
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(TempPath);

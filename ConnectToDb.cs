@@ -8,7 +8,7 @@ namespace ParserContracts44
         public static MySqlConnection GetDBConnection()
         {
             // Connection String.
-            String connString = "Server=" + "localhost" + ";Database=" + Program.Database
+            String connString = "Server=" + Program.Server + ";port=" + Program.Port + ";Database=" + Program.Database
                                 + ";User Id=" + Program.User + ";password=" + Program.Pass + ";CharSet=utf8";
 
             MySqlConnection conn = new MySqlConnection(connString);
