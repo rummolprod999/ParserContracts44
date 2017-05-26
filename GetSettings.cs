@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.IO;
 
 namespace ParserContracts44
 {
@@ -17,8 +18,7 @@ namespace ParserContracts44
         public GetSettings()
         {
             XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(Environment.CurrentDirectory + "/setting_contracts44.xml");
-            /*Console.WriteLine(Environment.CurrentDirectory+ "/setting_contracts44.xml");*/
+            xDoc.Load(Program.PathProgram + Path.DirectorySeparatorChar + "setting_contracts44.xml");
             XmlElement xRoot = xDoc.DocumentElement;
             if (xRoot != null)
             {
@@ -30,10 +30,10 @@ namespace ParserContracts44
                             Database = xnode.InnerText;
                             break;
                         case "tempdir_contracts44":
-                            TempPathContracts44 = $"{Environment.CurrentDirectory}/{xnode.InnerText}";
+                            TempPathContracts44 = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
                             break;
                         case "logdir_contracts44":
-                            LogPathContracts44 = $"{Environment.CurrentDirectory}/{xnode.InnerText}";
+                            LogPathContracts44 = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
                             break;
                         case "prefix":
                             Prefix = xnode.InnerText;

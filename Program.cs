@@ -33,6 +33,7 @@ namespace ParserContracts44
         public static int AddContract = 0;
         public static int AddProduct = 0;
         public static int UpdateContract = 0;
+        public static string PathProgram;
 
         public static void Main(string[] args)
         {
@@ -43,6 +44,9 @@ namespace ParserContracts44
                 return;
             }
 
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName()
+                .CodeBase);
+            PathProgram = path.Substring(5);
             StrArg = args[0];
             switch (args[0])
             {
@@ -104,8 +108,8 @@ namespace ParserContracts44
             Log.Logger("Добавлено customer", AddCustomer);
             Log.Logger("Добавлено supplier", AddSupplier);
             Log.Logger("Добавлено contract", AddContract);
+            Log.Logger("Обновлено contract", UpdateContract);
             Log.Logger("Добавлено product", AddProduct);
-
         }
     }
 }
