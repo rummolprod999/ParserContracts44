@@ -78,7 +78,7 @@ namespace ParserContracts44
                 try
                 {
                     string FileOnServer = $"{PathParse}/{Arch}";
-                    file = $"{Program.TempPath}/{Arch}";
+                    file = $"{Program.TempPath}{Path.DirectorySeparatorChar}{Arch}";
                     WorkWithFtp ftp = ClientFtp44();
                     ftp.DownloadFile(FileOnServer, file);
                     if (count > 0)

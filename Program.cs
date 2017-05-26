@@ -89,7 +89,7 @@ namespace ParserContracts44
             {
                 Directory.CreateDirectory(LogPath);
             }
-            FileLog = $"{LogPath}/Contracts44_{LocalDate:dd_MM_yyyy}.log";
+            FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Contracts44_{LocalDate:dd_MM_yyyy}.log";
         }
 
         private static void ParserC44(TypeArguments arg)
