@@ -1,12 +1,9 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Web;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
@@ -121,7 +118,7 @@ namespace ParserContracts44
             FileInfo fileInf = new FileInfo(f);
             if (fileInf.Exists)
             {
-                using (StreamReader sr = new StreamReader(f, System.Text.Encoding.Default))
+                using (StreamReader sr = new StreamReader(f, Encoding.Default))
                 {
                     string ftext;
                     ftext = sr.ReadToEnd();

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Microsoft.Win32;
 using System.IO;
-using System.Globalization;
+using System.Reflection;
 
 namespace ParserContracts44
 {
@@ -44,7 +42,7 @@ namespace ParserContracts44
                 return;
             }
 
-            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName()
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName()
                 .CodeBase);
             PathProgram = path.Substring(5);
             StrArg = args[0];
