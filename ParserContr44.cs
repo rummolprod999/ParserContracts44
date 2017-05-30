@@ -14,7 +14,6 @@ namespace ParserContracts44
     public class ParserContr44 : Parser
     {
         protected DataTable DtRegion;
-        public readonly string[] years = new[] {"2016", "2017"};
         public readonly string[] except_file = new[] {"Failure", "contractProcedure", "contractCancel"};
 
         public ParserContr44(string arg) : base(arg)
@@ -147,7 +146,7 @@ namespace ParserContracts44
             List<String> archtemp = ftp.ListDirectory();
             foreach (var a in archtemp)
             {
-                if (years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1))
+                if (Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1))
                 {
                     arch.Add(a);
                 }
@@ -162,7 +161,7 @@ namespace ParserContracts44
             WorkWithFtp ftp = ClientFtp44();
             ftp.ChangeWorkingDirectory(PathParse);
             List<String> archtemp = ftp.ListDirectory();
-            foreach (var a in archtemp.Where(a => years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
+            foreach (var a in archtemp.Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
             {
                 using (MySqlConnection connect = ConnectToDb.GetDBConnection())
                 {

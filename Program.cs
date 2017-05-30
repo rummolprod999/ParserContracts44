@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace ParserContracts44
@@ -14,6 +16,7 @@ namespace ParserContracts44
         private static string _pass;
         private static string _server;
         private static int _port;
+        private static List<string> _years = new List<string>();
         public static string Database => _database;
         public static string TempPath => _tempPath;
         public static string LogPath => _logPath;
@@ -22,6 +25,7 @@ namespace ParserContracts44
         public static string Pass => _pass;
         public static string Server => _server;
         public static int Port => _port;
+        public static List<string> Years => _years;
         public static readonly DateTime LocalDate = DateTime.Now;
         public static string FileLog;
         public static TypeArguments Periodparsing;
@@ -77,6 +81,14 @@ namespace ParserContracts44
             _tempPath = set.TempPathContracts44;
             _server = set.Server;
             _port = set.Port;
+            string tmp = set.Years;
+            string[] temp_years = tmp.Split(new char[] {','});
+
+            foreach (var s in temp_years.Select(v => $"{v.Trim()}"))
+            {
+                _years.Add(s);
+            }
+
             if (Directory.Exists(TempPath))
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(TempPath);
