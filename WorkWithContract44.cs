@@ -560,8 +560,12 @@ namespace ParserContracts44
         {
             string[] xmlt = xml.Split('/');
             int t = xmlt.Length;
-            xml = xmlt[t - 2] + "/" + xmlt[t - 1];
-            return xml;
+            string txml = "";
+            if (t > 1)
+            {
+                txml = xmlt[t - 2] + "/" + xmlt[t - 1];
+            }
+            return txml;
         }
 
         protected void AddCustomer(int d)
