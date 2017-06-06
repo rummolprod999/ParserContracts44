@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="ihor">
+    <serverData>
+      <paths name="ihor">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/admin/data/www/tenders.enter-it.ru/python/ParserContracts44Sharp" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

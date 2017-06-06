@@ -1,0 +1,1682 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:export xmlns="http://zakupki.gov.ru/oos/types/1" xmlns:ns2="http://zakupki.gov.ru/oos/export/1" xmlns:ns3="http://zakupki.gov.ru/oos/printform/1">
+    <ns2:contract schemeVersion="6.3">
+        <id>30400522</id>
+        <publishDate>2016-11-21T13:44:22.541+03:00</publishDate>
+        <versionNumber>1</versionNumber>
+        <foundation>
+            <fcsOrder>
+                <order>
+                    <notificationNumber>0131200001016005027</notificationNumber>
+                    <lotNumber>1</lotNumber>
+                    <placing>12011</placing>
+                </order>
+            </fcsOrder>
+        </foundation>
+        <customer>
+            <regNum>03312000178</regNum>
+            <fullName>БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ ВОРОНЕЖСКОЙ ОБЛАСТИ "ВОРОНЕЖСКАЯ ОБЛАСТНАЯ КЛИНИЧЕСКАЯ БОЛЬНИЦА №1"</fullName>
+            <shortName>БУЗ ВО ВОКБ №1</shortName>
+            <registrationDate>1994-07-29</registrationDate>
+            <inn>3662006088</inn>
+            <kpp>366201001</kpp>
+            <legalForm>
+                <code>75203</code>
+                <singularName>Государственное бюджетное учреждение субъекта Российской Федерации</singularName>
+            </legalForm>
+            <OKPO>01921720</OKPO>
+            <customerCode>23662006088366201001</customerCode>
+        </customer>
+        <placer>
+            <responsibleOrg>
+                <regNum>03312000178</regNum>
+                <fullName>БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ ВОРОНЕЖСКОЙ ОБЛАСТИ "ВОРОНЕЖСКАЯ ОБЛАСТНАЯ КЛИНИЧЕСКАЯ БОЛЬНИЦА №1"</fullName>
+            </responsibleOrg>
+            <responsibleRole>CU</responsibleRole>
+        </placer>
+        <finances>
+            <extrabudgetFunds>
+                <extrabudget>
+                    <code>60</code>
+                    <name>Средства бюджетных учреждений</name>
+                </extrabudget>
+                <stages>
+                    <endDate>2016-12-31</endDate>
+                    <payments>
+                        <KVR>340</KVR>
+                        <paymentMonth>12</paymentMonth>
+                        <paymentYear>2016</paymentYear>
+                        <paymentSum>1207680.35</paymentSum>
+                        <paymentSumRUR>1207680.35</paymentSumRUR>
+                    </payments>
+                </stages>
+            </extrabudgetFunds>
+        </finances>
+        <protocolDate>2016-11-08</protocolDate>
+        <documentBase> 0131200001016005027-1</documentBase>
+        <documentCode>120111</documentCode>
+        <signDate>2016-11-21</signDate>
+        <regNum>2366200608816001262</regNum>
+        <number>0969-5027</number>
+        <priceInfo>
+            <price>1207680.35</price>
+            <priceType>P</priceType>
+            <currency>
+                <code>RUB</code>
+                <name>Российский рубль</name>
+            </currency>
+            <currencyRate>
+                <rate>1</rate>
+                <raiting>1</raiting>
+            </currencyRate>
+            <priceRUR>1207680.35</priceRUR>
+        </priceInfo>
+        <executionPeriod>
+            <startDate>2016-11-21</startDate>
+            <stages>
+                <endDate>2016-12-31</endDate>
+            </stages>
+            <endDate>2016-12-31</endDate>
+        </executionPeriod>
+        <enforcement>
+            <cashAccount>
+                <currency>
+                    <code>RUB</code>
+                    <name>Российский рубль</name>
+                </currency>
+                <amount>60384.02</amount>
+                <currencyRate>
+                    <rate>1</rate>
+                    <raiting>1</raiting>
+                </currencyRate>
+                <amountRUR>60384.02</amountRUR>
+            </cashAccount>
+        </enforcement>
+        <products>
+            <product>
+                <sid>111224161</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Щелочная
+  Фосфотаза
+
+  Фасовка:
+  400 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>1753.00</price>
+                <priceRUR>1753.00</priceRUR>
+                <quantity>7.0</quantity>
+                <sum>12271.00</sum>
+                <sumRUR>12271.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224219</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Аланиноваятрансаминаза
+
+  Фасовка:
+  500 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>2629.00</price>
+                <priceRUR>2629.00</priceRUR>
+                <quantity>15.0</quantity>
+                <sum>39435.00</sum>
+                <sumRUR>39435.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224315</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Альфа-Амилаза
+
+  Фасовка:
+  300 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>9489.00</price>
+                <priceRUR>9489.00</priceRUR>
+                <quantity>15.0</quantity>
+                <sum>142335.00</sum>
+                <sumRUR>142335.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224336</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Амилаза
+  панкреатическая
+
+  Фасовка:
+  200 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>8468.00</price>
+                <priceRUR>8468.00</priceRUR>
+                <quantity>3.0</quantity>
+                <sum>25404.00</sum>
+                <sumRUR>25404.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224491</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Аспарагиновая
+  трансаминаза
+
+  Фасовка:
+  500 тестов для анализатора Cobas С 502 (Roche)
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>2336.00</price>
+                <priceRUR>2336.00</priceRUR>
+                <quantity>15.0</quantity>
+                <sum>35040.00</sum>
+                <sumRUR>35040.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224723</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Креатинкиназа
+
+  Фасовка:
+  200 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>5362.00</price>
+                <priceRUR>5362.00</priceRUR>
+                <quantity>4.0</quantity>
+                <sum>21448.00</sum>
+                <sumRUR>21448.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224800</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  
+   
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+   
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  Креатинфосфокиназа
+  МВ
+
+  Фасовка:
+  100 тестов для анализатора Cobas С 502 (Roche)
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>7008.00</price>
+                <priceRUR>7008.00</priceRUR>
+                <quantity>9.0</quantity>
+                <sum>63072.00</sum>
+                <sumRUR>63072.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224850</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  
+   
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+   
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  Липаза
+  (колориметрический метод)
+
+  Фасовка:
+  200 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>12848.00</price>
+                <priceRUR>12848.00</priceRUR>
+                <quantity>4.0</quantity>
+                <sum>51392.00</sum>
+                <sumRUR>51392.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224880</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  
+   
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  Альбумин
+
+  Фасовка:
+  300 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>2439.00</price>
+                <priceRUR>2439.00</priceRUR>
+                <quantity>6.0</quantity>
+                <sum>14634.00</sum>
+                <sumRUR>14634.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224921</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Креатинин
+  Яффе
+
+  Фасовка:
+  700 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>2862.00</price>
+                <priceRUR>2862.00</priceRUR>
+                <quantity>6.0</quantity>
+                <sum>17172.00</sum>
+                <sumRUR>17172.00</sumRUR>
+            </product>
+            <product>
+                <sid>111224994</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  
+   
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   </name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>2161.00</price>
+                <priceRUR>2161.00</priceRUR>
+                <quantity>7.0</quantity>
+                <sum>15127.00</sum>
+                <sumRUR>15127.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225054</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Холестерин
+  липопротеинов высокой плотности
+
+  Фасовка:
+  200 тестов для анализатора Cobas С 502 (Roche).
+
+  Количество: 20 наборов Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>12994.00</price>
+                <priceRUR>12994.00</priceRUR>
+                <quantity>20.0</quantity>
+                <sum>259880.00</sum>
+                <sumRUR>259880.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225126</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Холестерин
+  липопротеинов низкой плотности
+
+  Фасовка:
+  175 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>16060.00</price>
+                <priceRUR>16060.00</priceRUR>
+                <quantity>20.0</quantity>
+                <sum>321200.00</sum>
+                <sumRUR>321200.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225296</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Глюкоза
+
+  Фасовка:
+  800 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>5664.87</price>
+                <priceRUR>5664.87</priceRUR>
+                <quantity>5.0</quantity>
+                <sum>28324.35</sum>
+                <sumRUR>28324.35</sumRUR>
+            </product>
+            <product>
+                <sid>111225411</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Железо
+
+  Фасовка:
+  200 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>1752.00</price>
+                <priceRUR>1752.00</priceRUR>
+                <quantity>8.0</quantity>
+                <sum>14016.00</sum>
+                <sumRUR>14016.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225431</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Общий
+  белок
+
+  Фасовка:
+  300 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>1139.00</price>
+                <priceRUR>1139.00</priceRUR>
+                <quantity>10.0</quantity>
+                <sum>11390.00</sum>
+                <sumRUR>11390.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225506</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Триглицериды
+
+  Фасовка:
+  250 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>3942.00</price>
+                <priceRUR>3942.00</priceRUR>
+                <quantity>10.0</quantity>
+                <sum>39420.00</sum>
+                <sumRUR>39420.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225615</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Мочевина
+
+  Фасовка:
+  500 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>1269.00</price>
+                <priceRUR>1269.00</priceRUR>
+                <quantity>2.0</quantity>
+                <sum>2538.00</sum>
+                <sumRUR>2538.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225662</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Мочевая
+  кислота
+
+  Фасовка:
+  400 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>4671.00</price>
+                <priceRUR>4671.00</priceRUR>
+                <quantity>4.0</quantity>
+                <sum>18684.00</sum>
+                <sumRUR>18684.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225727</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  С-реактивный
+  белок (латекс)
+
+  Фасовка:
+  300 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>10220.00</price>
+                <priceRUR>10220.00</priceRUR>
+                <quantity>6.0</quantity>
+                <sum>61320.00</sum>
+                <sumRUR>61320.00</sumRUR>
+            </product>
+            <product>
+                <sid>111225825</sid>
+                <OKPD2>
+                    <code>21.20.23.111</code>
+                    <name>Препараты диагностические</name>
+                </OKPD2>
+                <name>
+
+
+
+
+ 
+  
+  Гамма-глютамилтранспептидаза
+  (ГГТП)
+
+  Фасовка:
+  400 тестов для анализатора Cobas С 502 (Roche).
+
+  Товарный знак: ROCHE
+
+  Производство:
+
+  Германия
+
+  
+ 
+
+
+
+
+
+Ф.Хоффманн-Ля Рош Лтд.</name>
+                <OKEI>
+                    <code>704</code>
+                    <nationalCode>НАБОР</nationalCode>
+                </OKEI>
+                <price>2263.00</price>
+                <priceRUR>2263.00</priceRUR>
+                <quantity>6.0</quantity>
+                <sum>13578.00</sum>
+                <sumRUR>13578.00</sumRUR>
+            </product>
+        </products>
+        <suppliers>
+           <supplier>
+                <legalEntityRF>
+                    <legalForm>
+                        <code>12300</code>
+                        <singularName>Общество с ограниченной ответственностью</singularName>
+                    </legalForm>
+                    <fullName>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "Р-ЛАБ"</fullName>
+                    <shortName>ООО "Р-ЛАБ"</shortName>
+                    <OKPO>87179625</OKPO>
+                    <INN>6829057730</INN>
+                    <KPP>682901001</KPP>
+                    <registrationDate>2009-07-29</registrationDate>
+                    <OKTMO>
+                        <code>68701000</code>
+                        <name>город Тамбов</name>
+                    </OKTMO>
+                    <address>392000, обл ТАМБОВСКАЯ 68, г ТАМБОВ, ул СОВЕТСКАЯ, 85А, 110</address>
+                    <contactEMail>us@rlab-tambov.ru</contactEMail>
+                    <contactPhone>7-4752-712010</contactPhone>
+                </legalEntityRF>
+            </supplier>
+
+
+        </suppliers>
+        <href>http://zakupki.gov.ru/epz/contract/contractCard/common-info.html?reestrNumber=2366200608816001262</href>
+        <printForm>
+            <url>http://zakupki.gov.ru/epz/contract/printForm/viewXml.html?contractInfoId=30400522</url>
+            <docRegNumber>23662006088160012620001</docRegNumber>
+            <signature>TUlJTldRWUpLb1pJaHZjTkFRY0NvSUlOU2pDQ0RVWUNBUUV4RERBS0JnWXFoUU1DQWdrRkFEQUxCZ2txaGtpRzl3MEJCd0dnZ2drcE1JSUpKVENDQ05TZ0F3SUJBZ0lERVRyck1BZ0dCaXFGQXdJQ0F6Q0NBVjB4R0RBV0Jna3Foa2lHOXcwQkNRSVRDVk5sY25abGNpQkRRVEVnTUI0R0NTcUdTSWIzRFFFSkFSWVJkV05mWm10QWNtOXphMkY2Ym1FdWNuVXhIREFhQmdOVkJBZ01FemMzSU5DekxpRFFuTkMrMFlIUXV0Q3kwTEF4R2pBWUJnZ3FoUU1EZ1FNQkFSSU1NREEzTnpFd05UWTROell3TVJnd0ZnWUZLb1VEWkFFU0RURXdORGMzT1Rjd01UazRNekF4TERBcUJnTlZCQWtNSTlHRDBMdlF1TkdHMExBZzBKalF1OUdNMExqUXZkQzYwTEFzSU5DMDBMN1F2Q0EzTVJVd0V3WURWUVFIREF6UW5OQyswWUhRdXRDeTBMQXhDekFKQmdOVkJBWVRBbEpWTVRnd05nWURWUVFLREMvUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0QzFJTkM2MExEUXQ5QzkwTERSaDlDMTBMblJnZEdDMExMUXZqRS9NRDBHQTFVRUF3dzIwS1BRcGlEUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0Q3owTDRnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0Q3dNQjRYRFRFMU1URXhNakEyTkRreU5sb1hEVEUzTURJeE1qQTJORGt5Tmxvd2dnSUZNUm93R0FZSUtvVURBNEVEQVFFU0RETTJOakl3T1RNNE1UZzVNVEVXTUJRR0JTcUZBMlFERWdzd016VXdPVFl6TlRRMU1ERVlNQllHQlNxRkEyUUJFZzB4TURNek5qQXdNRE16TlRrNE1SOHdIUVlKS29aSWh2Y05BUWtCRmhCcllYTnpZVUJ2YTJJdWRuSnVMbkoxTVFzd0NRWURWUVFHRXdKU1ZURXhNQzhHQTFVRUNBd29NellnMEpMUXZ0R0EwTDdRdmRDMTBMYlJnZEM2MExEUmp5RFF2dEN4MEx2UXNOR0IwWUxSakRFWE1CVUdBMVVFQnd3TzBKTFF2dEdBMEw3UXZkQzEwTFl4SWpBZ0JnTlZCQW9NR2RDUjBLUFFseURRa3RDZUlOQ1MwSjdRbXRDUklPS0VsakV4T2pBNEJnTlZCQXNNTWRDUTBMVFF2TkM0MEwzUXVOR0IwWUxSZ05DdzBZTFF1TkN5MEwzUmk5QzVJTkMvMExYUmdOR0IwTDdRdmRDdzBMc3hNakF3QmdOVkJDb01LZENTMEx2UXNOQzAwTGpRdk5DNDBZQWcwSkxSajlHSDBMWFJnZEM3MExEUXN0QyswTExRdU5HSE1SVXdFd1lEVlFRRURBelFtdEdEMFlIUmd0QyswTEl4VHpCTkJnTlZCQXdNUnRDWDBMRFF2TkMxMFlIUmd0QzQwWUxRdGRDNzBZd2cwTFBRdTlDdzBMTFF2ZEMrMExQUXZpRFFzdEdBMExEUmg5Q3dJTkMvMEw0ZzBZTFF0ZEdGMEwzUXVOQzYwTFV4UHpBOUJnTlZCQU1NTnRDYTBZUFJnZEdDMEw3UXNpRFFrdEM3MExEUXROQzQwTHpRdU5HQUlOQ1MwWS9SaDlDMTBZSFF1OUN3MExMUXZ0Q3kwTGpSaHpCak1Cd0dCaXFGQXdJQ0V6QVNCZ2NxaFFNQ0FpUUFCZ2NxaFFNQ0FoNEJBME1BQkVBbm5CU3o3MExaN1c4SitQWHAvSjJyZEpVWHFQdFFTeEt2MjlkU1lyYmdjdmVhQTIrYTN0aG1CNXBYZFJsbTFoSXhocDlMSjFqUVJGb1BTc3FIWHhVM280SUV6VENDQk1rd0RBWURWUjBUQVFIL0JBSXdBREFkQmdOVkhTQUVGakFVTUFnR0JpcUZBMlJ4QVRBSUJnWXFoUU5rY1FJd1dRWURWUjBSQkZJd1VLQVRCZ05WQkF5Z0RCTUtNVEV4TURFeE5EWXdNcUFaQmdvcWhRTURQWjdYTmdFSG9Bc1RDVE0yTmpJd01UQXdNYUFiQmdvcWhRTURQWjdYTmdFRm9BMFRDekF6TXpFeU1EQXdNVGM0aGdFd01EWUdCU3FGQTJSdkJDME1LeUxRbXRHQTBMalF2OUdDMEw3UW45R0EwTDRnUTFOUUlpQW8wTExRdGRHQTBZSFF1TkdQSURNdU5pa3dnZ0ZoQmdVcWhRTmtjQVNDQVZZd2dnRlNERVFpMEpyUmdOQzQwTC9SZ3RDKzBKL1JnTkMrSUVOVFVDSWdLTkN5MExYUmdOR0IwTGpSanlBekxqWXBJQ2pRdU5HQjBML1F2dEM3MEwzUXRkQzkwTGpRdFNBeUtReG9JdENmMFlEUXZ0Q3owWURRc05DODBMelF2ZEMrTGRDdzBML1F2OUN3MFlEUXNOR0MwTDNSaTlDNUlOQzYwTDdRdk5DLzBMdlF0ZEM2MFlFZ0l0Q3UwTDNRdU5HQjBMWFJnTkdDTGRDVDBKN1FvZENpSWk0ZzBKTFF0ZEdBMFlIUXVOR1BJREl1TVNJTVQ5Q2gwTFhSZ05HQzBMalJoTkM0MExyUXNOR0NJTkdCMEw3UXZ0R0MwTExRdGRHQzBZSFJndEN5MExqUmp5RGloSllnMEtIUXBDOHhNalF0TWpJek9DRFF2dEdDSURBMExqRXdMakl3TVRNTVQ5Q2gwTFhSZ05HQzBMalJoTkM0MExyUXNOR0NJTkdCMEw3UXZ0R0MwTExRdGRHQzBZSFJndEN5MExqUmp5RGloSllnMEtIUXBDOHhNamd0TWpFM05TRFF2dEdDSURJd0xqQTJMakl3TVRNd0RnWURWUjBQQVFIL0JBUURBZ1BvTUZNR0ExVWRKUVJNTUVvR0NDc0dBUVVGQndNQ0JnNHFoUU1EUFo3WE5nRUdBd1FCQVFZT0tvVURBejJlMXpZQkJnTUVBUUlHRGlxRkF3TTludGMyQVFZREJBRURCZzRxaFFNRFBaN1hOZ0VHQXdRQkJEQXJCZ05WSFJBRUpEQWlnQTh5TURFMU1URXhNakEyTkRnek9GcUJEekl3TVRjd01qRXhNRFkwT1RJMldqQ0NBWThHQTFVZEl3U0NBWVl3Z2dHQ2dCU2VjUTRQMnJRQktGOC80c3VQWlJXWEFrZU1xNkdDQVdXa2dnRmhNSUlCWFRFWU1CWUdDU3FHU0liM0RRRUpBaE1KVTJWeWRtVnlJRU5CTVNBd0hnWUpLb1pJaHZjTkFRa0JGaEYxWTE5bWEwQnliM05yWVhwdVlTNXlkVEVjTUJvR0ExVUVDQXdUTnpjZzBMTXVJTkNjMEw3UmdkQzYwTExRc0RFYU1CZ0dDQ3FGQXdPQkF3RUJFZ3d3TURjM01UQTFOamczTmpBeEdEQVdCZ1VxaFFOa0FSSU5NVEEwTnpjNU56QXhPVGd6TURFc01Db0dBMVVFQ1F3ajBZUFF1OUM0MFliUXNDRFFtTkM3MFl6UXVOQzkwTHJRc0N3ZzBMVFF2dEM4SURjeEZUQVRCZ05WQkFjTUROQ2MwTDdSZ2RDNjBMTFFzREVMTUFrR0ExVUVCaE1DVWxVeE9EQTJCZ05WQkFvTUw5Q2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFVnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0QytNVDh3UFFZRFZRUURERGJRbzlDbUlOQ2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFBRdmlEUXV0Q3cwTGZRdmRDdzBZZlF0ZEM1MFlIUmd0Q3kwTENDQVFFd1hnWURWUjBmQkZjd1ZUQXBvQ2VnSllZamFIUjBjRG92TDJOeWJDNXliM05yWVhwdVlTNXlkUzlqY213dlptc3dNUzVqY213d0tLQW1vQ1NHSW1oMGRIQTZMeTlqY213dVpuTm1heTVzYjJOaGJDOWpjbXd2Wm1zd01TNWpjbXd3SFFZRFZSME9CQllFRk5EVTcrZ2ZaUVhiVTBNaDN0dFJ2QWtqdlorUU1BZ0dCaXFGQXdJQ0F3TkJBQ0NKbXcxZEp3Q3JhcnpzUUp4WEtGM0NlaHpNTVJ4WmZRemdkSXBIM2szbmpRanM5NkF5N1ZCVFZXTmlwU0Q3OERuN3E1d3NjSWk5dklTQ0ZZSng5VzB4Z2dQM01JSUQ4d0lCQVRDQ0FXWXdnZ0ZkTVJnd0ZnWUpLb1pJaHZjTkFRa0NFd2xUWlhKMlpYSWdRMEV4SURBZUJna3Foa2lHOXcwQkNRRVdFWFZqWDJaclFISnZjMnRoZW01aExuSjFNUnd3R2dZRFZRUUlEQk0zTnlEUXN5NGcwSnpRdnRHQjBMclFzdEN3TVJvd0dBWUlLb1VEQTRFREFRRVNEREF3TnpjeE1EVTJPRGMyTURFWU1CWUdCU3FGQTJRQkVnMHhNRFEzTnprM01ERTVPRE13TVN3d0tnWURWUVFKRENQUmc5QzcwTGpSaHRDd0lOQ1kwTHZSak5DNDBMM1F1dEN3TENEUXROQyswTHdnTnpFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUXN3Q1FZRFZRUUdFd0pTVlRFNE1EWUdBMVVFQ2d3djBLVFF0ZEMwMExYUmdOQ3cwTHZSak5DOTBMN1F0U0RRdXRDdzBMZlF2ZEN3MFlmUXRkQzUwWUhSZ3RDeTBMNHhQekE5QmdOVkJBTU1OdENqMEtZZzBLVFF0ZEMwMExYUmdOQ3cwTHZSak5DOTBMN1FzOUMrSU5DNjBMRFF0OUM5MExEUmg5QzEwTG5SZ2RHQzBMTFFzQUlERVRyck1Bb0dCaXFGQXdJQ0NRVUFvSUlDS0RBWUJna3Foa2lHOXcwQkNRTXhDd1lKS29aSWh2Y05BUWNCTUJ3R0NTcUdTSWIzRFFFSkJURVBGdzB4TmpFeE1qRXhNRFEwTWpGYU1DOEdDU3FHU0liM0RRRUpCREVpQkNDdmVXakt5WUxjejVaM255ZnhvelI5WEhsTmhHZEoxZTlrWjRpNnBNSEhyekNDQWJzR0N5cUdTSWIzRFFFSkVBSXZNWUlCcWpDQ0FhWXdnZ0dpTUlJQm5qQUlCZ1lxaFFNQ0Fna0VJTFJUb3YrRmM2OGtZOUpsR1VjMDNVSWs2UXRGVGFQVkdEd3QwOWxkeVAxWU1JSUJiakNDQVdXa2dnRmhNSUlCWFRFWU1CWUdDU3FHU0liM0RRRUpBaE1KVTJWeWRtVnlJRU5CTVNBd0hnWUpLb1pJaHZjTkFRa0JGaEYxWTE5bWEwQnliM05yWVhwdVlTNXlkVEVjTUJvR0ExVUVDQXdUTnpjZzBMTXVJTkNjMEw3UmdkQzYwTExRc0RFYU1CZ0dDQ3FGQXdPQkF3RUJFZ3d3TURjM01UQTFOamczTmpBeEdEQVdCZ1VxaFFOa0FSSU5NVEEwTnpjNU56QXhPVGd6TURFc01Db0dBMVVFQ1F3ajBZUFF1OUM0MFliUXNDRFFtTkM3MFl6UXVOQzkwTHJRc0N3ZzBMVFF2dEM4SURjeEZUQVRCZ05WQkFjTUROQ2MwTDdSZ2RDNjBMTFFzREVMTUFrR0ExVUVCaE1DVWxVeE9EQTJCZ05WQkFvTUw5Q2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFVnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0QytNVDh3UFFZRFZRUURERGJRbzlDbUlOQ2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFBRdmlEUXV0Q3cwTGZRdmRDdzBZZlF0ZEM1MFlIUmd0Q3kwTEFDQXhFNjZ6QUtCZ1lxaFFNQ0FoTUZBQVJBZ3pnNkVJT1pzbGhYV0JLaGdNWmZTL25STFcrV2dnWDhGUWxoc2NLQU93ZFFNQWFhdnhIc1hFWnlmeThCVnRFeE1yczAzY3R1RElYZUx3RXZkazBPNXc9PQ==</signature>
+            <signature>TUlJTUNRWUpLb1pJaHZjTkFRY0NvSUlMK2pDQ0MvWUNBUVF4RERBS0JnWXFoUU1DQWdrRkFEQUxCZ2txaGtpRzl3MEJCd0dnZ2dmWE1JSUgwekNDQjRLZ0F3SUJBZ0lERkJuNE1BZ0dCaXFGQXdJQ0F6Q0NBVjB4R0RBV0Jna3Foa2lHOXcwQkNRSVRDVk5sY25abGNpQkRRVEVnTUI0R0NTcUdTSWIzRFFFSkFSWVJkV05mWm10QWNtOXphMkY2Ym1FdWNuVXhIREFhQmdOVkJBZ01FemMzSU5DekxpRFFuTkMrMFlIUXV0Q3kwTEF4R2pBWUJnZ3FoUU1EZ1FNQkFSSU1NREEzTnpFd05UWTROell3TVJnd0ZnWUZLb1VEWkFFU0RURXdORGMzT1Rjd01UazRNekF4TERBcUJnTlZCQWtNSTlHRDBMdlF1TkdHMExBZzBKalF1OUdNMExqUXZkQzYwTEFzSU5DMDBMN1F2Q0EzTVJVd0V3WURWUVFIREF6UW5OQyswWUhRdXRDeTBMQXhDekFKQmdOVkJBWVRBbEpWTVRnd05nWURWUVFLREMvUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0QzFJTkM2MExEUXQ5QzkwTERSaDlDMTBMblJnZEdDMExMUXZqRS9NRDBHQTFVRUF3dzIwS1BRcGlEUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0Q3owTDRnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0Q3dNQjRYRFRFMk1ESXlPVEUwTURreE1Gb1hEVEUzTURVeU9URTBNRGt4TUZvd2dnRXNNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemN4TURVMk9EYzJNREVZTUJZR0JTcUZBMlFCRWcweE1EUTNOemszTURFNU9ETXdNUm93R0FZRFZRUUpEQkhRbU5DNzBZelF1TkM5MExyUXNDd2dOekVpTUNBR0NTcUdTSWIzRFFFSkFSWVRjbWRoYkdsbGRrQnliM05yWVhwdVlTNXlkVEVMTUFrR0ExVUVCaE1DVWxVeEhEQWFCZ05WQkFnTUV6YzNJTkN6TGlEUW5OQyswWUhRdXRDeTBMQXhGVEFUQmdOVkJBY01ETkNjMEw3UmdkQzYwTExRc0RFNE1EWUdBMVVFQ2d3djBLVFF0ZEMwMExYUmdOQ3cwTHZSak5DOTBMN1F0U0RRdXRDdzBMZlF2ZEN3MFlmUXRkQzUwWUhSZ3RDeTBMNHhPREEyQmdOVkJBTU1MOUNrMExYUXROQzEwWURRc05DNzBZelF2ZEMrMExVZzBMclFzTkMzMEwzUXNOR0gwTFhRdWRHQjBZTFFzdEMrTUdNd0hBWUdLb1VEQWdJVE1CSUdCeXFGQXdJQ0pBQUdCeXFGQXdJQ0hnRURRd0FFUU9yOVUydDAzdXJOa0JYc2l5UkhhdGc5RVlPSEZYQ0NoUzVBWHJMbW0vVnFONFhJMUVxbTcxckpPa1Nra0NKQ0NzU2Ftbjk4bmFKNTZMNnZheHNWZ1hTamdnUlVNSUlFVURBTUJnTlZIUk1CQWY4RUFqQUFNQjBHQTFVZElBUVdNQlF3Q0FZR0tvVURaSEVCTUFnR0JpcUZBMlJ4QWpBZ0JnTlZIUkVFR1RBWG9CSUdBMVVFREtBTEV3a3lNamt4TnpBMU5UV0dBVEF3TmdZRktvVURaRzhFTFF3ckl0Q2EwWURRdU5DLzBZTFF2dENmMFlEUXZpQkRVMUFpSUNqUXN0QzEwWURSZ2RDNDBZOGdNeTQyS1RDQ0FXRUdCU3FGQTJSd0JJSUJWakNDQVZJTVJDTFFtdEdBMExqUXY5R0MwTDdRbjlHQTBMNGdRMU5RSWlBbzBMTFF0ZEdBMFlIUXVOR1BJRE11TmlrZ0tOQzQwWUhRdjlDKzBMdlF2ZEMxMEwzUXVOQzFJRElwREdnaTBKL1JnTkMrMExQUmdOQ3cwTHpRdk5DOTBMNHQwTERRdjlDLzBMRFJnTkN3MFlMUXZkR0wwTGtnMExyUXZ0QzgwTC9RdTlDMTBMclJnU0FpMEs3UXZkQzQwWUhRdGRHQTBZSXQwSlBRbnRDaDBLSWlMaURRa3RDMTBZRFJnZEM0MFk4Z01pNHhJZ3hQMEtIUXRkR0EwWUxRdU5HRTBMalF1dEN3MFlJZzBZSFF2dEMrMFlMUXN0QzEwWUxSZ2RHQzBMTFF1TkdQSU9LRWxpRFFvZENrTHpFeU5DMHlOek00SU5DKzBZSWdNREV1TURjdU1qQXhOUXhQMEtIUXRkR0EwWUxRdU5HRTBMalF1dEN3MFlJZzBZSFF2dEMrMFlMUXN0QzEwWUxSZ2RHQzBMTFF1TkdQSU9LRWxpRFFvZENrTHpFeU9DMHlNVGMxSU5DKzBZSWdNakF1TURZdU1qQXhNekFPQmdOVkhROEJBZjhFQkFNQ0EvZ3dFd1lEVlIwbEJBd3dDZ1lJS3dZQkJRVUhBd0l3S3dZRFZSMFFCQ1F3SW9BUE1qQXhOakF5TWpreE5EQTRNemxhZ1E4eU1ERTNNRFV5T1RFME1EZ3pPVm93Z2dHUEJnTlZIU01FZ2dHR01JSUJnb0FVbm5FT0Q5cTBBU2hmUCtMTGoyVVZsd0pIakt1aGdnRmxwSUlCWVRDQ0FWMHhHREFXQmdrcWhraUc5dzBCQ1FJVENWTmxjblpsY2lCRFFURWdNQjRHQ1NxR1NJYjNEUUVKQVJZUmRXTmZabXRBY205emEyRjZibUV1Y25VeEhEQWFCZ05WQkFnTUV6YzNJTkN6TGlEUW5OQyswWUhRdXRDeTBMQXhHakFZQmdncWhRTURnUU1CQVJJTU1EQTNOekV3TlRZNE56WXdNUmd3RmdZRktvVURaQUVTRFRFd05EYzNPVGN3TVRrNE16QXhMREFxQmdOVkJBa01JOUdEMEx2UXVOR0cwTEFnMEpqUXU5R00wTGpRdmRDNjBMQXNJTkMwMEw3UXZDQTNNUlV3RXdZRFZRUUhEQXpRbk5DKzBZSFF1dEN5MExBeEN6QUpCZ05WQkFZVEFsSlZNVGd3TmdZRFZRUUtEQy9RcE5DMTBMVFF0ZEdBMExEUXU5R00wTDNRdnRDMUlOQzYwTERRdDlDOTBMRFJoOUMxMExuUmdkR0MwTExRdmpFL01EMEdBMVVFQXd3MjBLUFFwaURRcE5DMTBMVFF0ZEdBMExEUXU5R00wTDNRdnRDejBMNGcwTHJRc05DMzBMM1FzTkdIMExYUXVkR0IwWUxRc3RDd2dnRUJNRjRHQTFVZEh3UlhNRlV3S2FBbm9DV0dJMmgwZEhBNkx5OWpjbXd1Y205emEyRjZibUV1Y25VdlkzSnNMMlpyTURFdVkzSnNNQ2lnSnFBa2hpSm9kSFJ3T2k4dlkzSnNMbVp6Wm1zdWJHOWpZV3d2WTNKc0wyWnJNREV1WTNKc01CMEdBMVVkRGdRV0JCUmlBYk1SVnF6TEl6K2xNcXcxZy95WHFXb0RBekFJQmdZcWhRTUNBZ01EUVFDNlNHcGVPeDNnZ2U1SnBNUXZlQmlsK2tndVZiZHZLNWFwL3VwVWlWMVRPNnN0Tm8wbStURkpIK3poWnBsTlRKaHMrRXkwcEo2UTIwMU9GWisrYmlBTU1ZSUQrVENDQS9VQ0FRRXdnZ0ZtTUlJQlhURVlNQllHQ1NxR1NJYjNEUUVKQWhNSlUyVnlkbVZ5SUVOQk1TQXdIZ1lKS29aSWh2Y05BUWtCRmhGMVkxOW1hMEJ5YjNOcllYcHVZUzV5ZFRFY01Cb0dBMVVFQ0F3VE56Y2cwTE11SU5DYzBMN1JnZEM2MExMUXNERWFNQmdHQ0NxRkF3T0JBd0VCRWd3d01EYzNNVEExTmpnM05qQXhHREFXQmdVcWhRTmtBUklOTVRBME56YzVOekF4T1Rnek1ERXNNQ29HQTFVRUNRd2owWVBRdTlDNDBZYlFzQ0RRbU5DNzBZelF1TkM5MExyUXNDd2cwTFRRdnRDOElEY3hGVEFUQmdOVkJBY01ETkNjMEw3UmdkQzYwTExRc0RFTE1Ba0dBMVVFQmhNQ1VsVXhPREEyQmdOVkJBb01MOUNrMExYUXROQzEwWURRc05DNzBZelF2ZEMrMExVZzBMclFzTkMzMEwzUXNOR0gwTFhRdWRHQjBZTFFzdEMrTVQ4d1BRWURWUVFERERiUW85Q21JTkNrMExYUXROQzEwWURRc05DNzBZelF2ZEMrMExQUXZpRFF1dEN3MExmUXZkQ3cwWWZRdGRDNTBZSFJndEN5MExBQ0F4UVorREFLQmdZcWhRTUNBZ2tGQUtDQ0Fpb3dHQVlKS29aSWh2Y05BUWtETVFzR0NTcUdTSWIzRFFFSEFUQWNCZ2txaGtpRzl3MEJDUVV4RHhjTk1UWXhNVEl4TVRBME5ESXlXakF2QmdrcWhraUc5dzBCQ1FReElnUWdyM2xveXNtQzNNK1dkNThuOGFNMGZWeDVUWVJuU2RYdlpHZUl1cVRCeDY4d2dnRzlCZ3NxaGtpRzl3MEJDUkFDTHpHQ0Fhd3dnZ0dvTUlJQnBEQ0NBYUF3Q2dZR0tvVURBZ0lKQlFBRUlLL3grUmhlaUxBRXlDQTk5OUIwZTkrRlNMYVlmQU40RXgrcFN1MmcyT1ljTUlJQmJqQ0NBV1drZ2dGaE1JSUJYVEVZTUJZR0NTcUdTSWIzRFFFSkFoTUpVMlZ5ZG1WeUlFTkJNU0F3SGdZSktvWklodmNOQVFrQkZoRjFZMTltYTBCeWIzTnJZWHB1WVM1eWRURWNNQm9HQTFVRUNBd1ROemNnMExNdUlOQ2MwTDdSZ2RDNjBMTFFzREVhTUJnR0NDcUZBd09CQXdFQkVnd3dNRGMzTVRBMU5qZzNOakF4R0RBV0JnVXFoUU5rQVJJTk1UQTBOemM1TnpBeE9UZ3pNREVzTUNvR0ExVUVDUXdqMFlQUXU5QzQwWWJRc0NEUW1OQzcwWXpRdU5DOTBMclFzQ3dnMExUUXZ0QzhJRGN4RlRBVEJnTlZCQWNNRE5DYzBMN1JnZEM2MExMUXNERUxNQWtHQTFVRUJoTUNVbFV4T0RBMkJnTlZCQW9NTDlDazBMWFF0TkMxMFlEUXNOQzcwWXpRdmRDKzBMVWcwTHJRc05DMzBMM1FzTkdIMExYUXVkR0IwWUxRc3RDK01UOHdQUVlEVlFRREREYlFvOUNtSU5DazBMWFF0TkMxMFlEUXNOQzcwWXpRdmRDKzBMUFF2aURRdXRDdzBMZlF2ZEN3MFlmUXRkQzUwWUhSZ3RDeTBMQUNBeFFaK0RBS0JnWXFoUU1DQWhNRkFBUkFkWGI3MWVrKzJ2Wm1ieE9oVnF1MHVzeVA1d1FsSStaZS9LYndUQ3VGTHJOTTl1dGxEaTdvQ0s5U3lKeWVORDJ6Nmp2bFhnUHBhRU1abERWUVROY1htUT09</signature>
+        </printForm>
+        <scanDocuments>
+            <attachment>
+                <publishedContentId>41CDCBC4471A00A2E0530A86120D701F</publishedContentId>
+                <fileName>5321 Р-Лаб.docx</fileName>
+                <docDescription>5321 Р-Лаб</docDescription>
+                <docRegNumber>23662006088160012620002</docRegNumber>
+                <url>http://zakupki.gov.ru/44fz/filestore/public/1.0/download/rgk2/file.html?uid=41CDCBC4471A00A2E0530A86120D701F</url>
+                <cryptoSigns>
+                    <signature>TUlJTldRWUpLb1pJaHZjTkFRY0NvSUlOU2pDQ0RVWUNBUUV4RERBS0JnWXFoUU1DQWdrRkFEQUxCZ2txaGtpRzl3MEJCd0dnZ2drcE1JSUpKVENDQ05TZ0F3SUJBZ0lERVRyck1BZ0dCaXFGQXdJQ0F6Q0NBVjB4R0RBV0Jna3Foa2lHOXcwQkNRSVRDVk5sY25abGNpQkRRVEVnTUI0R0NTcUdTSWIzRFFFSkFSWVJkV05mWm10QWNtOXphMkY2Ym1FdWNuVXhIREFhQmdOVkJBZ01FemMzSU5DekxpRFFuTkMrMFlIUXV0Q3kwTEF4R2pBWUJnZ3FoUU1EZ1FNQkFSSU1NREEzTnpFd05UWTROell3TVJnd0ZnWUZLb1VEWkFFU0RURXdORGMzT1Rjd01UazRNekF4TERBcUJnTlZCQWtNSTlHRDBMdlF1TkdHMExBZzBKalF1OUdNMExqUXZkQzYwTEFzSU5DMDBMN1F2Q0EzTVJVd0V3WURWUVFIREF6UW5OQyswWUhRdXRDeTBMQXhDekFKQmdOVkJBWVRBbEpWTVRnd05nWURWUVFLREMvUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0QzFJTkM2MExEUXQ5QzkwTERSaDlDMTBMblJnZEdDMExMUXZqRS9NRDBHQTFVRUF3dzIwS1BRcGlEUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0Q3owTDRnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0Q3dNQjRYRFRFMU1URXhNakEyTkRreU5sb1hEVEUzTURJeE1qQTJORGt5Tmxvd2dnSUZNUm93R0FZSUtvVURBNEVEQVFFU0RETTJOakl3T1RNNE1UZzVNVEVXTUJRR0JTcUZBMlFERWdzd016VXdPVFl6TlRRMU1ERVlNQllHQlNxRkEyUUJFZzB4TURNek5qQXdNRE16TlRrNE1SOHdIUVlKS29aSWh2Y05BUWtCRmhCcllYTnpZVUJ2YTJJdWRuSnVMbkoxTVFzd0NRWURWUVFHRXdKU1ZURXhNQzhHQTFVRUNBd29NellnMEpMUXZ0R0EwTDdRdmRDMTBMYlJnZEM2MExEUmp5RFF2dEN4MEx2UXNOR0IwWUxSakRFWE1CVUdBMVVFQnd3TzBKTFF2dEdBMEw3UXZkQzEwTFl4SWpBZ0JnTlZCQW9NR2RDUjBLUFFseURRa3RDZUlOQ1MwSjdRbXRDUklPS0VsakV4T2pBNEJnTlZCQXNNTWRDUTBMVFF2TkM0MEwzUXVOR0IwWUxSZ05DdzBZTFF1TkN5MEwzUmk5QzVJTkMvMExYUmdOR0IwTDdRdmRDdzBMc3hNakF3QmdOVkJDb01LZENTMEx2UXNOQzAwTGpRdk5DNDBZQWcwSkxSajlHSDBMWFJnZEM3MExEUXN0QyswTExRdU5HSE1SVXdFd1lEVlFRRURBelFtdEdEMFlIUmd0QyswTEl4VHpCTkJnTlZCQXdNUnRDWDBMRFF2TkMxMFlIUmd0QzQwWUxRdGRDNzBZd2cwTFBRdTlDdzBMTFF2ZEMrMExQUXZpRFFzdEdBMExEUmg5Q3dJTkMvMEw0ZzBZTFF0ZEdGMEwzUXVOQzYwTFV4UHpBOUJnTlZCQU1NTnRDYTBZUFJnZEdDMEw3UXNpRFFrdEM3MExEUXROQzQwTHpRdU5HQUlOQ1MwWS9SaDlDMTBZSFF1OUN3MExMUXZ0Q3kwTGpSaHpCak1Cd0dCaXFGQXdJQ0V6QVNCZ2NxaFFNQ0FpUUFCZ2NxaFFNQ0FoNEJBME1BQkVBbm5CU3o3MExaN1c4SitQWHAvSjJyZEpVWHFQdFFTeEt2MjlkU1lyYmdjdmVhQTIrYTN0aG1CNXBYZFJsbTFoSXhocDlMSjFqUVJGb1BTc3FIWHhVM280SUV6VENDQk1rd0RBWURWUjBUQVFIL0JBSXdBREFkQmdOVkhTQUVGakFVTUFnR0JpcUZBMlJ4QVRBSUJnWXFoUU5rY1FJd1dRWURWUjBSQkZJd1VLQVRCZ05WQkF5Z0RCTUtNVEV4TURFeE5EWXdNcUFaQmdvcWhRTURQWjdYTmdFSG9Bc1RDVE0yTmpJd01UQXdNYUFiQmdvcWhRTURQWjdYTmdFRm9BMFRDekF6TXpFeU1EQXdNVGM0aGdFd01EWUdCU3FGQTJSdkJDME1LeUxRbXRHQTBMalF2OUdDMEw3UW45R0EwTDRnUTFOUUlpQW8wTExRdGRHQTBZSFF1TkdQSURNdU5pa3dnZ0ZoQmdVcWhRTmtjQVNDQVZZd2dnRlNERVFpMEpyUmdOQzQwTC9SZ3RDKzBKL1JnTkMrSUVOVFVDSWdLTkN5MExYUmdOR0IwTGpSanlBekxqWXBJQ2pRdU5HQjBML1F2dEM3MEwzUXRkQzkwTGpRdFNBeUtReG9JdENmMFlEUXZ0Q3owWURRc05DODBMelF2ZEMrTGRDdzBML1F2OUN3MFlEUXNOR0MwTDNSaTlDNUlOQzYwTDdRdk5DLzBMdlF0ZEM2MFlFZ0l0Q3UwTDNRdU5HQjBMWFJnTkdDTGRDVDBKN1FvZENpSWk0ZzBKTFF0ZEdBMFlIUXVOR1BJREl1TVNJTVQ5Q2gwTFhSZ05HQzBMalJoTkM0MExyUXNOR0NJTkdCMEw3UXZ0R0MwTExRdGRHQzBZSFJndEN5MExqUmp5RGloSllnMEtIUXBDOHhNalF0TWpJek9DRFF2dEdDSURBMExqRXdMakl3TVRNTVQ5Q2gwTFhSZ05HQzBMalJoTkM0MExyUXNOR0NJTkdCMEw3UXZ0R0MwTExRdGRHQzBZSFJndEN5MExqUmp5RGloSllnMEtIUXBDOHhNamd0TWpFM05TRFF2dEdDSURJd0xqQTJMakl3TVRNd0RnWURWUjBQQVFIL0JBUURBZ1BvTUZNR0ExVWRKUVJNTUVvR0NDc0dBUVVGQndNQ0JnNHFoUU1EUFo3WE5nRUdBd1FCQVFZT0tvVURBejJlMXpZQkJnTUVBUUlHRGlxRkF3TTludGMyQVFZREJBRURCZzRxaFFNRFBaN1hOZ0VHQXdRQkJEQXJCZ05WSFJBRUpEQWlnQTh5TURFMU1URXhNakEyTkRnek9GcUJEekl3TVRjd01qRXhNRFkwT1RJMldqQ0NBWThHQTFVZEl3U0NBWVl3Z2dHQ2dCU2VjUTRQMnJRQktGOC80c3VQWlJXWEFrZU1xNkdDQVdXa2dnRmhNSUlCWFRFWU1CWUdDU3FHU0liM0RRRUpBaE1KVTJWeWRtVnlJRU5CTVNBd0hnWUpLb1pJaHZjTkFRa0JGaEYxWTE5bWEwQnliM05yWVhwdVlTNXlkVEVjTUJvR0ExVUVDQXdUTnpjZzBMTXVJTkNjMEw3UmdkQzYwTExRc0RFYU1CZ0dDQ3FGQXdPQkF3RUJFZ3d3TURjM01UQTFOamczTmpBeEdEQVdCZ1VxaFFOa0FSSU5NVEEwTnpjNU56QXhPVGd6TURFc01Db0dBMVVFQ1F3ajBZUFF1OUM0MFliUXNDRFFtTkM3MFl6UXVOQzkwTHJRc0N3ZzBMVFF2dEM4SURjeEZUQVRCZ05WQkFjTUROQ2MwTDdSZ2RDNjBMTFFzREVMTUFrR0ExVUVCaE1DVWxVeE9EQTJCZ05WQkFvTUw5Q2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFVnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0QytNVDh3UFFZRFZRUURERGJRbzlDbUlOQ2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFBRdmlEUXV0Q3cwTGZRdmRDdzBZZlF0ZEM1MFlIUmd0Q3kwTENDQVFFd1hnWURWUjBmQkZjd1ZUQXBvQ2VnSllZamFIUjBjRG92TDJOeWJDNXliM05yWVhwdVlTNXlkUzlqY213dlptc3dNUzVqY213d0tLQW1vQ1NHSW1oMGRIQTZMeTlqY213dVpuTm1heTVzYjJOaGJDOWpjbXd2Wm1zd01TNWpjbXd3SFFZRFZSME9CQllFRk5EVTcrZ2ZaUVhiVTBNaDN0dFJ2QWtqdlorUU1BZ0dCaXFGQXdJQ0F3TkJBQ0NKbXcxZEp3Q3JhcnpzUUp4WEtGM0NlaHpNTVJ4WmZRemdkSXBIM2szbmpRanM5NkF5N1ZCVFZXTmlwU0Q3OERuN3E1d3NjSWk5dklTQ0ZZSng5VzB4Z2dQM01JSUQ4d0lCQVRDQ0FXWXdnZ0ZkTVJnd0ZnWUpLb1pJaHZjTkFRa0NFd2xUWlhKMlpYSWdRMEV4SURBZUJna3Foa2lHOXcwQkNRRVdFWFZqWDJaclFISnZjMnRoZW01aExuSjFNUnd3R2dZRFZRUUlEQk0zTnlEUXN5NGcwSnpRdnRHQjBMclFzdEN3TVJvd0dBWUlLb1VEQTRFREFRRVNEREF3TnpjeE1EVTJPRGMyTURFWU1CWUdCU3FGQTJRQkVnMHhNRFEzTnprM01ERTVPRE13TVN3d0tnWURWUVFKRENQUmc5QzcwTGpSaHRDd0lOQ1kwTHZSak5DNDBMM1F1dEN3TENEUXROQyswTHdnTnpFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUXN3Q1FZRFZRUUdFd0pTVlRFNE1EWUdBMVVFQ2d3djBLVFF0ZEMwMExYUmdOQ3cwTHZSak5DOTBMN1F0U0RRdXRDdzBMZlF2ZEN3MFlmUXRkQzUwWUhSZ3RDeTBMNHhQekE5QmdOVkJBTU1OdENqMEtZZzBLVFF0ZEMwMExYUmdOQ3cwTHZSak5DOTBMN1FzOUMrSU5DNjBMRFF0OUM5MExEUmg5QzEwTG5SZ2RHQzBMTFFzQUlERVRyck1Bb0dCaXFGQXdJQ0NRVUFvSUlDS0RBWUJna3Foa2lHOXcwQkNRTXhDd1lKS29aSWh2Y05BUWNCTUJ3R0NTcUdTSWIzRFFFSkJURVBGdzB4TmpFeE1qRXhNRFEwTWpGYU1DOEdDU3FHU0liM0RRRUpCREVpQkNDK2pVeFRTaUIwV2xhK0ZmVE84UkVvQWtPUjE1ckt2VHpMSkJwRWNUemk5RENDQWJzR0N5cUdTSWIzRFFFSkVBSXZNWUlCcWpDQ0FhWXdnZ0dpTUlJQm5qQUlCZ1lxaFFNQ0Fna0VJTFJUb3YrRmM2OGtZOUpsR1VjMDNVSWs2UXRGVGFQVkdEd3QwOWxkeVAxWU1JSUJiakNDQVdXa2dnRmhNSUlCWFRFWU1CWUdDU3FHU0liM0RRRUpBaE1KVTJWeWRtVnlJRU5CTVNBd0hnWUpLb1pJaHZjTkFRa0JGaEYxWTE5bWEwQnliM05yWVhwdVlTNXlkVEVjTUJvR0ExVUVDQXdUTnpjZzBMTXVJTkNjMEw3UmdkQzYwTExRc0RFYU1CZ0dDQ3FGQXdPQkF3RUJFZ3d3TURjM01UQTFOamczTmpBeEdEQVdCZ1VxaFFOa0FSSU5NVEEwTnpjNU56QXhPVGd6TURFc01Db0dBMVVFQ1F3ajBZUFF1OUM0MFliUXNDRFFtTkM3MFl6UXVOQzkwTHJRc0N3ZzBMVFF2dEM4SURjeEZUQVRCZ05WQkFjTUROQ2MwTDdSZ2RDNjBMTFFzREVMTUFrR0ExVUVCaE1DVWxVeE9EQTJCZ05WQkFvTUw5Q2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFVnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0QytNVDh3UFFZRFZRUURERGJRbzlDbUlOQ2swTFhRdE5DMTBZRFFzTkM3MFl6UXZkQyswTFBRdmlEUXV0Q3cwTGZRdmRDdzBZZlF0ZEM1MFlIUmd0Q3kwTEFDQXhFNjZ6QUtCZ1lxaFFNQ0FoTUZBQVJBSDd5aVZpeFUvdDJSd3lyR0tiazA2SGw4T0JEZG9KdFRvU3FSOVFKQUlmRENHbDBGOVNSTmF6ZlV5MzVObmhSVVRMZWJjdlgxWVZiYXovd0oxd1BPdHc9PQ==</signature>
+                    <signature>TUlJTUNRWUpLb1pJaHZjTkFRY0NvSUlMK2pDQ0MvWUNBUVF4RERBS0JnWXFoUU1DQWdrRkFEQUxCZ2txaGtpRzl3MEJCd0dnZ2dmWE1JSUgwekNDQjRLZ0F3SUJBZ0lERkJuNE1BZ0dCaXFGQXdJQ0F6Q0NBVjB4R0RBV0Jna3Foa2lHOXcwQkNRSVRDVk5sY25abGNpQkRRVEVnTUI0R0NTcUdTSWIzRFFFSkFSWVJkV05mWm10QWNtOXphMkY2Ym1FdWNuVXhIREFhQmdOVkJBZ01FemMzSU5DekxpRFFuTkMrMFlIUXV0Q3kwTEF4R2pBWUJnZ3FoUU1EZ1FNQkFSSU1NREEzTnpFd05UWTROell3TVJnd0ZnWUZLb1VEWkFFU0RURXdORGMzT1Rjd01UazRNekF4TERBcUJnTlZCQWtNSTlHRDBMdlF1TkdHMExBZzBKalF1OUdNMExqUXZkQzYwTEFzSU5DMDBMN1F2Q0EzTVJVd0V3WURWUVFIREF6UW5OQyswWUhRdXRDeTBMQXhDekFKQmdOVkJBWVRBbEpWTVRnd05nWURWUVFLREMvUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0QzFJTkM2MExEUXQ5QzkwTERSaDlDMTBMblJnZEdDMExMUXZqRS9NRDBHQTFVRUF3dzIwS1BRcGlEUXBOQzEwTFRRdGRHQTBMRFF1OUdNMEwzUXZ0Q3owTDRnMExyUXNOQzMwTDNRc05HSDBMWFF1ZEdCMFlMUXN0Q3dNQjRYRFRFMk1ESXlPVEUwTURreE1Gb1hEVEUzTURVeU9URTBNRGt4TUZvd2dnRXNNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemN4TURVMk9EYzJNREVZTUJZR0JTcUZBMlFCRWcweE1EUTNOemszTURFNU9ETXdNUm93R0FZRFZRUUpEQkhRbU5DNzBZelF1TkM5MExyUXNDd2dOekVpTUNBR0NTcUdTSWIzRFFFSkFSWVRjbWRoYkdsbGRrQnliM05yWVhwdVlTNXlkVEVMTUFrR0ExVUVCaE1DVWxVeEhEQWFCZ05WQkFnTUV6YzNJTkN6TGlEUW5OQyswWUhRdXRDeTBMQXhGVEFUQmdOVkJBY01ETkNjMEw3UmdkQzYwTExRc0RFNE1EWUdBMVVFQ2d3djBLVFF0ZEMwMExYUmdOQ3cwTHZSak5DOTBMN1F0U0RRdXRDdzBMZlF2ZEN3MFlmUXRkQzUwWUhSZ3RDeTBMNHhPREEyQmdOVkJBTU1MOUNrMExYUXROQzEwWURRc05DNzBZelF2ZEMrMExVZzBMclFzTkMzMEwzUXNOR0gwTFhRdWRHQjBZTFFzdEMrTUdNd0hBWUdLb1VEQWdJVE1CSUdCeXFGQXdJQ0pBQUdCeXFGQXdJQ0hnRURRd0FFUU9yOVUydDAzdXJOa0JYc2l5UkhhdGc5RVlPSEZYQ0NoUzVBWHJMbW0vVnFONFhJMUVxbTcxckpPa1Nra0NKQ0NzU2Ftbjk4bmFKNTZMNnZheHNWZ1hTamdnUlVNSUlFVURBTUJnTlZIUk1CQWY4RUFqQUFNQjBHQTFVZElBUVdNQlF3Q0FZR0tvVURaSEVCTUFnR0JpcUZBMlJ4QWpBZ0JnTlZIUkVFR1RBWG9CSUdBMVVFREtBTEV3a3lNamt4TnpBMU5UV0dBVEF3TmdZRktvVURaRzhFTFF3ckl0Q2EwWURRdU5DLzBZTFF2dENmMFlEUXZpQkRVMUFpSUNqUXN0QzEwWURSZ2RDNDBZOGdNeTQyS1RDQ0FXRUdCU3FGQTJSd0JJSUJWakNDQVZJTVJDTFFtdEdBMExqUXY5R0MwTDdRbjlHQTBMNGdRMU5RSWlBbzBMTFF0ZEdBMFlIUXVOR1BJRE11TmlrZ0tOQzQwWUhRdjlDKzBMdlF2ZEMxMEwzUXVOQzFJRElwREdnaTBKL1JnTkMrMExQUmdOQ3cwTHpRdk5DOTBMNHQwTERRdjlDLzBMRFJnTkN3MFlMUXZkR0wwTGtnMExyUXZ0QzgwTC9RdTlDMTBMclJnU0FpMEs3UXZkQzQwWUhRdGRHQTBZSXQwSlBRbnRDaDBLSWlMaURRa3RDMTBZRFJnZEM0MFk4Z01pNHhJZ3hQMEtIUXRkR0EwWUxRdU5HRTBMalF1dEN3MFlJZzBZSFF2dEMrMFlMUXN0QzEwWUxSZ2RHQzBMTFF1TkdQSU9LRWxpRFFvZENrTHpFeU5DMHlOek00SU5DKzBZSWdNREV1TURjdU1qQXhOUXhQMEtIUXRkR0EwWUxRdU5HRTBMalF1dEN3MFlJZzBZSFF2dEMrMFlMUXN0QzEwWUxSZ2RHQzBMTFF1TkdQSU9LRWxpRFFvZENrTHpFeU9DMHlNVGMxSU5DKzBZSWdNakF1TURZdU1qQXhNekFPQmdOVkhROEJBZjhFQkFNQ0EvZ3dFd1lEVlIwbEJBd3dDZ1lJS3dZQkJRVUhBd0l3S3dZRFZSMFFCQ1F3SW9BUE1qQXhOakF5TWpreE5EQTRNemxhZ1E4eU1ERTNNRFV5T1RFME1EZ3pPVm93Z2dHUEJnTlZIU01FZ2dHR01JSUJnb0FVbm5FT0Q5cTBBU2hmUCtMTGoyVVZsd0pIakt1aGdnRmxwSUlCWVRDQ0FWMHhHREFXQmdrcWhraUc5dzBCQ1FJVENWTmxjblpsY2lCRFFURWdNQjRHQ1NxR1NJYjNEUUVKQVJZUmRXTmZabXRBY205emEyRjZibUV1Y25VeEhEQWFCZ05WQkFnTUV6YzNJTkN6TGlEUW5OQyswWUhRdXRDeTBMQXhHakFZQmdncWhRTURnUU1CQVJJTU1EQTNOekV3TlRZNE56WXdNUmd3RmdZRktvVURaQUVTRFRFd05EYzNPVGN3TVRrNE16QXhMREFxQmdOVkJBa01JOUdEMEx2UXVOR0cwTEFnMEpqUXU5R00wTGpRdmRDNjBMQXNJTkMwMEw3UXZDQTNNUlV3RXdZRFZRUUhEQXpRbk5DKzBZSFF1dEN5MExBeEN6QUpCZ05WQkFZVEFsSlZNVGd3TmdZRFZRUUtEQy9RcE5DMTBMVFF0ZEdBMExEUXU5R00wTDNRdnRDMUlOQzYwTERRdDlDOTBMRFJoOUMxMExuUmdkR0MwTExRdmpFL01EMEdBMVVFQXd3MjBLUFFwaURRcE5DMTBMVFF0ZEdBMExEUXU5R00wTDNRdnRDejBMNGcwTHJRc05DMzBMM1FzTkdIMExYUXVkR0IwWUxRc3RDd2dnRUJNRjRHQTFVZEh3UlhNRlV3S2FBbm9DV0dJMmgwZEhBNkx5OWpjbXd1Y205emEyRjZibUV1Y25VdlkzSnNMMlpyTURFdVkzSnNNQ2lnSnFBa2hpSm9kSFJ3T2k4dlkzSnNMbVp6Wm1zdWJHOWpZV3d2WTNKc0wyWnJNREV1WTNKc01CMEdBMVVkRGdRV0JCUmlBYk1SVnF6TEl6K2xNcXcxZy95WHFXb0RBekFJQmdZcWhRTUNBZ01EUVFDNlNHcGVPeDNnZ2U1SnBNUXZlQmlsK2tndVZiZHZLNWFwL3VwVWlWMVRPNnN0Tm8wbStURkpIK3poWnBsTlRKaHMrRXkwcEo2UTIwMU9GWisrYmlBTU1ZSUQrVENDQS9VQ0FRRXdnZ0ZtTUlJQlhURVlNQllHQ1NxR1NJYjNEUUVKQWhNSlUyVnlkbVZ5SUVOQk1TQXdIZ1lKS29aSWh2Y05BUWtCRmhGMVkxOW1hMEJ5YjNOcllYcHVZUzV5ZFRFY01Cb0dBMVVFQ0F3VE56Y2cwTE11SU5DYzBMN1JnZEM2MExMUXNERWFNQmdHQ0NxRkF3T0JBd0VCRWd3d01EYzNNVEExTmpnM05qQXhHREFXQmdVcWhRTmtBUklOTVRBME56YzVOekF4T1Rnek1ERXNNQ29HQTFVRUNRd2owWVBRdTlDNDBZYlFzQ0RRbU5DNzBZelF1TkM5MExyUXNDd2cwTFRRdnRDOElEY3hGVEFUQmdOVkJBY01ETkNjMEw3UmdkQzYwTExRc0RFTE1Ba0dBMVVFQmhNQ1VsVXhPREEyQmdOVkJBb01MOUNrMExYUXROQzEwWURRc05DNzBZelF2ZEMrMExVZzBMclFzTkMzMEwzUXNOR0gwTFhRdWRHQjBZTFFzdEMrTVQ4d1BRWURWUVFERERiUW85Q21JTkNrMExYUXROQzEwWURRc05DNzBZelF2ZEMrMExQUXZpRFF1dEN3MExmUXZkQ3cwWWZRdGRDNTBZSFJndEN5MExBQ0F4UVorREFLQmdZcWhRTUNBZ2tGQUtDQ0Fpb3dHQVlKS29aSWh2Y05BUWtETVFzR0NTcUdTSWIzRFFFSEFUQWNCZ2txaGtpRzl3MEJDUVV4RHhjTk1UWXhNVEl4TVRBME5ESXlXakF2QmdrcWhraUc5dzBCQ1FReElnUWd2bzFNVTBvZ2RGcFd2aFgwenZFUktBSkRrZGVheXIwOHl5UWFSSEU4NHZRd2dnRzlCZ3NxaGtpRzl3MEJDUkFDTHpHQ0Fhd3dnZ0dvTUlJQnBEQ0NBYUF3Q2dZR0tvVURBZ0lKQlFBRUlLL3grUmhlaUxBRXlDQTk5OUIwZTkrRlNMYVlmQU40RXgrcFN1MmcyT1ljTUlJQmJqQ0NBV1drZ2dGaE1JSUJYVEVZTUJZR0NTcUdTSWIzRFFFSkFoTUpVMlZ5ZG1WeUlFTkJNU0F3SGdZSktvWklodmNOQVFrQkZoRjFZMTltYTBCeWIzTnJZWHB1WVM1eWRURWNNQm9HQTFVRUNBd1ROemNnMExNdUlOQ2MwTDdSZ2RDNjBMTFFzREVhTUJnR0NDcUZBd09CQXdFQkVnd3dNRGMzTVRBMU5qZzNOakF4R0RBV0JnVXFoUU5rQVJJTk1UQTBOemM1TnpBeE9UZ3pNREVzTUNvR0ExVUVDUXdqMFlQUXU5QzQwWWJRc0NEUW1OQzcwWXpRdU5DOTBMclFzQ3dnMExUUXZ0QzhJRGN4RlRBVEJnTlZCQWNNRE5DYzBMN1JnZEM2MExMUXNERUxNQWtHQTFVRUJoTUNVbFV4T0RBMkJnTlZCQW9NTDlDazBMWFF0TkMxMFlEUXNOQzcwWXpRdmRDKzBMVWcwTHJRc05DMzBMM1FzTkdIMExYUXVkR0IwWUxRc3RDK01UOHdQUVlEVlFRREREYlFvOUNtSU5DazBMWFF0TkMxMFlEUXNOQzcwWXpRdmRDKzBMUFF2aURRdXRDdzBMZlF2ZEN3MFlmUXRkQzUwWUhSZ3RDeTBMQUNBeFFaK0RBS0JnWXFoUU1DQWhNRkFBUkFXY0FPejhDSUNBK0tzTGVNdE5OOFEwWXluYWZ4WmNsSnNqY21CV1FUbGREaXFiMkZzUXFZejdEZmNZcU92NWkrZXNZWDZXN3ZuNUs4MGhuZUh3TStXQT09</signature>
+                </cryptoSigns>
+            </attachment>
+        </scanDocuments>
+        <currentContractStage>E</currentContractStage>
+        <okpd2okved2>true</okpd2okved2>
+    </ns2:contract>
+</ns2:export>
