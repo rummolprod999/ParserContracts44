@@ -22,6 +22,7 @@ namespace ParserContracts44
         public event AddData UpdateContractEvent;
         public event AddData AddContractEvent;
         public event AddData AddProductEvent;
+        object locker = new object();
 
 
         public WorkWithContract44(JObject json, string f, string r)
@@ -608,7 +609,10 @@ namespace ParserContracts44
         {
             if (d > 0)
             {
-                Program.AddProduct++;
+                lock (locker)
+                {
+                    Program.AddProduct++;
+                }
             }
             else
             {

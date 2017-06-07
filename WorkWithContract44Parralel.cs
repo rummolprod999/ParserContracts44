@@ -17,7 +17,6 @@ namespace ParserContracts44
         public event AddData AddProductEvent;
         public int IdOdContract;
         public List<JToken> List_p = new List<JToken>();
-        object locker = new object();
 
 
         public WorkWithContract44Parralel(JObject json, string f, string r):base(json, f, r)
@@ -381,6 +380,7 @@ namespace ParserContracts44
                 {
                     reader_c.Read();
                     id_od_contract = reader_c.GetInt32("id");
+                    IdOdContract = id_od_contract;
                     reader_c.Close();
                     string delete_products =
                         $"DELETE FROM {Program.Prefix}od_contract_product WHERE id_od_contract = @id_od_contract";
