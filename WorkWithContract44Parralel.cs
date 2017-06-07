@@ -534,11 +534,7 @@ namespace ParserContracts44
                 string sid = ((string) prod.SelectToken("sid") ?? "").Trim();
                 string okei = ((string) prod.SelectToken("OKEI.nationalCode") ?? "").Trim();
                 string insert_prod =
-                    $"INSERT INTO {Program.Prefix}od_contract_product SET id_od_contract = @id_od_contract, " +
-                    $"name = @name_p, okpd2_code = @okpd2_code, okpd_code = @okpd_code, okpd2_group_code = @okpd2_group_code, " +
-                    $"okpd_group_code = @okpd_group_code, okpd2_group_level1_code = @okpd2_group_level1_code, " +
-                    $"okpd_group_level1_code = @okpd_group_level1_code, price = @price, okpd2_name = @okpd2_name, " +
-                    $"okpd_name = @okpd_name, quantity = @quantity, okei = @okei, sum = @sum, sid = @sid";
+                    $"INSERT INTO {Program.Prefix}od_contract_product SET id_od_contract = @id_od_contract, name = @name_p, okpd2_code = @okpd2_code, okpd_code = @okpd_code, okpd2_group_code = @okpd2_group_code, okpd_group_code = @okpd_group_code, okpd2_group_level1_code = @okpd2_group_level1_code, okpd_group_level1_code = @okpd_group_level1_code, price = @price, okpd2_name = @okpd2_name, okpd_name = @okpd_name, quantity = @quantity, okei = @okei, sum = @sum, sid = @sid";
                 MySqlCommand cmd11 = new MySqlCommand(insert_prod, connect);
                 cmd11.Prepare();
                 cmd11.Parameters.AddWithValue("@id_od_contract", id_od_contract);
@@ -556,7 +552,15 @@ namespace ParserContracts44
                 cmd11.Parameters.AddWithValue("@okei", okei);
                 cmd11.Parameters.AddWithValue("@sum", sum_p);
                 cmd11.Parameters.AddWithValue("@sid", sid);
-                int add_p = cmd11.ExecuteNonQuery();
+                int add_p = 0;
+                try
+                {
+                    add_p = cmd11.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Log.Logger("Ошибка при добавлении продукта", file, "price", price, "sid", sid);
+                }
                 AddProductEvent?.Invoke(add_p);
 
             }

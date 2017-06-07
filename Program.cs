@@ -112,7 +112,7 @@ namespace ParserContracts44
             ParserContr44 c44 = new ParserContr44(StrArg);
             c44.Parsing();
             /*ParserContr44 p = new ParserContr44("last");
-            p.ParsingXML("/home/alex/RiderProjects/ParserContracts44/bin/Debug/contract_3312601274715000015_25135446.xml", "32");*/
+            p.ParsingXML("/home/alex/RiderProjects/ParserContracts44/bin/Debug/contract_2381103776916000030_27318511.xml", "32");*/
             /*ParserContr44 d = new ParserContr44("last");
             d.GetListFileArch("contract_Sankt-Peterburg_2016060100_2016070100_058.xml.zip", "/fcs_regions/Sankt-Peterburg/contracts/", "77");*/
             Log.Logger("Добавлено customer", AddCustomer);
