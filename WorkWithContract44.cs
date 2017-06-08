@@ -22,7 +22,6 @@ namespace ParserContracts44
         public event AddData UpdateContractEvent;
         public event AddData AddContractEvent;
         public event AddData AddProductEvent;
-        object locker = new object();
 
 
         public WorkWithContract44(JObject json, string f, string r)
@@ -605,14 +604,11 @@ namespace ParserContracts44
             }
         }
 
-        protected void AddProduct(int d)
+        protected virtual void AddProduct(int d)
         {
             if (d > 0)
             {
-                lock (locker)
-                {
-                    Program.AddProduct++;
-                }
+                Program.AddProduct++;
             }
             else
             {

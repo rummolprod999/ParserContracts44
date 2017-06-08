@@ -17,6 +17,8 @@ namespace ParserContracts44
         public event AddData AddProductEvent;
         public int IdOdContract;
         public List<JToken> List_p = new List<JToken>();
+        private object locker = new object();
+        private object locker2 = new object();
 
 
         public WorkWithContract44Parralel(JObject json, string f, string r):base(json, f, r)
@@ -509,7 +511,7 @@ namespace ParserContracts44
                 int okpd_group_code = 0;
                 string okpd_group_level1_code = "";
                 string name_p = ((string) prod.SelectToken("name") ?? "").Trim();
-                name_p = Regex.Replace(name_p, @"\t|\n|\r", "");
+                name_p = Regex.Replace(name_p, @"\s+", " ");
                 if (String.IsNullOrEmpty(name_p))
                     name_p = "Нет названия";
                 string okpd2_code = ((string) prod.SelectToken("OKPD2.code") ?? "").Trim();
@@ -559,10 +561,24 @@ namespace ParserContracts44
                 }
                 catch (Exception e)
                 {
-                    Log.Logger("Ошибка при добавлении продукта", file, "price", price, "sid", sid);
+                    lock (locker2)
+                    {
+                        Log.Logger("Ошибка при добавлении продукта", file, "price", price, "sid", sid, e);
+                    }
                 }
                 AddProductEvent?.Invoke(add_p);
 
+            }
+        }
+
+        protected override void AddProduct(int d)
+        {
+            if (d > 0)
+            {
+                lock (locker)
+                {
+                    Program.AddProduct++;
+                }
             }
         }
     }
