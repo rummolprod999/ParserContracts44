@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using FluentFTP;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -139,47 +140,39 @@ namespace ParserContracts44
 
         public override List<String> GetListArchLast(string PathParse, string RegionPath)
         {
-            List<String> arch = new List<string>();
-
-            WorkWithFtp ftp = ClientFtp44();
-            try
+            List<FtpListItem> archtemp = new List<FtpListItem>();
+            FtpClient ftp = ClientFtp44();
+            if (ftp.DirectoryExists(PathParse))
             {
-                ftp.ChangeWorkingDirectory(PathParse);
+                archtemp = ftp.GetListing(PathParse).ToList();
             }
-            catch (Exception e)
+            else
             {
-                Log.Logger("Не удалось найти путь ftp", PathParse);
-                return arch;
+                Log.Logger("Не могу найти директорию", PathParse);
             }
+            ftp.Disconnect();
 
-            List<String> archtemp = ftp.ListDirectory();
-            foreach (var a in archtemp)
-            {
-                if (Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1))
-                {
-                    arch.Add(a);
-                }
-            }
-
-            return arch;
+            return archtemp.Where(a => Program.Years.Any(t => a.Name.IndexOf(t, StringComparison.Ordinal) != -1))
+                .Select(a => a.Name).ToList();
         }
 
         public override List<String> GetListArchCurr(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
-            WorkWithFtp ftp = ClientFtp44();
-            try
+            List<FtpListItem> archtemp = new List<FtpListItem>();
+            FtpClient ftp = ClientFtp44();
+            if (ftp.DirectoryExists(PathParse))
             {
-                ftp.ChangeWorkingDirectory(PathParse);
+                archtemp = ftp.GetListing(PathParse).ToList();
             }
-            catch (Exception e)
+            else
             {
-                Log.Logger("Не удалось найти путь ftp", PathParse);
-                return arch;
+                Log.Logger("Не могу найти директорию", PathParse);
             }
-
-            List<String> archtemp = ftp.ListDirectory();
-            foreach (var a in archtemp.Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
+            ftp.Disconnect();
+            foreach (var a in archtemp
+                .Where(a => Program.Years.Any(t => a.Name.IndexOf(t, StringComparison.Ordinal) != -1))
+                .Select(a => a.Name))
             {
                 using (MySqlConnection connect = ConnectToDb.GetDBConnection())
                 {
@@ -213,20 +206,20 @@ namespace ParserContracts44
         public override List<String> GetListArchPrev(string PathParse, string RegionPath)
         {
             List<String> arch = new List<string>();
-            WorkWithFtp ftp = ClientFtp44();
-            try
+            List<FtpListItem> archtemp = new List<FtpListItem>();
+            FtpClient ftp = ClientFtp44();
+            if (ftp.DirectoryExists(PathParse))
             {
-                ftp.ChangeWorkingDirectory(PathParse);
+                archtemp = ftp.GetListing(PathParse).ToList();
             }
-            catch (Exception e)
+            else
             {
-                Log.Logger("Не удалось найти путь ftp", PathParse);
-                return arch;
+                Log.Logger("Не могу найти директорию", PathParse);
             }
-
-            List<String> archtemp = ftp.ListDirectory();
+            ftp.Disconnect();
             string serachd = $"{Program.LocalDate:yyyyMMdd}";
-            foreach (var a in archtemp.Where(a => a.IndexOf(serachd, StringComparison.Ordinal) != -1))
+            foreach (var a in archtemp.Where(a => a.Name.IndexOf(serachd, StringComparison.Ordinal) != -1)
+                .Select(a => a.Name))
             {
                 string prev_a = $"prev_{a}";
 

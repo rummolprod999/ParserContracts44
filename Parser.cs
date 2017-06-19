@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Threading;
+using FluentFTP;
 using MySql.Data.MySqlClient;
 
 namespace ParserContracts44
@@ -56,10 +57,17 @@ namespace ParserContracts44
             return arch;
         }
 
-        public WorkWithFtp ClientFtp44()
+        public WorkWithFtp ClientFtp44_old()
         {
             WorkWithFtp ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "free", "free");
             return ftpCl;
+        }
+        
+        public FtpClient ClientFtp44()
+        {
+            FtpClient client = new FtpClient("ftp://ftp.zakupki.gov.ru", "free", "free");
+            client.Connect();
+            return client;
         }
 
         public virtual void GetListFileArch(string Arch, string PathParse, string region)
@@ -69,16 +77,18 @@ namespace ParserContracts44
         public string GetArch(string Arch, string PathParse)
         {
             string file = "";
-            int count = 0;
+            int count = 1;
             while (true)
             {
                 try
                 {
                     string FileOnServer = $"{PathParse}/{Arch}";
                     file = $"{Program.TempPath}{Path.DirectorySeparatorChar}{Arch}";
-                    WorkWithFtp ftp = ClientFtp44();
-                    ftp.DownloadFile(FileOnServer, file);
-                    if (count > 0)
+                    FtpClient ftp = ClientFtp44();
+                    ftp.SetWorkingDirectory(PathParse);
+                    ftp.DownloadFile(file, FileOnServer);
+                    ftp.Disconnect();
+                    if (count > 1)
                     {
                         Log.Logger("Удалось скачать архив после попытки", count);
                     }
