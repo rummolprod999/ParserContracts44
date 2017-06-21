@@ -1,6 +1,5 @@
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/Test.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/Test.pdb
-/home/alex/RiderProjects/ParserContracts44/Test/bin/Release/Newtonsoft.Json.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/nunit.framework.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/ParserContracts44.exe
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/MySql.Data.dll
