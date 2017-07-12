@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Threading;
 using FluentFTP;
+using Limilabs.FTP.Client;
 using MySql.Data.MySqlClient;
 
 namespace ParserContracts44
@@ -84,10 +85,18 @@ namespace ParserContracts44
                 {
                     string FileOnServer = $"{PathParse}/{Arch}";
                     file = $"{Program.TempPath}{Path.DirectorySeparatorChar}{Arch}";
-                    FtpClient ftp = ClientFtp44();
+                    /*FtpClient ftp = ClientFtp44();
                     ftp.SetWorkingDirectory(PathParse);
                     ftp.DownloadFile(file, FileOnServer);
-                    ftp.Disconnect();
+                    ftp.Disconnect();*/
+                    using (Ftp client = new Ftp())
+                    {
+                        client.Connect("ftp.zakupki.gov.ru");    // or ConnectSSL for SSL
+                        client.Login("free", "free");
+                        client.ChangeFolder(PathParse);
+                        client.Download(FileOnServer, file);
+                        client.Close();
+                    }
                     if (count > 1)
                     {
                         Log.Logger("Удалось скачать архив после попытки", count);

@@ -10,3 +10,5 @@
 /home/alex/RiderProjects/ParserContracts44/obj/Release/ParserContracts44.pdb
 /home/alex/RiderProjects/ParserContracts44/bin/Release/FluentFTP.dll
 /home/alex/RiderProjects/ParserContracts44/bin/Release/FluentFTP.xml
+/home/alex/RiderProjects/ParserContracts44/bin/Release/Ftp.dll
+/home/alex/RiderProjects/ParserContracts44/bin/Release/Ftp.xml
