@@ -140,6 +140,8 @@ namespace ParserContracts44
                         string inn_customer = ((string) j44.SelectToken("export.contract.customer.inn") ?? "").Trim();
                         string full_name_customer =
                             ((string) j44.SelectToken("export.contract.customer.fullName") ?? "").Trim();
+                        string short_name_customer =
+                            ((string) j44.SelectToken("export.contract.customer.shortName") ?? "").Trim();
                         string postal_address_customer = "";
                         int contracts_count_customer = 1;
                         string contracts_sum_customer = contract_price;
@@ -152,12 +154,7 @@ namespace ParserContracts44
                         string email_customer = "";
                         string contact_name_customer = "";
                         string add_customer =
-                            $"INSERT INTO {Program.Prefix}od_customer SET regNumber = @customer_regnumber, inn = @inn_customer, " +
-                            $"kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer," +
-                            $"contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer," +
-                            $"ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer," +
-                            $"postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer," +
-                            $"email = @email_customer, contact_name = @contact_name_customer";
+                            $"INSERT INTO {Program.Prefix}od_customer SET regNumber = @customer_regnumber, inn = @inn_customer, kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer,contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer,ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer,postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer,email = @email_customer, contact_name = @contact_name_customer, short_name = @short_name";
                         MySqlCommand cmd4 = new MySqlCommand(add_customer, connect);
                         cmd4.Prepare();
                         cmd4.Parameters.AddWithValue("@customer_regnumber", customer_regnumber);
@@ -175,6 +172,7 @@ namespace ParserContracts44
                         cmd4.Parameters.AddWithValue("@fax_customer", fax_customer);
                         cmd4.Parameters.AddWithValue("@email_customer", email_customer);
                         cmd4.Parameters.AddWithValue("@contact_name_customer", contact_name_customer);
+                        cmd4.Parameters.AddWithValue("@short_name", short_name_customer);
                         int add_c = cmd4.ExecuteNonQuery();
                         id_customer = (int) cmd4.LastInsertedId;
 
@@ -299,6 +297,13 @@ namespace ParserContracts44
                                     organizationname_supplier =
                                         ((string) sup.SelectToken("legalEntityForeignState.fullName") ?? "").Trim();
                                 }
+                                string organizationshortname_supplier =
+                                    ((string) sup.SelectToken("legalEntityRF.shortName") ?? "").Trim();
+                                if (String.IsNullOrEmpty(organizationshortname_supplier))
+                                {
+                                    organizationshortname_supplier =
+                                        ((string) sup.SelectToken("legalEntityForeignState.shortName") ?? "").Trim();
+                                }
                                 if (String.IsNullOrEmpty(organizationname_supplier))
                                 {
                                     string lastname = ((string) sup.SelectToken("individualPersonRF.lastName") ?? "")
@@ -340,13 +345,7 @@ namespace ParserContracts44
                                 string contactfax_supplier = "";
                                 string contact_name_supplier = "";
                                 string add_supplier =
-                                    $"INSERT INTO {Program.Prefix}od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, " +
-                                    $"contracts_count = @contracts_count, " +
-                                    $"contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, " +
-                                    $"contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, " +
-                                    $"organizationName = @organizationName,postal_address = @postal_address, " +
-                                    $"contactPhone = @contactPhone,contactFax = @contactFax, " +
-                                    $"contactEMail = @contactEMail,contact_name = @contact_name";
+                                    $"INSERT INTO {Program.Prefix}od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, contracts_count = @contracts_count, contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, organizationName = @organizationName,postal_address = @postal_address, contactPhone = @contactPhone, contactFax = @contactFax, contactEMail = @contactEMail, contact_name = @contact_name, organizationShortName = @organizationShortName";
                                 MySqlCommand cmd6 = new MySqlCommand(add_supplier, connect);
                                 cmd6.Prepare();
                                 cmd6.Parameters.AddWithValue("@supplier_inn", supplier_inn);
@@ -363,6 +362,7 @@ namespace ParserContracts44
                                 cmd6.Parameters.AddWithValue("@contactFax", contactfax_supplier);
                                 cmd6.Parameters.AddWithValue("@contactEMail", contactemail_supplier);
                                 cmd6.Parameters.AddWithValue("@contact_name", contact_name_supplier);
+                                cmd6.Parameters.AddWithValue("@organizationShortName", organizationshortname_supplier);
                                 int add_s = cmd6.ExecuteNonQuery();
                                 id_supplier = (int) cmd6.LastInsertedId;
                                 AddSupplierEvent?.Invoke(add_s);
