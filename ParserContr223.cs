@@ -49,5 +49,11 @@ namespace ParserContracts44
                 }
             }
         }
+        
+        public override List<String> GetListArchLast(string pathParse, string regionPath)
+        {
+            List<string> archtemp = GetListFtp(pathParse, Wftp223);
+            return archtemp.Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)).ToList();
+        }
     }
 }
