@@ -12,3 +12,8 @@
 /home/alex/RiderProjects/ParserContracts44/bin/Release/FluentFTP.xml
 /home/alex/RiderProjects/ParserContracts44/bin/Release/Ftp.dll
 /home/alex/RiderProjects/ParserContracts44/bin/Release/Ftp.xml
+/home/alex/RiderProjects/ParserContracts44/bin/Release/EntityFramework.dll
+/home/alex/RiderProjects/ParserContracts44/bin/Release/EntityFramework.SqlServer.dll
+/home/alex/RiderProjects/ParserContracts44/bin/Release/MySql.Data.Entity.EF6.dll
+/home/alex/RiderProjects/ParserContracts44/bin/Release/EntityFramework.xml
+/home/alex/RiderProjects/ParserContracts44/bin/Release/EntityFramework.SqlServer.xml

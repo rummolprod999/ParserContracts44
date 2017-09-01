@@ -2,8 +2,10 @@
 {
     public enum TypeArguments
     {
-        Prev,
-        Curr,
-        Last
+        Prev44,
+        Curr44,
+        Last44,
+        Last223,
+        Daily223
     };
 }

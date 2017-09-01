@@ -3,15 +3,20 @@ using MySql.Data.MySqlClient;
 
 namespace ParserContracts44
 {
-    public class ConnectToDb
+    public static class ConnectToDb
     {
-        public static MySqlConnection GetDBConnection()
+        public static string ConnectString { get; set; }
+
+        static ConnectToDb()
+        {
+            ConnectString =
+                $"Server={Program.Server};port={Program.Port};Database={Program.Database};User Id={Program.User};password={Program.Pass};CharSet=utf8;Convert Zero Datetime=True;default command timeout=3600;Connection Timeout=3600";
+        }
+
+        public static MySqlConnection GetDbConnection()
         {
             // Connection String.
-            String connString =
-                $"Server={Program.Server};port={Program.Port};Database={Program.Database};User Id={Program.User};password={Program.Pass};CharSet=utf8;Convert Zero Datetime=True;default command timeout=900;Connection Timeout=900";
-
-            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlConnection conn = new MySqlConnection(ConnectString);
 
             return conn;
         }

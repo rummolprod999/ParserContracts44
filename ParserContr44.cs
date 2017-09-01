@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Xml;
 using FluentFTP;
 using MySql.Data.MySqlClient;
@@ -15,7 +16,7 @@ namespace ParserContracts44
     public class ParserContr44 : Parser
     {
         protected DataTable DtRegion;
-        public readonly string[] except_file = new[] {"Failure", "contractProcedure", "contractCancel"};
+        public readonly string[] ExceptFile = new[] {"Failure", "contractProcedure", "contractCancel"};
 
         public ParserContr44(string arg) : base(arg)
         {
@@ -27,22 +28,22 @@ namespace ParserContracts44
             foreach (DataRow row in DtRegion.Rows)
             {
                 List<String> arch = new List<string>();
-                string PathParse = "";
-                string RegionPath = (string) row["path"];
+                string pathParse = "";
+                string regionPath = (string) row["path"];
 
                 switch (Program.Periodparsing)
                 {
-                    case TypeArguments.Last:
-                        PathParse = $"/fcs_regions/{RegionPath}/contracts/";
-                        arch = GetListArchLast(PathParse, RegionPath);
+                    case TypeArguments.Last44:
+                        pathParse = $"/fcs_regions/{regionPath}/contracts/";
+                        arch = GetListArchLast(pathParse, regionPath);
                         break;
-                    case TypeArguments.Curr:
-                        PathParse = $"/fcs_regions/{RegionPath}/contracts/currMonth/";
-                        arch = GetListArchCurr(PathParse, RegionPath);
+                    case TypeArguments.Curr44:
+                        pathParse = $"/fcs_regions/{regionPath}/contracts/currMonth/";
+                        arch = GetListArchCurr(pathParse, regionPath);
                         break;
-                    case TypeArguments.Prev:
-                        PathParse = $"/fcs_regions/{RegionPath}/contracts/prevMonth/";
-                        arch = GetListArchPrev(PathParse, RegionPath);
+                    case TypeArguments.Prev44:
+                        pathParse = $"/fcs_regions/{regionPath}/contracts/prevMonth/";
+                        arch = GetListArchPrev(pathParse, regionPath);
                         break;
                 }
 
@@ -54,24 +55,24 @@ namespace ParserContracts44
 
                 foreach (var v in arch)
                 {
-                    GetListFileArch(v, PathParse, (string) row["conf"]);
+                    GetListFileArch(v, pathParse, (string) row["conf"]);
                 }
             }
         }
 
-        public override void GetListFileArch(string Arch, string PathParse, string region)
+        public override void GetListFileArch(string arch, string pathParse, string region)
         {
             string filea = "";
-            string path_unzip = "";
-            filea = GetArch(Arch, PathParse);
+            string pathUnzip = "";
+            filea = GetArch(arch, pathParse);
             if (!String.IsNullOrEmpty(filea))
             {
-                path_unzip = Unzipped.Unzip(filea);
-                if (path_unzip != "")
+                pathUnzip = Unzipped.Unzip(filea);
+                if (pathUnzip != "")
                 {
-                    if (Directory.Exists(path_unzip))
+                    if (Directory.Exists(pathUnzip))
                     {
-                        DirectoryInfo dirInfo = new DirectoryInfo(path_unzip);
+                        DirectoryInfo dirInfo = new DirectoryInfo(pathUnzip);
                         FileInfo[] filelist = dirInfo.GetFiles();
                         foreach (var f in filelist)
                         {
@@ -92,20 +93,20 @@ namespace ParserContracts44
 
         public void Bolter(string f, string region)
         {
-            string file_lower = f.ToLower();
-            if (!file_lower.EndsWith(".xml", StringComparison.Ordinal))
+            string fileLower = f.ToLower();
+            if (!fileLower.EndsWith(".xml", StringComparison.Ordinal))
             {
                 return;
             }
 
-            if (except_file.Any(ex => file_lower.IndexOf(ex.ToLower(), StringComparison.Ordinal) != -1))
+            if (ExceptFile.Any(ex => fileLower.IndexOf(ex.ToLower(), StringComparison.Ordinal) != -1))
             {
                 return;
             }
 
             try
             {
-                ParsingXML(f, region);
+                ParsingXml(f, region);
             }
             catch (Exception e)
             {
@@ -113,7 +114,7 @@ namespace ParserContracts44
             }
         }
 
-        public void ParsingXML(string f, string region)
+        public void ParsingXml(string f, string region)
         {
             FileInfo fileInf = new FileInfo(f);
             if (fileInf.Exists)
@@ -138,62 +139,39 @@ namespace ParserContracts44
         }
 
 
-        public override List<String> GetListArchLast(string PathParse, string RegionPath)
+        public override List<String> GetListArchLast(string pathParse, string regionPath)
         {
-            List<string> archtemp = new List<string>();
-            /*FtpClient ftp = ClientFtp44();*/
-            try
-            {
-                WorkWithFtp ftp = ClientFtp44_old();
-                ftp.ChangeWorkingDirectory(PathParse);
-                archtemp = ftp.ListDirectory();
-            }
-            catch (Exception e)
-            {
-                Log.Logger("Не могу найти директорию", PathParse);
-            }
-
+            List<string> archtemp = GetListFtp(pathParse, Wftp44);
             return archtemp.Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)).ToList();
         }
 
-        public override List<String> GetListArchCurr(string PathParse, string RegionPath)
+        public override List<String> GetListArchCurr(string pathParse, string regionPath)
         {
             List<String> arch = new List<string>();
-            List<string> archtemp = new List<string>();
-            /*FtpClient ftp = ClientFtp44();*/
-            try
-            {
-                WorkWithFtp ftp = ClientFtp44_old();
-                ftp.ChangeWorkingDirectory(PathParse);
-                archtemp = ftp.ListDirectory();
-            }
-            catch (Exception e)
-            {
-                Log.Logger("Не могу найти директорию", PathParse);
-            }
+            List<string> archtemp = GetListFtp(pathParse, Wftp44);
             foreach (var a in archtemp
                 .Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
             {
-                using (MySqlConnection connect = ConnectToDb.GetDBConnection())
+                using (MySqlConnection connect = ConnectToDb.GetDbConnection())
                 {
                     connect.Open();
-                    string select_arch =
+                    string selectArch =
                         $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
-                    MySqlCommand cmd = new MySqlCommand(select_arch, connect);
+                    MySqlCommand cmd = new MySqlCommand(selectArch, connect);
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archive", a);
-                    cmd.Parameters.AddWithValue("@region", RegionPath);
+                    cmd.Parameters.AddWithValue("@region", regionPath);
                     MySqlDataReader reader = cmd.ExecuteReader();
-                    bool res_read = reader.HasRows;
+                    bool resRead = reader.HasRows;
                     reader.Close();
-                    if (!res_read)
+                    if (!resRead)
                     {
-                        string add_arch =
+                        string addArch =
                             $"INSERT INTO {Program.Prefix}arhiv_contract SET arhiv = @archive, region =  @region";
-                        MySqlCommand cmd1 = new MySqlCommand(add_arch, connect);
+                        MySqlCommand cmd1 = new MySqlCommand(addArch, connect);
                         cmd1.Prepare();
                         cmd1.Parameters.AddWithValue("@archive", a);
-                        cmd1.Parameters.AddWithValue("@region", RegionPath);
+                        cmd1.Parameters.AddWithValue("@region", regionPath);
                         cmd1.ExecuteNonQuery();
                         arch.Add(a);
                     }
@@ -203,47 +181,36 @@ namespace ParserContracts44
             return arch;
         }
 
-        public override List<String> GetListArchPrev(string PathParse, string RegionPath)
+        public override List<String> GetListArchPrev(string pathParse, string regionPath)
         {
             List<String> arch = new List<string>();
-            List<string> archtemp = new List<string>();
+            List<string> archtemp = GetListFtp(pathParse, Wftp44);
             /*FtpClient ftp = ClientFtp44();*/
-            try
-            {
-                WorkWithFtp ftp = ClientFtp44_old();
-                ftp.ChangeWorkingDirectory(PathParse);
-                archtemp = ftp.ListDirectory();
-            }
-            catch (Exception e)
-            {
-                Log.Logger("Не могу найти директорию", PathParse);
-            }
-            
             string serachd = $"{Program.LocalDate:yyyyMMdd}";
             foreach (var a in archtemp.Where(a => a.IndexOf(serachd, StringComparison.Ordinal) != -1))
             {
-                string prev_a = $"prev_{a}";
+                string prevA = $"prev_{a}";
 
-                using (MySqlConnection connect = ConnectToDb.GetDBConnection())
+                using (MySqlConnection connect = ConnectToDb.GetDbConnection())
                 {
                     connect.Open();
-                    string select_arch =
+                    string selectArch =
                         $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
-                    MySqlCommand cmd = new MySqlCommand(select_arch, connect);
+                    MySqlCommand cmd = new MySqlCommand(selectArch, connect);
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@archive", prev_a);
-                    cmd.Parameters.AddWithValue("@region", RegionPath);
+                    cmd.Parameters.AddWithValue("@archive", prevA);
+                    cmd.Parameters.AddWithValue("@region", regionPath);
                     MySqlDataReader reader = cmd.ExecuteReader();
-                    bool res_read = reader.HasRows;
+                    bool resRead = reader.HasRows;
                     reader.Close();
-                    if (!res_read)
+                    if (!resRead)
                     {
-                        string add_arch =
+                        string addArch =
                             $"INSERT INTO {Program.Prefix}arhiv_contract SET arhiv = @archive, region =  @region";
-                        MySqlCommand cmd1 = new MySqlCommand(add_arch, connect);
+                        MySqlCommand cmd1 = new MySqlCommand(addArch, connect);
                         cmd1.Prepare();
-                        cmd1.Parameters.AddWithValue("@archive", prev_a);
-                        cmd1.Parameters.AddWithValue("@region", RegionPath);
+                        cmd1.Parameters.AddWithValue("@archive", prevA);
+                        cmd1.Parameters.AddWithValue("@region", regionPath);
                         cmd1.ExecuteNonQuery();
                         arch.Add(a);
                     }
@@ -252,5 +219,7 @@ namespace ParserContracts44
 
             return arch;
         }
+
+        
     }
 }

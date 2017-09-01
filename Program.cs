@@ -9,8 +9,10 @@ namespace ParserContracts44
     internal class Program
     {
         private static string _database;
-        private static string _tempPath;
-        private static string _logPath;
+        private static string _tempPath44;
+        private static string _logPath44;
+        private static string _tempPath223;
+        private static string _logPath223;
         private static string _prefix;
         private static string _user;
         private static string _pass;
@@ -18,8 +20,45 @@ namespace ParserContracts44
         private static int _port;
         private static List<string> _years = new List<string>();
         public static string Database => _database;
-        public static string TempPath => _tempPath;
-        public static string LogPath => _logPath;
+
+        public static string TempPath
+        {
+            get
+            {
+                switch (Periodparsing)
+                {
+                    case TypeArguments.Curr44:
+                    case TypeArguments.Prev44:
+                    case TypeArguments.Last44:
+                        return _tempPath44;
+                    case TypeArguments.Last223:
+                    case TypeArguments.Daily223:
+                        return _tempPath223;
+                    default:
+                        return "";
+                }
+            }
+        }
+
+        public static string LogPath
+        {
+            get
+            {
+                switch (Periodparsing)
+                {
+                    case TypeArguments.Curr44:
+                    case TypeArguments.Prev44:
+                    case TypeArguments.Last44:
+                        return _logPath44;
+                    case TypeArguments.Last223:
+                    case TypeArguments.Daily223:
+                        return _logPath223;
+                    default:
+                        return "";
+                }
+            }
+        }
+
         public static string Prefix => _prefix;
         public static string User => _user;
         public static string Pass => _pass;
@@ -42,7 +81,7 @@ namespace ParserContracts44
             if (args.Length == 0)
             {
                 Console.WriteLine(
-                    "Недостаточно аргументов для запуска, используйте last или prev или curr в качестве аргумента");
+                    "Недостаточно аргументов для запуска, используйте last44 или prev44 или curr44, last223, daily223 в качестве аргумента");
                 return;
             }
 
@@ -52,20 +91,30 @@ namespace ParserContracts44
             StrArg = args[0];
             switch (args[0])
             {
-                case "last":
-                    Periodparsing = TypeArguments.Last;
+                case "last44":
+                    Periodparsing = TypeArguments.Last44;
                     Init(Periodparsing);
                     ParserC44(Periodparsing);
                     break;
-                case "prev":
-                    Periodparsing = TypeArguments.Prev;
+                case "prev44":
+                    Periodparsing = TypeArguments.Prev44;
                     Init(Periodparsing);
                     ParserC44(Periodparsing);
                     break;
-                case "curr":
-                    Periodparsing = TypeArguments.Curr;
+                case "curr44":
+                    Periodparsing = TypeArguments.Curr44;
                     Init(Periodparsing);
                     ParserC44(Periodparsing);
+                    break;
+                case "daily223":
+                    Periodparsing = TypeArguments.Daily223;
+                    Init(Periodparsing);
+                    ParserC223(Periodparsing);
+                    break;
+                case "last223":
+                    Periodparsing = TypeArguments.Last223;
+                    Init(Periodparsing);
+                    ParserC223(Periodparsing);
                     break;
             }
         }
@@ -74,17 +123,19 @@ namespace ParserContracts44
         {
             GetSettings set = new GetSettings();
             _database = set.Database;
-            _logPath = set.LogPathContracts44;
+            _logPath44 = set.LogPathContracts44;
+            _logPath223 = set.LogPathContracts223;
             _prefix = set.Prefix;
-            _user = set.UserDB;
-            _pass = set.PassDB;
-            _tempPath = set.TempPathContracts44;
+            _user = set.UserDb;
+            _pass = set.PassDb;
+            _tempPath44 = set.TempPathContracts44;
+            _tempPath223 = set.TempPathContracts223;
             _server = set.Server;
             _port = set.Port;
             string tmp = set.Years;
-            string[] temp_years = tmp.Split(new char[] {','});
+            string[] tempYears = tmp.Split(new char[] {','});
 
-            foreach (var s in temp_years.Select(v => $"{v.Trim()}"))
+            foreach (var s in tempYears.Select(v => $"{v.Trim()}"))
             {
                 _years.Add(s);
             }
@@ -103,7 +154,18 @@ namespace ParserContracts44
             {
                 Directory.CreateDirectory(LogPath);
             }
-            FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Contracts44_{LocalDate:dd_MM_yyyy}.log";
+            switch (Periodparsing)
+            {
+                case TypeArguments.Curr44:
+                case TypeArguments.Prev44:
+                case TypeArguments.Last44:
+                    FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Contracts44_{LocalDate:dd_MM_yyyy}.log";
+                    break;
+                case TypeArguments.Last223:
+                case TypeArguments.Daily223:
+                    FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Contracts223_{LocalDate:dd_MM_yyyy}.log";
+                    break;
+            }
         }
 
         private static void ParserC44(TypeArguments arg)
@@ -112,7 +174,8 @@ namespace ParserContracts44
             ParserContr44 c44 = new ParserContr44(StrArg);
             c44.Parsing();
             /*ParserContr44 p = new ParserContr44("last");
-            p.ParsingXML("/var/www/admin/data/www/tenders.enter-it.ru/python/Release/contract_2381103776916000030_27318511.xml", "38")*/;
+            p.ParsingXML("/var/www/admin/data/www/tenders.enter-it.ru/python/Release/contract_2381103776916000030_27318511.xml", "38")*/
+            ;
             /*ParserContr44 d = new ParserContr44("last");
             d.GetListFileArch("contract_Sankt-Peterburg_2016060100_2016070100_058.xml.zip", "/fcs_regions/Sankt-Peterburg/contracts/", "77");*/
             Log.Logger("Добавлено customer", AddCustomer);
@@ -121,6 +184,24 @@ namespace ParserContracts44
             Log.Logger("Обновлено contract", UpdateContract);
             Log.Logger("Добавлено product", AddProduct);
             Log.Logger("Время окончания парсинга Contracts44");
+        }
+
+        private static void ParserC223(TypeArguments arg)
+        {
+            Log.Logger("Время начала парсинга Contracts223");
+            ParserContr223 c223 = new ParserContr223(StrArg);
+            c223.Parsing();
+            /*ParserContr44 p = new ParserContr44("last");
+            p.ParsingXML("/var/www/admin/data/www/tenders.enter-it.ru/python/Release/contract_2381103776916000030_27318511.xml", "38")*/
+            ;
+            /*ParserContr44 d = new ParserContr44("last");
+            d.GetListFileArch("contract_Sankt-Peterburg_2016060100_2016070100_058.xml.zip", "/fcs_regions/Sankt-Peterburg/contracts/", "77");*/
+            Log.Logger("Добавлено customer", AddCustomer);
+            Log.Logger("Добавлено supplier", AddSupplier);
+            Log.Logger("Добавлено contract", AddContract);
+            Log.Logger("Обновлено contract", UpdateContract);
+            Log.Logger("Добавлено product", AddProduct);
+            Log.Logger("Время окончания парсинга Contracts223");
         }
     }
 }
