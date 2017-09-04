@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace ParserContracts44
 {
@@ -124,6 +126,26 @@ namespace ParserContracts44
             {
                 okpd2GroupLevel1Code = "";
             }
+        }
+        
+        public List<JToken> GetElements(JToken j, string s)
+        {
+            List<JToken> els = new List<JToken>();
+            var els_obj = j.SelectToken(s);
+            if (els_obj != null && els_obj.Type != JTokenType.Null)
+            {
+                switch (els_obj.Type)
+                {
+                    case JTokenType.Object:
+                        els.Add(els_obj);
+                        break;
+                    case JTokenType.Array:
+                        els.AddRange(els_obj);
+                        break;
+                }
+            }
+
+            return els;
         }
     }
 }

@@ -4,14 +4,15 @@ using MySql.Data.Entity;
 namespace ParserContracts44
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class Archive223Context : DbContext
+    public class Contract223Context : DbContext
     {
-        public Archive223Context()
+        public Contract223Context()
             : base(nameOrConnectionString: ConnectToDb.ConnectString)
         {
 
         }
         
-        public DbSet<ArchiveContracts223> ArchiveContracts223Results { get; set; }
+        public DbSet<Contract223> Contracts223 { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }

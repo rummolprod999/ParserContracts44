@@ -72,6 +72,8 @@
     <Compile Include="ConnectToDb.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="Contract223.cs" />
+    <Compile Include="Contract223Context.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="GetSettings.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="JsonExtensions.cs" />

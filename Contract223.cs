@@ -67,10 +67,12 @@ namespace ParserContracts44
         public DateTime ExecutionEndDate { get; set; }
         
         [Column("id_customer")]
-        public int IdCustomer { get; set; }
+        public int? CustomerId { get; set; }
+        
+        public Customer Customer { get; set; }
         
         [Column("id_supplier")]
-        public int IdSupplier{ get; set; }
+        public int SupplierId{ get; set; }
         
         [Column("cancel")]
         public int Cancel{ get; set; }
