@@ -175,7 +175,6 @@ namespace ParserContracts44
             c44.Parsing();
             /*ParserContr44 p = new ParserContr44("last");
             p.ParsingXML("/var/www/admin/data/www/tenders.enter-it.ru/python/Release/contract_2381103776916000030_27318511.xml", "38")*/
-            ;
             /*ParserContr44 d = new ParserContr44("last");
             d.GetListFileArch("contract_Sankt-Peterburg_2016060100_2016070100_058.xml.zip", "/fcs_regions/Sankt-Peterburg/contracts/", "77");*/
             Log.Logger("Добавлено customer", AddCustomer);
@@ -189,13 +188,13 @@ namespace ParserContracts44
         private static void ParserC223(TypeArguments arg)
         {
             Log.Logger("Время начала парсинга Contracts223");
-            ParserContr223 c223 = new ParserContr223(StrArg);
-            c223.Parsing();
-            /*ParserContr44 p = new ParserContr44("last");
-            p.ParsingXML("/var/www/admin/data/www/tenders.enter-it.ru/python/Release/contract_2381103776916000030_27318511.xml", "38")*/
-            ;
-            /*ParserContr44 d = new ParserContr44("last");
-            d.GetListFileArch("contract_Sankt-Peterburg_2016060100_2016070100_058.xml.zip", "/fcs_regions/Sankt-Peterburg/contracts/", "77");*/
+            /*ParserContr223 c223 = new ParserContr223(StrArg);
+            c223.Parsing();*/
+            ParserContr223 p = new ParserContr223("last223");
+            p.ParsingXml(
+                "/home/alex/Рабочий стол/parser/contractCompleting_Adygeya_Resp_20170701_000000_20170731_235959_001.xml",
+                "38");
+
             Log.Logger("Добавлено customer", AddCustomer);
             Log.Logger("Добавлено supplier", AddSupplier);
             Log.Logger("Добавлено contract", AddContract);

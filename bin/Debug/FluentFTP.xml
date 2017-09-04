@@ -294,6 +294,11 @@
             <code source="..\Examples\GetListing.cs" lang="cs"/>
             </example>
         </member>
+        <member name="T:FluentFTP.IFtpClient">
+            <summary>
+            Interface for the FtpClient class. For detailed documentation of the methods, please see the FtpClient class.
+            </summary>
+        </member>
         <member name="M:FluentFTP.FtpClient.GetObjectInfo(System.String,System.Boolean)">
             <summary>
             Returns information about a file system object. Returns null if the server response can't
@@ -1136,19 +1141,21 @@
             <param name="path">The full or relative path of the file</param>
             <returns>The size of the file, -1 if there was a problem.</returns>
         </member>
-        <member name="M:FluentFTP.FtpClient.GetModifiedTime(System.String)">
+        <member name="M:FluentFTP.FtpClient.GetModifiedTime(System.String,FluentFTP.FtpDate)">
             <summary>
             Gets the modified time of a remote file
             </summary>
             <param name="path">The full path to the file</param>
+            <param name="type">Return the date in local timezone or UTC?  Use FtpDate.Original to disable timezone conversion.</param>
             <returns>The modified time, or <see cref="F:System.DateTime.MinValue"/> if there was a problem</returns>
             <example><code source="..\Examples\GetModifiedTime.cs" lang="cs"/></example>
         </member>
-        <member name="M:FluentFTP.FtpClient.BeginGetModifiedTime(System.String,System.AsyncCallback,System.Object)">
+        <member name="M:FluentFTP.FtpClient.BeginGetModifiedTime(System.String,FluentFTP.FtpDate,System.AsyncCallback,System.Object)">
             <summary>
             Begins an asynchronous operation to get the modified time of a remote file
             </summary>
             <param name="path">The full path to the file</param>
+            <param name="type">Return the date in local timezone or UTC?  Use FtpDate.Original to disable timezone conversion.</param>
             <param name="callback">Async callback</param>
             <param name="state">State object</param>
             <returns>IAsyncResult</returns>
@@ -1156,18 +1163,53 @@
         </member>
         <member name="M:FluentFTP.FtpClient.EndGetModifiedTime(System.IAsyncResult)">
             <summary>
-            Ends a call to <see cref="M:FluentFTP.FtpClient.BeginGetModifiedTime(System.String,System.AsyncCallback,System.Object)"/>
+            Ends a call to <see cref="M:FluentFTP.FtpClient.BeginGetModifiedTime(System.String,FluentFTP.FtpDate,System.AsyncCallback,System.Object)"/>
             </summary>
-            <param name="ar">IAsyncResult returned from <see cref="M:FluentFTP.FtpClient.BeginGetModifiedTime(System.String,System.AsyncCallback,System.Object)"/></param>
+            <param name="ar">IAsyncResult returned from <see cref="M:FluentFTP.FtpClient.BeginGetModifiedTime(System.String,FluentFTP.FtpDate,System.AsyncCallback,System.Object)"/></param>
             <returns>The modified time, or <see cref="F:System.DateTime.MinValue"/> if there was a problem</returns>
             <example><code source="..\Examples\BeginGetModifiedTime.cs" lang="cs"/></example>
         </member>
-        <member name="M:FluentFTP.FtpClient.GetModifiedTimeAsync(System.String)">
+        <member name="M:FluentFTP.FtpClient.GetModifiedTimeAsync(System.String,FluentFTP.FtpDate)">
             <summary>
             Gets the modified time of a remote file asynchronously
             </summary>
             <param name="path">The full path to the file</param>
+            <param name="type">Return the date in local timezone or UTC?  Use FtpDate.Original to disable timezone conversion.</param>
             <returns>The modified time, or <see cref="F:System.DateTime.MinValue"/> if there was a problem</returns>
+        </member>
+        <member name="M:FluentFTP.FtpClient.SetModifiedTime(System.String,System.DateTime,FluentFTP.FtpDate)">
+            <summary>
+            Changes the modified time of a remote file
+            </summary>
+            <param name="path">The full path to the file</param>
+            <param name="date">The new modified date/time value</param>
+            <param name="type">Is the date provided in local timezone or UTC? Use FtpDate.Original to disable timezone conversion.</param>
+        </member>
+        <member name="M:FluentFTP.FtpClient.BeginSetModifiedTime(System.String,System.DateTime,FluentFTP.FtpDate,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins an asynchronous operation to get the modified time of a remote file
+            </summary>
+            <param name="path">The full path to the file</param>
+            <param name="date">The new modified date/time value</param>
+            <param name="type">Is the date provided in local timezone or UTC? Use FtpDate.Original to disable timezone conversion.</param>
+            <param name="callback">Async callback</param>
+            <param name="state">State object</param>
+            <returns>IAsyncResult</returns>
+        </member>
+        <member name="M:FluentFTP.FtpClient.EndSetModifiedTime(System.IAsyncResult)">
+            <summary>
+            Ends a call to <see cref="M:FluentFTP.FtpClient.BeginSetModifiedTime(System.String,System.DateTime,FluentFTP.FtpDate,System.AsyncCallback,System.Object)"/>
+            </summary>
+            <param name="ar">IAsyncResult returned from <see cref="M:FluentFTP.FtpClient.BeginSetModifiedTime(System.String,System.DateTime,FluentFTP.FtpDate,System.AsyncCallback,System.Object)"/></param>
+            <returns>The modified time, or <see cref="F:System.DateTime.MinValue"/> if there was a problem</returns>
+        </member>
+        <member name="M:FluentFTP.FtpClient.SetModifiedTimeAsync(System.String,System.DateTime,FluentFTP.FtpDate)">
+            <summary>
+            Gets the modified time of a remote file asynchronously
+            </summary>
+            <param name="path">The full path to the file</param>
+            <param name="date">The new modified date/time value</param>
+            <param name="type">Is the date provided in local timezone or UTC? Use FtpDate.Original to disable timezone conversion.</param>
         </member>
         <member name="M:FluentFTP.FtpClient.GetHashAlgorithm">
             <summary>
@@ -2112,12 +2154,13 @@
             <returns>A stream for reading the file on the server</returns>
             <example><code source="..\Examples\OpenRead.cs" lang="cs" /></example>
         </member>
-        <member name="M:FluentFTP.FtpClient.OpenRead(System.String,System.Int64)">
+        <member name="M:FluentFTP.FtpClient.OpenRead(System.String,FluentFTP.FtpDataType,System.Boolean)">
             <summary>
             Opens the specified file for reading
             </summary>
             <param name="path">The full or relative path of the file</param>
-            <param name="restart">Resume location</param>
+            <param name="type">ASCII/Binary</param>
+            <param name="checkIfFileExists">Only set this to false if you are SURE that the file does not exist. If true, it reads the file size and saves it into the stream length.</param>
             <returns>A stream for reading the file on the server</returns>
             <example><code source="..\Examples\OpenRead.cs" lang="cs" /></example>
         </member>
@@ -2128,6 +2171,36 @@
             <param name="path">The full or relative path of the file</param>
             <param name="type">ASCII/Binary</param>
             <param name="restart">Resume location</param>
+            <returns>A stream for reading the file on the server</returns>
+            <example><code source="..\Examples\OpenRead.cs" lang="cs" /></example>
+        </member>
+        <member name="M:FluentFTP.FtpClient.OpenRead(System.String,System.Int64)">
+            <summary>
+            Opens the specified file for reading
+            </summary>
+            <param name="path">The full or relative path of the file</param>
+            <param name="restart">Resume location</param>
+            <returns>A stream for reading the file on the server</returns>
+            <example><code source="..\Examples\OpenRead.cs" lang="cs" /></example>
+        </member>
+        <member name="M:FluentFTP.FtpClient.OpenRead(System.String,System.Int64,System.Boolean)">
+            <summary>
+            Opens the specified file for reading
+            </summary>
+            <param name="path">The full or relative path of the file</param>
+            <param name="restart">Resume location</param>
+            <param name="checkIfFileExists">Only set this to false if you are SURE that the file does not exist. If true, it reads the file size and saves it into the stream length.</param>
+            <returns>A stream for reading the file on the server</returns>
+            <example><code source="..\Examples\OpenRead.cs" lang="cs" /></example>
+        </member>
+        <member name="M:FluentFTP.FtpClient.OpenRead(System.String,FluentFTP.FtpDataType,System.Int64,System.Boolean)">
+            <summary>
+            Opens the specified file for reading
+            </summary>
+            <param name="path">The full or relative path of the file</param>
+            <param name="type">ASCII/Binary</param>
+            <param name="restart">Resume location</param>
+            <param name="checkIfFileExists">Only set this to false if you are SURE that the file does not exist. If true, it reads the file size and saves it into the stream length.</param>
             <returns>A stream for reading the file on the server</returns>
             <example><code source="..\Examples\OpenRead.cs" lang="cs" /></example>
         </member>
@@ -2232,6 +2305,16 @@
             <returns>A stream for writing to the file on the server</returns>
             <example><code source="..\Examples\OpenWrite.cs" lang="cs" /></example>
         </member>
+        <member name="M:FluentFTP.FtpClient.OpenWrite(System.String,FluentFTP.FtpDataType,System.Boolean)">
+            <summary>
+            Opens the specified file for writing. Please call GetReply() after you have successfully transfered the file to read the "OK" command sent by the server and prevent stale data on the socket.
+            </summary>
+            <param name="path">Full or relative path of the file</param>
+            <param name="type">ASCII/Binary</param>
+            <param name="checkIfFileExists">Only set this to false if you are SURE that the file does not exist. If true, it reads the file size and saves it into the stream length.</param>
+            <returns>A stream for writing to the file on the server</returns>
+            <example><code source="..\Examples\OpenWrite.cs" lang="cs" /></example>
+        </member>
         <member name="M:FluentFTP.FtpClient.BeginOpenWrite(System.String,System.AsyncCallback,System.Object)">
             <summary>
             Begins an asynchronous operation to open the specified file for writing
@@ -2290,6 +2373,17 @@
             </summary>
             <param name="path">The full or relative path to the file to be opened</param>
             <param name="type">ASCII/Binary</param>
+            <param name="checkIfFileExists">Only set this to false if you are SURE that the file does not exist. If true, it reads the file size and saves it into the stream length.</param>
+            <returns>A stream for writing to the file on the server</returns>
+            <example><code source="..\Examples\OpenAppend.cs" lang="cs" /></example>
+        </member>
+        <member name="M:FluentFTP.FtpClient.OpenAppend(System.String,FluentFTP.FtpDataType,System.Boolean)">
+            <summary>
+            Opens the specified file for appending. Please call GetReply() after you have successfully transfered the file to read the "OK" command sent by the server and prevent stale data on the socket.
+            </summary>
+            <param name="path">The full or relative path to the file to be opened</param>
+            <param name="type">ASCII/Binary</param>
+            <param name="checkIfFileExists">Only set this to false if you are SURE that the file does not exist. If true, it reads the file size and saves it into the stream length.</param>
             <returns>A stream for writing to the file on the server</returns>
             <example><code source="..\Examples\OpenAppend.cs" lang="cs" /></example>
         </member>
@@ -2342,6 +2436,13 @@
             Sets the data type of information sent over the data stream
             </summary>
             <param name="type">ASCII/Binary</param>
+        </member>
+        <member name="M:FluentFTP.FtpClient.SetDataTypeInternal(FluentFTP.FtpDataType)">
+            <summary>Internal method that handles actually setting the data type.</summary>
+            <exception cref="T:FluentFTP.FtpCommandException">Thrown when a FTP Command error condition occurs.</exception>
+            <exception cref="T:FluentFTP.FtpException">Thrown when a FTP error condition occurs.</exception>
+            <param name="type">ASCII/Binary.</param>
+            <remarks>This method doesn't do any locking to prevent recursive lock scenarios.  Callers must do their own locking.</remarks>
         </member>
         <member name="M:FluentFTP.FtpClient.BeginSetDataType(FluentFTP.FtpDataType,System.AsyncCallback,System.Object)">
             <summary>
@@ -2766,6 +2867,21 @@
             If you know for sure that this is unsupported, set it to false.
             </summary>
         </member>
+        <member name="P:FluentFTP.FtpClient.BulkListing">
+            <summary>
+            If true, increases performance of GetListing by reading multiple lines
+            of the file listing at once. If false then GetListing will read file
+            listings line-by-line. If GetListing is having issues with your server,
+            set it to false.
+            
+            The number of bytes read is based upon <see cref="P:FluentFTP.FtpClient.BulkListingLength"/>.
+            </summary>
+        </member>
+        <member name="P:FluentFTP.FtpClient.BulkListingLength">
+            <summary>
+            Bytes to read during GetListing. Only honored if <see cref="P:FluentFTP.FtpClient.BulkListing"/> is true.
+            </summary>
+        </member>
         <member name="P:FluentFTP.FtpClient.TransferChunkSize">
             <summary>
             Gets or sets the number of bytes transferred in a single chunk (a single FTP command).
@@ -2789,6 +2905,16 @@
             <summary>
             Rate limit for downloads in kbytes/s. Set this to 0 for unlimited speed.
             Honored by high-level API such as Upload(), Download(), UploadFile(), DownloadFile()..
+            </summary>
+        </member>
+        <member name="P:FluentFTP.FtpClient.UploadDataType">
+            <summary>
+            Controls if the high-level API uploads files in Binary or ASCII mode.
+            </summary>
+        </member>
+        <member name="P:FluentFTP.FtpClient.DownloadDataType">
+            <summary>
+            Controls if the high-level API downloads files in Binary or ASCII mode.
             </summary>
         </member>
         <member name="P:FluentFTP.FtpClient.Lock">
@@ -3403,6 +3529,14 @@
             </summary>
             <param name="encoding">The type of encoding used to convert from byte[] to string</param>
             <returns>A line from the stream, null if there is nothing to read</returns>
+        </member>
+        <member name="M:FluentFTP.FtpSocketStream.ReadAllLines(System.Text.Encoding,System.Int32)">
+            <summary>
+            Reads all line from the socket
+            </summary>
+            <param name="encoding">The type of encoding used to convert from byte[] to string</param>
+            <param name="bufferSize">The size of the buffer</param>
+            <returns>A list of lines from the stream</returns>
         </member>
         <member name="M:FluentFTP.FtpSocketStream.ReadLineAsync(System.Text.Encoding,System.Threading.CancellationToken)">
             <summary>
@@ -4392,6 +4526,24 @@
             If the checksum comparison fails then the method returns false and no other action is taken.
             </summary>
         </member>
+        <member name="T:FluentFTP.FtpDate">
+            <summary>
+            Defines if additional verification and actions upon failure that 
+            should be performed when uploading/downloading files using the high-level APIs.  Ignored if the 
+            FTP server does not support any hashing algorithms.
+            </summary>
+        </member>
+        <member name="F:FluentFTP.FtpDate.Original">
+            <summary>
+            The date is whatever the server returns, with no conversion performed.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:FluentFTP.FtpDate.Local" -->
+        <member name="F:FluentFTP.FtpDate.UTC">
+            <summary>
+            The date is converted to UTC, based on the TimeOffset property in FtpClient.
+            </summary>
+        </member>
         <member name="T:FluentFTP.FtpException">
             <summary>
             FTP related error
@@ -4567,6 +4719,21 @@
         <member name="M:FluentFTP.FtpExtensions.IsNullOrWhiteSpace(System.String)">
             <summary>
             Checks if every character in the string is whitespace, or the string is null.
+            </summary>
+        </member>
+        <member name="M:FluentFTP.FtpExtensions.IsBlank(System.String)">
+            <summary>
+            Checks if the string is null or 0 length.
+            </summary>
+        </member>
+        <member name="M:FluentFTP.FtpExtensions.IsBlank(System.Collections.IList)">
+            <summary>
+            Checks if the array is null or 0 length.
+            </summary>
+        </member>
+        <member name="M:FluentFTP.FtpExtensions.IsBlank(System.Collections.IEnumerable)">
+            <summary>
+            Checks if the array is null or 0 length.
             </summary>
         </member>
         <member name="M:FluentFTP.FtpExtensions.Join(System.String[],System.String)">
@@ -4900,6 +5067,11 @@
         <member name="P:FluentFTP.FtpTrace.LogPassword">
             <summary>
             Should the FTP passwords be included in the logs?
+            </summary>
+        </member>
+        <member name="P:FluentFTP.FtpTrace.EnableTracing">
+            <summary>
+            Should we trace at all?
             </summary>
         </member>
         <member name="T:FluentFTP.Proxy.FtpClientHttp11Proxy">

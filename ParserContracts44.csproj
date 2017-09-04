@@ -55,6 +55,7 @@
       <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -65,10 +66,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Archive223Context.cs" />
+    <Compile Include="ArchiveContracts223.cs" />
     <Compile Include="ClearText.cs" />
     <Compile Include="ConnectToDb.cs" />
+    <Compile Include="Contract.cs" />
+    <Compile Include="Contract223.cs" />
     <Compile Include="GetSettings.cs" />
     <Compile Include="IParser.cs" />
+    <Compile Include="JsonExtensions.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="ParserContr223.cs" />
@@ -77,6 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeArguments.cs" />
     <Compile Include="Unzipped.cs" />
+    <Compile Include="WorkWithContract223.cs" />
     <Compile Include="WorkWithContract44.cs" />
     <Compile Include="WorkWithContract44Async.cs" />
     <Compile Include="WorkWithContract44Parralel.cs" />

@@ -121,7 +121,7 @@ namespace ParserContracts44
                 if (!String.IsNullOrEmpty(customerRegnumber))
                 {
                     string selectCustomer =
-                        $"SELECT id FROM {Program.Prefix}od_customer WHERE regNumber = @customer_regnumber";
+                        $"SELECT id FROM od_customer WHERE regNumber = @customer_regnumber";
                     MySqlCommand cmd3 = new MySqlCommand(selectCustomer, connect);
                     cmd3.Prepare();
                     cmd3.Parameters.AddWithValue("@customer_regnumber", customerRegnumber);
@@ -154,7 +154,7 @@ namespace ParserContracts44
                         string emailCustomer = "";
                         string contactNameCustomer = "";
                         string addCustomer =
-                            $"INSERT INTO {Program.Prefix}od_customer SET regNumber = @customer_regnumber, inn = @inn_customer, kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer,contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer,ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer,postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer,email = @email_customer, contact_name = @contact_name_customer, short_name = @short_name";
+                            $"INSERT INTO od_customer SET regNumber = @customer_regnumber, inn = @inn_customer, kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer,contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer,ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer,postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer,email = @email_customer, contact_name = @contact_name_customer, short_name = @short_name";
                         MySqlCommand cmd4 = new MySqlCommand(addCustomer, connect);
                         cmd4.Prepare();
                         cmd4.Parameters.AddWithValue("@customer_regnumber", customerRegnumber);
@@ -234,7 +234,7 @@ namespace ParserContracts44
                                      "individualPersonForeignState.registerInRFTaxBodies.KPP") ?? "").Trim();
                             }
                             string selectSupplier =
-                                $"SELECT id FROM {Program.Prefix}od_supplier WHERE inn = @supplier_inn AND kpp = @kpp_supplier";
+                                $"SELECT id FROM od_supplier WHERE inn = @supplier_inn AND kpp = @kpp_supplier";
                             MySqlCommand cmd5 = new MySqlCommand(selectSupplier, connect);
                             cmd5.Prepare();
                             cmd5.Parameters.AddWithValue("@supplier_inn", supplierInn);
@@ -345,7 +345,7 @@ namespace ParserContracts44
                                 string contactfaxSupplier = "";
                                 string contactNameSupplier = "";
                                 string addSupplier =
-                                    $"INSERT INTO {Program.Prefix}od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, contracts_count = @contracts_count, contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, organizationName = @organizationName,postal_address = @postal_address, contactPhone = @contactPhone, contactFax = @contactFax, contactEMail = @contactEMail, contact_name = @contact_name, organizationShortName = @organizationShortName";
+                                    $"INSERT INTO od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, contracts_count = @contracts_count, contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, organizationName = @organizationName,postal_address = @postal_address, contactPhone = @contactPhone, contactFax = @contactFax, contactEMail = @contactEMail, contact_name = @contact_name, organizationShortName = @organizationShortName";
                                 MySqlCommand cmd6 = new MySqlCommand(addSupplier, connect);
                                 cmd6.Prepare();
                                 cmd6.Parameters.AddWithValue("@supplier_inn", supplierInn);
