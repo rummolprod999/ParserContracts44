@@ -59,7 +59,7 @@ namespace ParserContracts44
         {
             string filea = "";
             string pathUnzip = "";
-            filea = GetArch44(arch, pathParse);
+            filea = GetArch223(arch, pathParse);
             if (!String.IsNullOrEmpty(filea))
             {
                 pathUnzip = Unzipped.Unzip(filea);

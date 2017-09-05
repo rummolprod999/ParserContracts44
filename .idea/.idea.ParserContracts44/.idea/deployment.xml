@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="ihor">
+  <component name="PublishConfigData" serverName="Belarus">
     <serverData>
-      <paths name="ihor">
+      <paths name="Belarus">
         <serverdata>
           <mappings>
-            <mapping deploy="/var/www/admin/data/www/tenders.enter-it.ru/python/ParserContracts44Sharp" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

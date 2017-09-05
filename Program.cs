@@ -75,8 +75,8 @@ namespace ParserContracts44
         public static int AddProduct = 0;
         public static int UpdateContract = 0;
         public static string PathProgram;
-        public static string TableContracts = $"{Prefix}od_contract";
-        public static string TablecProducts = $"{Prefix}od_contract_product";
+        public static string TableContracts = "new_od_contract";
+        public static string TablecProducts = "new_od_contract_product";
 
         public static void Main(string[] args)
         {

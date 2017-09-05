@@ -47,6 +47,7 @@ namespace ParserContracts44
                     return;
                 }
                 List<JToken> products = GetElements(c, "positions.position");
+                List<JToken> products2 = GetElements(c, "docs.doc");
                 string pNumber = idContract;
                 string regnum = ((string) c.SelectToken("registrationNumber") ?? "").Trim();
                 //Console.WriteLine(regnum);
@@ -60,9 +61,15 @@ namespace ParserContracts44
                 string notificationNumber = ((string) c.SelectToken("contractInfo.name") ?? "").Trim();
                 int lotNumber = 1;
                 decimal contractPrice = (decimal?) c.SelectToken("positions.total") ?? 0.00m;
+                if (contractPrice == 0.00m)
+                {
+                    contractPrice = (decimal?) c.SelectToken("docs.total") ?? 0.00m;
+                }
                 string currency = "";
                 if (products.Count > 0)
                     currency = ((string) products[0].SelectToken("currency.code") ?? "").Trim();
+                else if (products2.Count > 0)
+                    currency = ((string) products2[0].SelectToken("currency.code") ?? "").Trim();
                 int versionNumber = (int?) c.SelectToken("version") ?? 0;
                 int cancel = 0;
                 DateTime executionStartDate = signDate;
@@ -176,70 +183,134 @@ namespace ParserContracts44
                         db.Contracts223.Add(contr);
                         db.SaveChanges();
                     }
-
-                    List<Product> pr = new List<Product>();
-                    foreach (var pr223 in products)
+                    if (products.Count > 0)
                     {
-                        var docs = GetElements(pr223, "docs.doc");
-                        if (docs.Count == 0)
-                            continue;
-                        int okpd2GroupCode = 0;
-                        string okpd2GroupLevel1Code = "";
-                        int okpdGroupCode = 0;
-                        string okpdGroupLevel1Code = "";
-                        string nameP = ((string) docs[0].SelectToken("contractPosition.name") ?? "").Trim();
-                        //Console.WriteLine(nameP);
-                        nameP = Regex.Replace(nameP, @"\s+", " ");
-                        if (String.IsNullOrEmpty(nameP))
-                            nameP = "Нет названия";
-                        string okpd2Code = ((string) docs[0].SelectToken("contractPosition.okpd2.code") ?? "").Trim();
-                        if (!String.IsNullOrEmpty(okpd2Code))
+                        List<Product> pr = new List<Product>();
+                        foreach (var pr223 in products)
                         {
-                            GetOkpd(okpd2Code, out okpd2GroupCode, out okpd2GroupLevel1Code);
+                            var docs = GetElements(pr223, "docs.doc");
+                            if (docs.Count == 0)
+                                continue;
+                            int okpd2GroupCode = 0;
+                            string okpd2GroupLevel1Code = "";
+                            int okpdGroupCode = 0;
+                            string okpdGroupLevel1Code = "";
+                            string nameP = ((string) docs[0].SelectToken("contractPosition.name") ?? "").Trim();
+                            //Console.WriteLine(nameP);
+                            nameP = Regex.Replace(nameP, @"\s+", " ");
+                            if (String.IsNullOrEmpty(nameP))
+                                nameP = "Нет названия";
+                            string okpd2Code =
+                                ((string) docs[0].SelectToken("contractPosition.okpd2.code") ?? "").Trim();
+                            if (!String.IsNullOrEmpty(okpd2Code))
+                            {
+                                GetOkpd(okpd2Code, out okpd2GroupCode, out okpd2GroupLevel1Code);
+                            }
+                            string okpd2Name =
+                                ((string) docs[0].SelectToken("contractPosition.okpd2.name") ?? "").Trim();
+                            string okpdCode = ((string) docs[0].SelectToken("contractPosition.okpd.code") ?? "").Trim();
+                            if (!String.IsNullOrEmpty(okpdCode))
+                            {
+                                GetOkpd(okpdCode, out okpdGroupCode, out okpdGroupLevel1Code);
+                            }
+                            string okpdName = ((string) docs[0].SelectToken("contractPosition.okpd.name") ?? "").Trim();
+                            decimal sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
+                            decimal quantity = (decimal?) docs[0].SelectToken("qty") ?? 0.00m;
+                            decimal price = 0.00m;
+                            if (quantity != 0.00m)
+                            {
+                                price = sumP / quantity;
+                            }
+                            string sid = "";
+                            string okei = ((string) docs[0].SelectToken("okei.name") ?? "").Trim();
+                            Product p223 = new Product
+                            {
+                                Name = nameP,
+                                Okpd2Code = okpd2Code,
+                                OkpdCode = okpdCode,
+                                Okpd2GroupCode = okpd2GroupCode,
+                                OkpdGroupCode = okpdGroupCode,
+                                Okpd2GroupLevel1Code = okpd2GroupLevel1Code,
+                                OkpdGroupLevel1Code = okpdGroupLevel1Code,
+                                Price = price,
+                                Okpd2Name = okpd2Name,
+                                OkpdName = okpdName,
+                                Quantiity = quantity,
+                                Okei = okei,
+                                Sum = sumP,
+                                Sid = sid,
+                                Contract223 = contr
+                            };
+                            pr.Add(p223);
                         }
-                        string okpd2Name = ((string) docs[0].SelectToken("contractPosition.okpd2.name") ?? "").Trim();
-                        string okpdCode = ((string) docs[0].SelectToken("contractPosition.okpd.code") ?? "").Trim();
-                        if (!String.IsNullOrEmpty(okpdCode))
-                        {
-                            GetOkpd(okpdCode, out okpdGroupCode, out okpdGroupLevel1Code);
-                        }
-                        string okpdName = ((string) docs[0].SelectToken("contractPosition.okpd.name") ?? "").Trim();
-                        decimal sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
-                        decimal quantity = (decimal?) docs[0].SelectToken("qty") ?? 0.00m;
-                        decimal price = 0.00m;
-                        if (quantity != 0.00m)
-                        {
-                            price = sumP / quantity;
-                        }
-                        string sid = "";
-                        string okei = ((string) docs[0].SelectToken("okei.name") ?? "").Trim();
-                        Product p223 = new Product
-                        {
-                            Name = nameP,
-                            Okpd2Code = okpd2Code,
-                            OkpdCode = okpdCode,
-                            Okpd2GroupCode = okpd2GroupCode,
-                            OkpdGroupCode = okpdGroupCode,
-                            Okpd2GroupLevel1Code = okpd2GroupLevel1Code,
-                            OkpdGroupLevel1Code = okpdGroupLevel1Code,
-                            Price = price,
-                            Okpd2Name = okpd2Name,
-                            OkpdName = okpdName,
-                            Quantiity = quantity,
-                            Okei = okei,
-                            Sum = sumP,
-                            Sid = sid,
-                            Contract223 = contr
-                        };
-                        pr.Add(p223);
+                        db.Products.AddRange(pr);
+                        db.SaveChanges();
                     }
-                    db.Products.AddRange(pr);
-                    db.SaveChanges();
+                    else if (products2.Count > 0)
+                    {
+                        List<Product> pr = new List<Product>();
+                        foreach (var pr223 in products2)
+                        {
+                            int okpd2GroupCode = 0;
+                            string okpd2GroupLevel1Code = "";
+                            int okpdGroupCode = 0;
+                            string okpdGroupLevel1Code = "";
+                            string nameP = ((string) pr223.SelectToken("contractPosition.name") ?? "").Trim();
+                            //Console.WriteLine(nameP);
+                            nameP = Regex.Replace(nameP, @"\s+", " ");
+                            if (String.IsNullOrEmpty(nameP))
+                                nameP = "Нет названия";
+                            string okpd2Code =
+                                ((string) pr223.SelectToken("contractPosition.okpd2.code") ?? "").Trim();
+                            if (!String.IsNullOrEmpty(okpd2Code))
+                            {
+                                GetOkpd(okpd2Code, out okpd2GroupCode, out okpd2GroupLevel1Code);
+                            }
+                            string okpd2Name =
+                                ((string) pr223.SelectToken("contractPosition.okpd2.name") ?? "").Trim();
+                            string okpdCode = ((string) pr223.SelectToken("contractPosition.okpd.code") ?? "").Trim();
+                            if (!String.IsNullOrEmpty(okpdCode))
+                            {
+                                GetOkpd(okpdCode, out okpdGroupCode, out okpdGroupLevel1Code);
+                            }
+                            string okpdName = ((string) pr223.SelectToken("contractPosition.okpd.name") ?? "").Trim();
+                            decimal sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
+                            decimal quantity = (decimal?) pr223.SelectToken("qty") ?? 0.00m;
+                            decimal price = 0.00m;
+                            if (quantity != 0.00m)
+                            {
+                                price = sumP / quantity;
+                            }
+                            string sid = "";
+                            string okei = ((string) pr223.SelectToken("okei.name") ?? "").Trim();
+                            Product p223 = new Product
+                            {
+                                Name = nameP,
+                                Okpd2Code = okpd2Code,
+                                OkpdCode = okpdCode,
+                                Okpd2GroupCode = okpd2GroupCode,
+                                OkpdGroupCode = okpdGroupCode,
+                                Okpd2GroupLevel1Code = okpd2GroupLevel1Code,
+                                OkpdGroupLevel1Code = okpdGroupLevel1Code,
+                                Price = price,
+                                Okpd2Name = okpd2Name,
+                                OkpdName = okpdName,
+                                Quantiity = quantity,
+                                Okei = okei,
+                                Sum = sumP,
+                                Sid = sid,
+                                Contract223 = contr
+                            };
+                            pr.Add(p223);
+                        }
+                        db.Products.AddRange(pr);
+                        db.SaveChanges();
+                    }
                 }
             }
             else
             {
-                Log.Logger("Не могу найти тег performanceContractData", File);
+                //Log.Logger("Не могу найти тег performanceContractData", File);
             }
         }
     }
