@@ -131,12 +131,13 @@ namespace ParserContracts44
 
                         contr.SupplierId = idSupplier;
                         contr.Xml = xml;
-                        foreach (var p in contr.Products)
+                        db.Entry(contr).State = EntityState.Modified;
+                        db.SaveChanges();
+                        foreach (var p in contr.Products.ToList())
                         {
                             db.Products.Remove(p);
                             db.Entry(p).State = EntityState.Deleted;
                         }
-                        db.Entry(contr).State = EntityState.Modified;
                         db.SaveChanges();
                     }
                     else
@@ -175,8 +176,65 @@ namespace ParserContracts44
                         db.Contracts223.Add(contr);
                         db.SaveChanges();
                     }
-                    
-                    
+
+                    List<Product> pr = new List<Product>();
+                    foreach (var pr223 in products)
+                    {
+                        var docs = GetElements(pr223, "docs.doc");
+                        if (docs.Count == 0)
+                            continue;
+                        int okpd2GroupCode = 0;
+                        string okpd2GroupLevel1Code = "";
+                        int okpdGroupCode = 0;
+                        string okpdGroupLevel1Code = "";
+                        string nameP = ((string) docs[0].SelectToken("contractPosition.name") ?? "").Trim();
+                        //Console.WriteLine(nameP);
+                        nameP = Regex.Replace(nameP, @"\s+", " ");
+                        if (String.IsNullOrEmpty(nameP))
+                            nameP = "Нет названия";
+                        string okpd2Code = ((string) docs[0].SelectToken("contractPosition.okpd2.code") ?? "").Trim();
+                        if (!String.IsNullOrEmpty(okpd2Code))
+                        {
+                            GetOkpd(okpd2Code, out okpd2GroupCode, out okpd2GroupLevel1Code);
+                        }
+                        string okpd2Name = ((string) docs[0].SelectToken("contractPosition.okpd2.name") ?? "").Trim();
+                        string okpdCode = ((string) docs[0].SelectToken("contractPosition.okpd.code") ?? "").Trim();
+                        if (!String.IsNullOrEmpty(okpdCode))
+                        {
+                            GetOkpd(okpdCode, out okpdGroupCode, out okpdGroupLevel1Code);
+                        }
+                        string okpdName = ((string) docs[0].SelectToken("contractPosition.okpd.name") ?? "").Trim();
+                        decimal price = (decimal?) pr223.SelectToken("price") ?? 0.00m;
+                        decimal quantity = (decimal?) docs[0].SelectToken("qty") ?? 0.00m;
+                        decimal sumP = 0.00m;
+                        if (quantity != 0.00m)
+                        {
+                            sumP = price / quantity;
+                        }
+                        string sid = "";
+                        string okei = ((string) docs[0].SelectToken("okei.name") ?? "").Trim();
+                        Product p223 = new Product
+                        {
+                            Name = nameP,
+                            Okpd2Code = okpd2Code,
+                            OkpdCode = okpdCode,
+                            Okpd2GroupCode = okpd2GroupCode,
+                            OkpdGroupCode = okpdGroupCode,
+                            Okpd2GroupLevel1Code = okpd2GroupLevel1Code,
+                            OkpdGroupLevel1Code = okpdGroupLevel1Code,
+                            Price = price,
+                            Okpd2Name = okpd2Name,
+                            OkpdName = okpdName,
+                            Quantiity = quantity,
+                            Okei = okei,
+                            Sum = sumP,
+                            Sid = sid,
+                            Contract223 = contr
+                        };
+                        pr.Add(p223);
+                    }
+                    db.Products.AddRange(pr);
+                    db.SaveChanges();
                 }
             }
             else
