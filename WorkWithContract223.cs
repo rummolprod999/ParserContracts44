@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
@@ -70,9 +71,25 @@ namespace ParserContracts44
                 {
                     if (!String.IsNullOrEmpty(regnum) && versionNumber != 0)
                     {
-                        var maxNumber = db.Contracts223.Where(p => p.RegNum == regnum).Where(p => p != null).Max(d => d.VersionNumber);
-                        Console.WriteLine(maxNumber);
+                        var maxNumber = db.Contracts223.Where(p => p.RegNum == regnum).Select(p => p.VersionNumber).DefaultIfEmpty(0).Max(); 
+                        //Console.WriteLine(maxNumber);
+                        if (versionNumber > maxNumber)
+                        {
+                            var Contr223 = db.Contracts223.Where(p => p.RegNum == regnum);
+                            foreach (var c223 in Contr223)
+                            {
+                                c223.Cancel = 1;
+                                db.Entry(c223).State = EntityState.Modified;
+                            }
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            cancel = 1;
+                        }
                     }
+                    
+                    
                 }
 
             }
