@@ -13,13 +13,13 @@ namespace ParserContracts44
     {
         protected readonly JObject J223;
         protected readonly string Region;
-        
+
         public event Action<int> AddSupplierEvent;
         public event Action<int> AddCustomerEvent;
         public event Action<int> UpdateContractEvent;
         public event Action<int> AddContractEvent;
         public event Action<int> AddProductEvent;
-        
+
         public WorkWithContract223(JObject json, string f, string r) : base(f)
         {
             J223 = json;
@@ -52,7 +52,7 @@ namespace ParserContracts44
                 //Console.WriteLine(regnum);
                 string currentContractStage = "";
                 string placing = "";
-                string url = ((string) c.SelectToken("urlOOS") ?? "").Trim();
+                string Url = ((string) c.SelectToken("urlOOS") ?? "").Trim();
                 DateTime signDate = (DateTime?) c.SelectToken("contractInfo.contractDate") ?? DateTime.MinValue;
                 string singleCustomerReasonCode = "";
                 string singleCustomerReasonName = "";
@@ -61,7 +61,7 @@ namespace ParserContracts44
                 int lotNumber = 1;
                 decimal contractPrice = (decimal?) c.SelectToken("positions.total") ?? 0.00m;
                 string currency = "";
-                if(products.Count>0)
+                if (products.Count > 0)
                     currency = ((string) products[0].SelectToken("currency.code") ?? "").Trim();
                 int versionNumber = (int?) c.SelectToken("version") ?? 0;
                 int cancel = 0;
@@ -71,7 +71,8 @@ namespace ParserContracts44
                 {
                     if (!String.IsNullOrEmpty(regnum) && versionNumber != 0)
                     {
-                        var maxNumber = db.Contracts223.Where(p => p.RegNum == regnum).Select(p => p.VersionNumber).DefaultIfEmpty(0).Max(); 
+                        var maxNumber = db.Contracts223.Where(p => p.RegNum == regnum).Select(p => p.VersionNumber)
+                            .DefaultIfEmpty(0).Max();
                         //Console.WriteLine(maxNumber);
                         if (versionNumber > maxNumber)
                         {
@@ -88,16 +89,100 @@ namespace ParserContracts44
                             cancel = 1;
                         }
                     }
+                    Customer cus = null;
+                    string kppCustomer = ((string) c.SelectToken("customer.mainInfo.kpp") ?? "").Trim();
+                    string innCustomer = ((string) c.SelectToken("customer.mainInfo.inn") ?? "").Trim();
+                    //Console.WriteLine(innCustomer);
+                    if (!String.IsNullOrEmpty(innCustomer))
+                    {
+                        cus = db.Customers.FirstOrDefault(p => p.Inn == innCustomer && p.Kpp == kppCustomer);
+                    }
+                    //Console.WriteLine(cus);
+                    var contr = db.Contracts223.Include(p => p.Products).FirstOrDefault(
+                        p => p.IdContract == idContract && p.RegionCode == Region);
+                    if (contr != null)
+                    {
+                        contr.IdContract = idContract;
+                        contr.PNumber = pNumber;
+                        contr.RegNum = regnum;
+                        contr.CurrentContractStage = currentContractStage;
+                        contr.Placing = placing;
+                        contr.RegionCode = Region;
+                        contr.Url = Url;
+                        contr.SignDate = signDate;
+                        contr.SingleCustomerReasonCode = singleCustomerReasonCode;
+                        contr.SingleCustomerReasonName = singleCustomerReasonName;
+                        contr.Fz = fz;
+                        contr.NotificationNumber = notificationNumber;
+                        contr.LotNumber = lotNumber;
+                        contr.ContractPrice = contractPrice;
+                        contr.Currency = currency;
+                        contr.VersionNumber = versionNumber;
+                        contr.ExecutionStartDate = executionStartDate;
+                        contr.ExecutionEndDate = executionEndDate;
+                        if (cus == null)
+                        {
+                            contr.CustomerId = 0;
+                        }
+                        else
+                        {
+                            contr.Customer = cus;
+                        }
+
+                        contr.SupplierId = idSupplier;
+                        contr.Xml = xml;
+                        foreach (var p in contr.Products)
+                        {
+                            db.Products.Remove(p);
+                            db.Entry(p).State = EntityState.Deleted;
+                        }
+                        db.Entry(contr).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        contr = new Contract223
+                        {
+                            IdContract = idContract,
+                            PNumber = pNumber,
+                            RegNum = regnum,
+                            CurrentContractStage = currentContractStage,
+                            Placing = placing,
+                            RegionCode = Region,
+                            Url = Url,
+                            SignDate = signDate,
+                            SingleCustomerReasonCode = singleCustomerReasonCode,
+                            SingleCustomerReasonName = singleCustomerReasonName,
+                            Fz = fz,
+                            NotificationNumber = notificationNumber,
+                            LotNumber = lotNumber,
+                            ContractPrice = contractPrice,
+                            Currency = currency,
+                            VersionNumber = versionNumber,
+                            ExecutionStartDate = executionStartDate,
+                            ExecutionEndDate = executionEndDate,
+                            SupplierId = idSupplier,
+                            Xml = xml
+                        };
+                        if (cus == null)
+                        {
+                            contr.CustomerId = 0;
+                        }
+                        else
+                        {
+                            contr.Customer = cus;
+                        }
+                        db.Contracts223.Add(contr);
+                        db.SaveChanges();
+                    }
                     
                     
                 }
-
             }
             else
             {
                 Log.Logger("Не могу найти тег performanceContractData", File);
             }
         }
-
     }
 }

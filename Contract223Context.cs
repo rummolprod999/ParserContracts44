@@ -14,5 +14,6 @@ namespace ParserContracts44
         
         public DbSet<Contract223> Contracts223 { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

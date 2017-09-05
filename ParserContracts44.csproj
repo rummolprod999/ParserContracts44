@@ -81,6 +81,7 @@
     <Compile Include="Parser.cs" />
     <Compile Include="ParserContr223.cs" />
     <Compile Include="ParserContr44.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeArguments.cs" />

@@ -79,5 +79,12 @@ namespace ParserContracts44
         
         [Column("xml")]
         public string Xml{ get; set; }
+        
+        public ICollection<Product> Products { get; set; }
+        
+        public Contract223()
+        {
+            Products = new List<Product>();
+        }
     }
 }
