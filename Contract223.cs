@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ParserContracts44
 {
-    [Table("od_contract")]
+    //[Table(Program.TableContract)]
     public class Contract223
     {
         [Key, DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

@@ -85,7 +85,7 @@ namespace ParserContracts44
         {
         }
 
-        public string GetArch(string arch, string pathParse)
+        public string 44(stri44ng arch, string pathParse)
         {
             string file = "";
             int count = 1;

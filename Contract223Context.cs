@@ -15,5 +15,12 @@ namespace ParserContracts44
         public DbSet<Contract223> Contracts223 { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
+        
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Contract223>().ToTable(Program.TableContracts);
+            modelBuilder.Entity<Product>().ToTable(Program.TablecProducts);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

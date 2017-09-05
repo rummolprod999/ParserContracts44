@@ -122,7 +122,7 @@ namespace ParserContracts44
                         contr.ExecutionEndDate = executionEndDate;
                         if (cus == null)
                         {
-                            contr.CustomerId = 0;
+                            contr.CustomerId = idCustomer;
                         }
                         else
                         {
@@ -204,12 +204,12 @@ namespace ParserContracts44
                             GetOkpd(okpdCode, out okpdGroupCode, out okpdGroupLevel1Code);
                         }
                         string okpdName = ((string) docs[0].SelectToken("contractPosition.okpd.name") ?? "").Trim();
-                        decimal price = (decimal?) pr223.SelectToken("price") ?? 0.00m;
+                        decimal sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
                         decimal quantity = (decimal?) docs[0].SelectToken("qty") ?? 0.00m;
-                        decimal sumP = 0.00m;
+                        decimal price = 0.00m;
                         if (quantity != 0.00m)
                         {
-                            sumP = price / quantity;
+                            price = sumP / quantity;
                         }
                         string sid = "";
                         string okei = ((string) docs[0].SelectToken("okei.name") ?? "").Trim();

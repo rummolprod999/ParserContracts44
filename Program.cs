@@ -75,6 +75,8 @@ namespace ParserContracts44
         public static int AddProduct = 0;
         public static int UpdateContract = 0;
         public static string PathProgram;
+        public static string TableContracts = $"{Prefix}od_contract";
+        public static string TablecProducts = $"{Prefix}od_contract_product";
 
         public static void Main(string[] args)
         {
@@ -188,12 +190,12 @@ namespace ParserContracts44
         private static void ParserC223(TypeArguments arg)
         {
             Log.Logger("Время начала парсинга Contracts223");
-            /*ParserContr223 c223 = new ParserContr223(StrArg);
-            c223.Parsing();*/
-            ParserContr223 p = new ParserContr223("last223");
+            ParserContr223 c223 = new ParserContr223(StrArg);
+            c223.Parsing();
+            /*ParserContr223 p = new ParserContr223("last223");
             p.ParsingXml(
                 "/home/alex/Рабочий стол/parser/contractCompleting_Adygeya_Resp_20170701_000000_20170731_235959_001.xml",
-                "38");
+                "38");*/
 
             Log.Logger("Добавлено customer", AddCustomer);
             Log.Logger("Добавлено supplier", AddSupplier);
