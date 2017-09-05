@@ -85,7 +85,7 @@ namespace ParserContracts44
         {
         }
 
-        public string 44(stri44ng arch, string pathParse)
+        public string GetArch44(string arch, string pathParse)
         {
             string file = "";
             int count = 1;
@@ -103,6 +103,49 @@ namespace ParserContracts44
                     {
                         client.Connect("ftp.zakupki.gov.ru");
                         client.Login("free", "free");
+                        client.ChangeFolder(pathParse);
+                        client.Download(fileOnServer, file);
+                        client.Close();
+                    }
+                    if (count > 1)
+                    {
+                        Log.Logger("Удалось скачать архив после попытки", count, pathParse);
+                    }
+                    return file;
+                }
+                catch (Exception e)
+                {
+                    Log.Logger("Не удалось скачать файл", arch, e);
+                    if (count > 50)
+                    {
+                        return file;
+                    }
+
+                    count++;
+                    Thread.Sleep(5000);
+                }
+            }
+
+        }
+        
+        public string GetArch223(string arch, string pathParse)
+        {
+            string file = "";
+            int count = 1;
+            while (true)
+            {
+                try
+                {
+                    string fileOnServer = $"{pathParse}/{arch}";
+                    file = $"{Program.TempPath}{Path.DirectorySeparatorChar}{arch}";
+                    /*FtpClient ftp = ClientFtp44();
+                    ftp.SetWorkingDirectory(PathParse);
+                    ftp.DownloadFile(file, FileOnServer);
+                    ftp.Disconnect();*/
+                    using (Ftp client = new Ftp())
+                    {
+                        client.Connect("ftp.zakupki.gov.ru");
+                        client.Login("fz223free", "fz223free");
                         client.ChangeFolder(pathParse);
                         client.Download(fileOnServer, file);
                         client.Close();
