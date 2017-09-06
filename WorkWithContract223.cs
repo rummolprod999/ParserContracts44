@@ -140,6 +140,7 @@ namespace ParserContracts44
                         contr.Xml = xml;
                         db.Entry(contr).State = EntityState.Modified;
                         db.SaveChanges();
+                        UpdateContractEvent?.Invoke(1);
                         foreach (var p in contr.Products.ToList())
                         {
                             db.Products.Remove(p);
@@ -182,6 +183,7 @@ namespace ParserContracts44
                         }
                         db.Contracts223.Add(contr);
                         db.SaveChanges();
+                        AddContractEvent?.Invoke(1);
                     }
                     if (products.Count > 0)
                     {
@@ -242,6 +244,7 @@ namespace ParserContracts44
                                 Contract223 = contr
                             };
                             pr.Add(p223);
+                            AddProductEvent?.Invoke(1);
                         }
                         db.Products.AddRange(pr);
                         db.SaveChanges();
@@ -302,6 +305,7 @@ namespace ParserContracts44
                                 Contract223 = contr
                             };
                             pr.Add(p223);
+                            AddProductEvent?.Invoke(1);
                         }
                         db.Products.AddRange(pr);
                         db.SaveChanges();
