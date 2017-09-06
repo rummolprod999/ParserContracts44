@@ -17,7 +17,7 @@ namespace ParserContracts44
     {
         protected DataTable DtRegion;
         public readonly string[] NeedFile = new[] {"contractcompleting"};
-        
+
         public ParserContr223(string arg) : base(arg)
         {
         }
@@ -41,20 +41,20 @@ namespace ParserContracts44
                         arch = GetListArchCurr(pathParse, regionPath);
                         break;
                 }
-                
+
                 if (arch.Count == 0)
                 {
                     Log.Logger("Не получили список архивов по региону", pathParse);
                     continue;
                 }
-                
+
                 foreach (var v in arch)
                 {
                     GetListFileArch(v, pathParse, (string) row["conf"]);
                 }
             }
         }
-        
+
         public override void GetListFileArch(string arch, string pathParse, string region)
         {
             string filea = "";
@@ -71,7 +71,8 @@ namespace ParserContracts44
                         FileInfo[] filelist = dirInfo.GetFiles();
                         List<FileInfo> array_complaint = filelist
                             .Where(a => NeedFile.Any(
-                                t => a.Name.ToLower().IndexOf(t, StringComparison.Ordinal) != -1))
+                                            t => a.Name.ToLower().IndexOf(t, StringComparison.Ordinal) != -1) &&
+                                        a.Length != 0)
                             .ToList();
                         foreach (var f in array_complaint)
                         {
@@ -89,7 +90,7 @@ namespace ParserContracts44
                 }
             }
         }
-        
+
         public void Bolter(string f, string region)
         {
             string fileLower = f.ToLower();
@@ -106,7 +107,7 @@ namespace ParserContracts44
                 Log.Logger("Ошибка при парсинге xml", e, f);
             }
         }
-        
+
         public void ParsingXml(string f, string region)
         {
             FileInfo fileInf = new FileInfo(f);
@@ -126,7 +127,7 @@ namespace ParserContracts44
                 }
             }
         }
-        
+
         public override List<String> GetListArchLast(string pathParse, string regionPath)
         {
             List<string> archtemp = GetListFtp(pathParse, Wftp223);
@@ -143,7 +144,7 @@ namespace ParserContracts44
                 using (Archive223Context db = new Archive223Context())
                 {
                     var Archives = db.ArchiveContracts223Results.Where(p => p.Archive == a).ToList();
-                    
+
                     if (Archives.Count == 0)
                     {
                         ArchiveContracts223 ar = new ArchiveContracts223 {Archive = a, Region = regionPath};
