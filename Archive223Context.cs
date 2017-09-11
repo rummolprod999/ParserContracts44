@@ -13,5 +13,11 @@ namespace ParserContracts44
         }
         
         public DbSet<ArchiveContracts223> ArchiveContracts223Results { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ArchiveContracts223>().ToTable(Program.TableArchive223);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -76,7 +76,8 @@ namespace ParserContracts44
         public static int UpdateContract = 0;
         public static string PathProgram;
         public static string TableContracts;
-        public static string TablecProducts;
+        public static string TableProducts;
+        public static string TableArchive223;
 
         public static void Main(string[] args)
         {
@@ -136,7 +137,8 @@ namespace ParserContracts44
             _port = set.Port;
             string tmp = set.Years;
             TableContracts = $"{Prefix}od_contract";
-            TablecProducts = $"{Prefix}od_contract_product";
+            TableProducts = $"{Prefix}od_contract_product";
+            TableArchive223 = $"{Prefix}arhiv_contract223";
             string[] tempYears = tmp.Split(new char[] {','});
 
             foreach (var s in tempYears.Select(v => $"{v.Trim()}"))

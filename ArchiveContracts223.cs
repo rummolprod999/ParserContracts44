@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace ParserContracts44
 {
-    [Table("arhiv_contract223")]
+    //[Table("arhiv_contract223")]
     public class ArchiveContracts223
     {
         [Key, DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

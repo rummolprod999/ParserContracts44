@@ -19,7 +19,7 @@ namespace ParserContracts44
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Contract223>().ToTable(Program.TableContracts);
-            modelBuilder.Entity<Product>().ToTable(Program.TablecProducts);
+            modelBuilder.Entity<Product>().ToTable(Program.TableProducts);
             base.OnModelCreating(modelBuilder);
         }
     }
