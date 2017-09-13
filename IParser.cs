@@ -8,6 +8,7 @@ namespace ParserContracts44
         void Parsing();
         DataTable GetRegions();
         FtpClient ClientFtp44();
+        FtpClient ClientFtp223();
         void GetListFileArch(string arch, string pathParse, string region);
         string GetArch44(string arch, string pathParse);
         string GetArch223(string arch, string pathParse);
