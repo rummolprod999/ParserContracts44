@@ -80,6 +80,9 @@ namespace ParserContracts44
         [Column("xml")]
         public string Xml{ get; set; }
         
+        [Column("sign_number")]
+        public string SignNumber{ get; set; }
+        
         public ICollection<Product> Products { get; set; }
         
         public Contract223()

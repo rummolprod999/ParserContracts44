@@ -51,6 +51,7 @@ namespace ParserContracts44
                 string pNumber = idContract;
                 string regnum = ((string) c.SelectToken("registrationNumber") ?? "").Trim();
                 //Console.WriteLine(regnum);
+                string signNumber = ((string) c.SelectToken("contractRegNumber") ?? "").Trim();
                 string currentContractStage = "";
                 string placing = "";
                 string Url = ((string) c.SelectToken("urlOOS") ?? "").Trim();
@@ -138,6 +139,7 @@ namespace ParserContracts44
 
                         contr.SupplierId = idSupplier;
                         contr.Xml = xml;
+                        contr.SignNumber = signNumber;
                         db.Entry(contr).State = EntityState.Modified;
                         db.SaveChanges();
                         UpdateContractEvent?.Invoke(1);
@@ -171,7 +173,8 @@ namespace ParserContracts44
                             ExecutionStartDate = executionStartDate,
                             ExecutionEndDate = executionEndDate,
                             SupplierId = idSupplier,
-                            Xml = xml
+                            Xml = xml,
+                            SignNumber = signNumber
                         };
                         if (cus == null)
                         {

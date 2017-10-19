@@ -15,3 +15,4 @@
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/MySql.Data.Entity.EF6.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/EntityFramework.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/EntityFramework.xml
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Release/Newtonsoft.Json.dll
