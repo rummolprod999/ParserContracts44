@@ -177,8 +177,15 @@ namespace ParserContracts44
         private static void ParserC44(TypeArguments arg)
         {
             Log.Logger("Время начала парсинга Contracts44");
-            ParserContr44 c44 = new ParserContr44(StrArg);
-            c44.Parsing();
+            try
+            {
+                ParserContr44 c44 = new ParserContr44(StrArg);
+                c44.Parsing();
+            }
+            catch (Exception e)
+            {
+                Log.Logger(e);
+            }
             /*ParserContr44 p = new ParserContr44("last");
             p.ParsingXML("/var/www/admin/data/www/tenders.enter-it.ru/python/Release/contract_2381103776916000030_27318511.xml", "38")*/
             /*ParserContr44 d = new ParserContr44("last");
@@ -194,8 +201,15 @@ namespace ParserContracts44
         private static void ParserC223(TypeArguments arg)
         {
             Log.Logger("Время начала парсинга Contracts223");
-            ParserContr223 c223 = new ParserContr223(StrArg);
-            c223.Parsing();
+            try
+            {
+                ParserContr223 c223 = new ParserContr223(StrArg);
+                c223.Parsing();
+            }
+            catch (Exception e)
+            {
+                Log.Logger(e);
+            }
             /*ParserContr223 p = new ParserContr223("last223");
             p.ParsingXml(
                 "/home/alex/Рабочий стол/parser/contractCompleting_Adygeya_Resp_20170701_000000_20170731_235959_001.xml",
