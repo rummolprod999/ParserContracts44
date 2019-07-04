@@ -186,8 +186,8 @@ namespace ParserContracts44
             List<String> arch = new List<string>();
             List<string> archtemp = GetListFtp(pathParse, Wftp44);
             /*FtpClient ftp = ClientFtp44();*/
-            string serachd = $"{Program.LocalDate:yyyyMMdd}";
-            foreach (var a in archtemp.Where(a => a.IndexOf(serachd, StringComparison.Ordinal) != -1))
+            //string serachd = $"{Program.LocalDate:yyyyMMdd}";
+            foreach (var a in archtemp)
             {
                 string prevA = $"prev_{a}";
 

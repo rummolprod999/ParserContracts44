@@ -1,5 +1,4 @@
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/ParserContracts44.exe
-/home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.csprojResolveAssemblyReference.cache
 /home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.csproj.CoreCompileInputs.cache
 /home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.exe
 /home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.pdb
@@ -17,3 +16,5 @@
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/EntityFramework.xml
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/EntityFramework.SqlServer.xml
 /home/alex/RiderProjects/ParserContracts44/bin/Debug/Ftp.xml
+/home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.csprojAssemblyReference.cache
+/home/alex/RiderProjects/ParserContracts44/obj/Debug/ParserContracts44.csproj.CopyComplete
