@@ -15,5 +15,6 @@
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/EntityFramework.dll
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/EntityFramework.xml
 /home/alex/RiderProjects/ParserContracts44/Test/bin/Release/Newtonsoft.Json.dll
-/home/alex/RiderProjects/ParserContracts44/Test/obj/Release/Test.csprojAssemblyReference.cache
 /home/alex/RiderProjects/ParserContracts44/Test/obj/Release/Test.csproj.CopyComplete
+/home/alex/RiderProjects/ParserContracts44/Test/bin/Release/ParserContracts44.pdb
+/home/alex/RiderProjects/ParserContracts44/Test/obj/Release/Test.csproj.AssemblyReference.cache

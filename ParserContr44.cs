@@ -16,7 +16,7 @@ namespace ParserContracts44
     public class ParserContr44 : Parser
     {
         protected DataTable DtRegion;
-        public readonly string[] ExceptFile = new[] {"Failure", "contractProcedure", "contractCancel"};
+        public readonly string[] ExceptFile = new[] {"Failure", "contractProcedure", "contractCancel", "contractAvailableForElAct"};
 
         public ParserContr44(string arg) : base(arg)
         {
