@@ -6,9 +6,9 @@
 	<tempdir_contracts223>temp_contracts223</tempdir_contracts223>
 	<logdir_contracts223>log_contracts223</logdir_contracts223>
 	<prefix></prefix>
-	<userdb>root</userdb>
-	<passdb>1234</passdb>
+	<userdb>parser</userdb>
+	<passdb>Dft56Point</passdb>
 	<server>localhost</server>
 	<port>3306</port>
-	<years>2016, 2017</years>
+	<years>2016, 2017, 2018, 2019, 2020</years>
 </setting>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace ParserContracts44
@@ -466,6 +467,53 @@ namespace ParserContracts44
                     IdOdContract = idOdContract;
                     AddContractEvent?.Invoke(addContr);
                 }
+                var deliPlaces = GetElements(J44, "export.contract.deliveryPlaceInfo.byKLADRInfo.deliveryPlace");
+                deliPlaces.ForEach(d =>
+                {
+                    var delPlace = ((string) d.ToString() ?? "").Trim();
+                    if (!String.IsNullOrEmpty(delPlace))
+                    {
+                        string insertProd =
+                            $"INSERT INTO od_contract_deliveryPlace (id, id_od_contract, delivery_Place) VALUES (NULL, @id_od_contract, @deliv)";
+                        MySqlCommand cmd11 = new MySqlCommand(insertProd, connect);
+                        cmd11.Prepare();
+                        cmd11.Parameters.AddWithValue("@id_od_contract", idOdContract);
+                        cmd11.Parameters.AddWithValue("@deliv", delPlace);
+                        cmd11.ExecuteNonQuery();
+                    }
+                });
+                var deliPlace = ((string) J44.SelectToken("export.contract.deliveryPlaceInfo.byKLADRInfo.deliveryPlace") ?? "").Trim();
+                if (!String.IsNullOrEmpty(deliPlace))
+                {
+                    string insertProd =
+                        $"INSERT INTO od_contract_deliveryPlace (id, id_od_contract, delivery_Place) VALUES (NULL, @id_od_contract, @deliv)";
+                    MySqlCommand cmd11 = new MySqlCommand(insertProd, connect);
+                    cmd11.Prepare();
+                    cmd11.Parameters.AddWithValue("@id_od_contract", idOdContract);
+                    cmd11.Parameters.AddWithValue("@deliv", deliPlace);
+                    cmd11.ExecuteNonQuery();
+                }
+                var attach = GetElements(J44, "export.contract.attachments.attachment");
+                attach.AddRange(GetElements(J44, "export.contract.scanDocuments.attachment"));
+                attach.ForEach(a =>
+                {
+                    var publishedContentId = ((string) a.SelectToken("publishedContentId") ?? "").Trim();
+                    var fileName = ((string) a.SelectToken("fileName") ?? "").Trim();
+                    var docDescription = ((string) a.SelectToken("docDescription") ?? "").Trim();
+                    var docRegNumber = ((string) a.SelectToken("docRegNumber") ?? "").Trim();
+                    var urlA = ((string) a.SelectToken("url") ?? "").Trim();
+                    string att =
+                        $"INSERT INTO od_contract_attach(id_attach, id_od_contract, publishedContentId, fileName, url, description) VALUES (NULL,@id_od_contract,@publishedContentId,@fileName,@url,@description)";
+                    
+                    MySqlCommand cmd11 = new MySqlCommand(att, connect);
+                    cmd11.Prepare();
+                    cmd11.Parameters.AddWithValue("@id_od_contract", idOdContract);
+                    cmd11.Parameters.AddWithValue("@publishedContentId", publishedContentId);
+                    cmd11.Parameters.AddWithValue("@fileName", fileName);
+                    cmd11.Parameters.AddWithValue("@url", urlA);
+                    cmd11.Parameters.AddWithValue("@description", docDescription);
+                    cmd11.ExecuteNonQuery();
+                });
                 var testProd = J44.SelectToken("export.contract.products");
                 if (testProd != null && testProd.Type != JTokenType.Null)
                 {
@@ -579,6 +627,33 @@ namespace ParserContracts44
                 {
                     Program.AddProduct++;
                 }
+            }
+        }
+        
+        public List<JToken> GetElements(JToken j, string s)
+        {
+            var els = new List<JToken>();
+            try
+            {
+                var elsObj = j.SelectToken(s);
+                if (elsObj != null && elsObj.Type != JTokenType.Null)
+                {
+                    switch (elsObj.Type)
+                    {
+                        case JTokenType.Object:
+                            els.Add(elsObj);
+                            break;
+                        case JTokenType.Array:
+                            els.AddRange(elsObj);
+                            break;
+                    }
+                }
+
+                return els;
+            }
+            catch (JsonException e)
+            {
+                return j.SelectTokens(s).ToList();
             }
         }
     }
