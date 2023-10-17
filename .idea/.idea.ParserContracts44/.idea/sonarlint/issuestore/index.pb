@@ -24,3 +24,7 @@ J
 WorkWithContract44Async.cs,d/8/d809d897a1eb8d260a7e32bfcf9cecdd08703d2f
 <
 ClearText.cs,a/1/a13f3ca025c7132ff367ac9d95d358ad480ac445
+M
+WorkWithContract44Parralel.cs,2/a/2afc76d9c414d10bb253639e89c3f0949d1f7fca
+@
+ParserContr44.cs,3/1/3178ff9b76358b2456b3716af86b4427856d70a2

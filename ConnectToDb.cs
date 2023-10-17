@@ -16,7 +16,7 @@ namespace ParserContracts44
         public static MySqlConnection GetDbConnection()
         {
             // Connection String.
-            MySqlConnection conn = new MySqlConnection(ConnectString);
+            var conn = new MySqlConnection(ConnectString);
 
             return conn;
         }

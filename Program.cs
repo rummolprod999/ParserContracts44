@@ -88,7 +88,7 @@ namespace ParserContracts44
                 return;
             }
 
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName()
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName()
                 .CodeBase);
             PathProgram = path.Substring(5);
             StrArg = args[0];
@@ -124,7 +124,7 @@ namespace ParserContracts44
 
         private static void Init(TypeArguments arg)
         {
-            GetSettings set = new GetSettings();
+            var set = new GetSettings();
             _database = set.Database;
             _logPath44 = set.LogPathContracts44;
             _logPath223 = set.LogPathContracts223;
@@ -135,11 +135,11 @@ namespace ParserContracts44
             _tempPath223 = set.TempPathContracts223;
             _server = set.Server;
             _port = set.Port;
-            string tmp = set.Years;
+            var tmp = set.Years;
             TableContracts = $"{Prefix}od_contract";
             TableProducts = $"{Prefix}od_contract_product";
             TableArchive223 = $"{Prefix}arhiv_contract223";
-            string[] tempYears = tmp.Split(new char[] {','});
+            var tempYears = tmp.Split(new char[] {','});
 
             foreach (var s in tempYears.Select(v => $"{v.Trim()}"))
             {
@@ -148,7 +148,7 @@ namespace ParserContracts44
 
             if (Directory.Exists(TempPath))
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(TempPath);
+                var dirInfo = new DirectoryInfo(TempPath);
                 dirInfo.Delete(true);
                 Directory.CreateDirectory(TempPath);
             }
@@ -179,7 +179,7 @@ namespace ParserContracts44
             Log.Logger("Время начала парсинга Contracts44");
             try
             {
-                ParserContr44 c44 = new ParserContr44(StrArg);
+                var c44 = new ParserContr44(StrArg);
                 c44.Parsing();
             }
             catch (Exception e)
@@ -203,7 +203,7 @@ namespace ParserContracts44
             Log.Logger("Время начала парсинга Contracts223");
             try
             {
-                ParserContr223 c223 = new ParserContr223(StrArg);
+                var c223 = new ParserContr223(StrArg);
                 c223.Parsing();
             }
             catch (Exception e)

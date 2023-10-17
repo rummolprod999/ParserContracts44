@@ -27,9 +27,9 @@ namespace ParserContracts44
             DtRegion = GetRegions();
             foreach (DataRow row in DtRegion.Rows)
             {
-                List<String> arch = new List<string>();
-                string pathParse = "";
-                string regionPath = (string) row["path223"];
+                var arch = new List<string>();
+                var pathParse = "";
+                var regionPath = (string) row["path223"];
                 switch (Program.Periodparsing)
                 {
                     case TypeArguments.Last223:
@@ -57,8 +57,8 @@ namespace ParserContracts44
 
         public override void GetListFileArch(string arch, string pathParse, string region)
         {
-            string filea = "";
-            string pathUnzip = "";
+            var filea = "";
+            var pathUnzip = "";
             filea = GetArch223(arch, pathParse);
             if (!String.IsNullOrEmpty(filea))
             {
@@ -67,9 +67,9 @@ namespace ParserContracts44
                 {
                     if (Directory.Exists(pathUnzip))
                     {
-                        DirectoryInfo dirInfo = new DirectoryInfo(pathUnzip);
-                        FileInfo[] filelist = dirInfo.GetFiles();
-                        List<FileInfo> array_complaint = filelist
+                        var dirInfo = new DirectoryInfo(pathUnzip);
+                        var filelist = dirInfo.GetFiles();
+                        var array_complaint = filelist
                             .Where(a => NeedFile.Any(
                                             t => a.Name.ToLower().IndexOf(t, StringComparison.Ordinal) != -1) &&
                                         a.Length != 0)
@@ -93,7 +93,7 @@ namespace ParserContracts44
 
         public void Bolter(string f, string region)
         {
-            string fileLower = f.ToLower();
+            var fileLower = f.ToLower();
             if (!fileLower.EndsWith(".xml", StringComparison.Ordinal))
             {
                 return;
@@ -110,19 +110,19 @@ namespace ParserContracts44
 
         public void ParsingXml(string f, string region)
         {
-            FileInfo fileInf = new FileInfo(f);
+            var fileInf = new FileInfo(f);
             if (fileInf.Exists)
             {
-                using (StreamReader sr = new StreamReader(f, Encoding.Default))
+                using (var sr = new StreamReader(f, Encoding.Default))
                 {
                     string ftext;
                     ftext = sr.ReadToEnd();
                     ftext = ClearText.ClearString(ftext);
-                    XmlDocument doc = new XmlDocument();
+                    var doc = new XmlDocument();
                     doc.LoadXml(ftext);
-                    string jsons = JsonConvert.SerializeXmlNode(doc);
-                    JObject json = JObject.Parse(jsons);
-                    WorkWithContract223 p = new WorkWithContract223(json, f, region);
+                    var jsons = JsonConvert.SerializeXmlNode(doc);
+                    var json = JObject.Parse(jsons);
+                    var p = new WorkWithContract223(json, f, region);
                     p.Work223();
                 }
             }
@@ -130,24 +130,24 @@ namespace ParserContracts44
 
         public override List<String> GetListArchLast(string pathParse, string regionPath)
         {
-            List<string> archtemp = GetListFtp(pathParse, Wftp223);
+            var archtemp = GetListFtp(pathParse, Wftp223);
             return archtemp.Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)).ToList();
         }
 
         public override List<String> GetListArchCurr(string pathParse, string regionPath)
         {
-            List<String> arch = new List<string>();
-            List<string> archtemp = GetListFtp(pathParse, Wftp223);
+            var arch = new List<string>();
+            var archtemp = GetListFtp(pathParse, Wftp223);
             foreach (var a in archtemp
                 .Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
             {
-                using (Archive223Context db = new Archive223Context())
+                using (var db = new Archive223Context())
                 {
                     var Archives = db.ArchiveContracts223Results.Where(p => p.Archive == a).ToList();
 
                     if (Archives.Count == 0)
                     {
-                        ArchiveContracts223 ar = new ArchiveContracts223 {Archive = a, Region = regionPath};
+                        var ar = new ArchiveContracts223 {Archive = a, Region = regionPath};
                         db.ArchiveContracts223Results.Add(ar);
                         arch.Add(a);
                         db.SaveChanges();

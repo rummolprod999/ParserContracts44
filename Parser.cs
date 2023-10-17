@@ -28,13 +28,13 @@ namespace ParserContracts44
 
         public DataTable GetRegions()
         {
-            string reg = "SELECT * FROM region";
+            var reg = "SELECT * FROM region";
             DataTable dt;
-            using (MySqlConnection connect = ConnectToDb.GetDbConnection())
+            using (var connect = ConnectToDb.GetDbConnection())
             {
                 connect.Open();
-                MySqlDataAdapter adapter = new MySqlDataAdapter(reg, connect);
-                DataSet ds = new DataSet();
+                var adapter = new MySqlDataAdapter(reg, connect);
+                var ds = new DataSet();
                 adapter.Fill(ds);
                 dt = ds.Tables[0];
             }
@@ -43,47 +43,47 @@ namespace ParserContracts44
 
         public virtual List<String> GetListArchLast(string pathParse, string regionPath)
         {
-            List<String> arch = new List<string>();
+            var arch = new List<string>();
 
             return arch;
         }
 
         public virtual List<String> GetListArchCurr(string pathParse, string regionPath)
         {
-            List<String> arch = new List<string>();
+            var arch = new List<string>();
 
             return arch;
         }
 
         public virtual List<String> GetListArchPrev(string pathParse, string regionPath)
         {
-            List<String> arch = new List<string>();
+            var arch = new List<string>();
 
             return arch;
         }
 
         public WorkWithFtp ClientFtp44_old()
         {
-            WorkWithFtp ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "free", "free");
+            var ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "free", "free");
             return ftpCl;
         }
         
         public WorkWithFtp ClientFtp223_old()
         {
-            WorkWithFtp ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "fz223free", "fz223free");
+            var ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "fz223free", "fz223free");
             return ftpCl;
         }
         
         public FtpClient ClientFtp44()
         {
-            FtpClient client = new FtpClient("ftp://ftp.zakupki.gov.ru", "free", "free");
+            var client = new FtpClient("ftp://ftp.zakupki.gov.ru", "free", "free");
             client.Connect();
             return client;
         }
         
         public FtpClient ClientFtp223()
         {
-            FtpClient client = new FtpClient("ftp.zakupki.gov.ru", "fz223free", "fz223free");
+            var client = new FtpClient("ftp.zakupki.gov.ru", "fz223free", "fz223free");
             client.Connect();
             return client;
         }
@@ -94,15 +94,15 @@ namespace ParserContracts44
 
         public string GetArch44(string arch, string pathParse)
         {
-            string file = "";
-            int count = 1;
+            var file = "";
+            var count = 1;
             while (true)
             {
                 try
                 {
-                    string fileOnServer = $"{pathParse}/{arch}";
+                    var fileOnServer = $"{pathParse}/{arch}";
                     file = $"{Program.TempPath}{Path.DirectorySeparatorChar}{arch}";
-                    FtpClient ftp = ClientFtp44();
+                    var ftp = ClientFtp44();
                     ftp.SetWorkingDirectory(pathParse);
                     ftp.DownloadFile(file, fileOnServer);
                     ftp.Disconnect();
@@ -137,15 +137,15 @@ namespace ParserContracts44
         
         public string GetArch223(string arch, string pathParse)
         {
-            string file = "";
-            int count = 1;
+            var file = "";
+            var count = 1;
             while (true)
             {
                 try
                 {
-                    string fileOnServer = $"{pathParse}/{arch}";
+                    var fileOnServer = $"{pathParse}/{arch}";
                     file = $"{Program.TempPath}{Path.DirectorySeparatorChar}{arch}";
-                    FtpClient ftp = ClientFtp223();
+                    var ftp = ClientFtp223();
                     ftp.SetWorkingDirectory(pathParse);
                     ftp.DownloadFile(file, fileOnServer);
                     ftp.Disconnect();
@@ -180,13 +180,13 @@ namespace ParserContracts44
         
         public List<string> GetListFtp(string PathParse, Func<WorkWithFtp> connectFtp)
         {
-            List<string> archtemp = new List<string>();
-            int count = 1;
+            var archtemp = new List<string>();
+            var count = 1;
             while (true)
             {
                 try
                 {
-                    WorkWithFtp ftp = connectFtp?.Invoke();
+                    var ftp = connectFtp?.Invoke();
                     ftp.ChangeWorkingDirectory(PathParse);
                     archtemp = ftp.ListDirectory();
                     if (count > 1)

@@ -27,9 +27,9 @@ namespace ParserContracts44
             DtRegion = GetRegions();
             foreach (DataRow row in DtRegion.Rows)
             {
-                List<String> arch = new List<string>();
-                string pathParse = "";
-                string regionPath = (string) row["path"];
+                var arch = new List<string>();
+                var pathParse = "";
+                var regionPath = (string) row["path"];
 
                 switch (Program.Periodparsing)
                 {
@@ -62,8 +62,8 @@ namespace ParserContracts44
 
         public override void GetListFileArch(string arch, string pathParse, string region)
         {
-            string filea = "";
-            string pathUnzip = "";
+            var filea = "";
+            var pathUnzip = "";
             filea = GetArch44(arch, pathParse);
             if (!String.IsNullOrEmpty(filea))
             {
@@ -72,8 +72,8 @@ namespace ParserContracts44
                 {
                     if (Directory.Exists(pathUnzip))
                     {
-                        DirectoryInfo dirInfo = new DirectoryInfo(pathUnzip);
-                        FileInfo[] filelist = dirInfo.GetFiles();
+                        var dirInfo = new DirectoryInfo(pathUnzip);
+                        var filelist = dirInfo.GetFiles();
                         foreach (var f in filelist)
                         {
                             try
@@ -93,7 +93,7 @@ namespace ParserContracts44
 
         public void Bolter(string f, string region)
         {
-            string fileLower = f.ToLower();
+            var fileLower = f.ToLower();
             if (!fileLower.EndsWith(".xml", StringComparison.Ordinal))
             {
                 return;
@@ -116,21 +116,21 @@ namespace ParserContracts44
 
         public void ParsingXml(string f, string region)
         {
-            FileInfo fileInf = new FileInfo(f);
+            var fileInf = new FileInfo(f);
             if (fileInf.Exists)
             {
-                using (StreamReader sr = new StreamReader(f, Encoding.Default))
+                using (var sr = new StreamReader(f, Encoding.Default))
                 {
                     string ftext;
                     ftext = sr.ReadToEnd();
                     ftext = ClearText.ClearString(ftext);
-                    XmlDocument doc = new XmlDocument();
+                    var doc = new XmlDocument();
                     doc.LoadXml(ftext);
-                    string jsons = JsonConvert.SerializeXmlNode(doc);
-                    JObject json = JObject.Parse(jsons);
+                    var jsons = JsonConvert.SerializeXmlNode(doc);
+                    var json = JObject.Parse(jsons);
                     /*WorkWithContract44 c = new WorkWithContract44(json, f, region);
                     c.Work44();*/
-                    WorkWithContract44Parralel p = new WorkWithContract44Parralel(json, f, region);
+                    var p = new WorkWithContract44Parralel(json, f, region);
                     p.Work44();
                     /*WorkWithContract44Async a = new WorkWithContract44Async(json, f, region);
                     a.Work44();*/
@@ -141,34 +141,34 @@ namespace ParserContracts44
 
         public override List<String> GetListArchLast(string pathParse, string regionPath)
         {
-            List<string> archtemp = GetListFtp(pathParse, Wftp44);
+            var archtemp = GetListFtp(pathParse, Wftp44);
             return archtemp.Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)).ToList();
         }
 
         public override List<String> GetListArchCurr(string pathParse, string regionPath)
         {
-            List<String> arch = new List<string>();
-            List<string> archtemp = GetListFtp(pathParse, Wftp44);
+            var arch = new List<string>();
+            var archtemp = GetListFtp(pathParse, Wftp44);
             foreach (var a in archtemp
                 .Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
             {
-                using (MySqlConnection connect = ConnectToDb.GetDbConnection())
+                using (var connect = ConnectToDb.GetDbConnection())
                 {
                     connect.Open();
-                    string selectArch =
+                    var selectArch =
                         $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
-                    MySqlCommand cmd = new MySqlCommand(selectArch, connect);
+                    var cmd = new MySqlCommand(selectArch, connect);
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archive", a);
                     cmd.Parameters.AddWithValue("@region", regionPath);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    bool resRead = reader.HasRows;
+                    var reader = cmd.ExecuteReader();
+                    var resRead = reader.HasRows;
                     reader.Close();
                     if (!resRead)
                     {
-                        string addArch =
+                        var addArch =
                             $"INSERT INTO {Program.Prefix}arhiv_contract SET arhiv = @archive, region =  @region";
-                        MySqlCommand cmd1 = new MySqlCommand(addArch, connect);
+                        var cmd1 = new MySqlCommand(addArch, connect);
                         cmd1.Prepare();
                         cmd1.Parameters.AddWithValue("@archive", a);
                         cmd1.Parameters.AddWithValue("@region", regionPath);
@@ -183,31 +183,31 @@ namespace ParserContracts44
 
         public override List<String> GetListArchPrev(string pathParse, string regionPath)
         {
-            List<String> arch = new List<string>();
-            List<string> archtemp = GetListFtp(pathParse, Wftp44);
+            var arch = new List<string>();
+            var archtemp = GetListFtp(pathParse, Wftp44);
             /*FtpClient ftp = ClientFtp44();*/
             //string serachd = $"{Program.LocalDate:yyyyMMdd}";
             foreach (var a in archtemp)
             {
-                string prevA = $"prev_{a}";
+                var prevA = $"prev_{a}";
 
-                using (MySqlConnection connect = ConnectToDb.GetDbConnection())
+                using (var connect = ConnectToDb.GetDbConnection())
                 {
                     connect.Open();
-                    string selectArch =
+                    var selectArch =
                         $"SELECT id FROM {Program.Prefix}arhiv_contract WHERE arhiv = @archive AND region =  @region";
-                    MySqlCommand cmd = new MySqlCommand(selectArch, connect);
+                    var cmd = new MySqlCommand(selectArch, connect);
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archive", prevA);
                     cmd.Parameters.AddWithValue("@region", regionPath);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    bool resRead = reader.HasRows;
+                    var reader = cmd.ExecuteReader();
+                    var resRead = reader.HasRows;
                     reader.Close();
                     if (!resRead)
                     {
-                        string addArch =
+                        var addArch =
                             $"INSERT INTO {Program.Prefix}arhiv_contract SET arhiv = @archive, region =  @region";
-                        MySqlCommand cmd1 = new MySqlCommand(addArch, connect);
+                        var cmd1 = new MySqlCommand(addArch, connect);
                         cmd1.Prepare();
                         cmd1.Parameters.AddWithValue("@archive", prevA);
                         cmd1.Parameters.AddWithValue("@region", regionPath);

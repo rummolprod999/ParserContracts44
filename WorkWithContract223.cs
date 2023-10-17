@@ -33,49 +33,49 @@ namespace ParserContracts44
 
         public void Work223()
         {
-            string xml = GetXml(File);
+            var xml = GetXml(File);
             //Console.WriteLine(J223);
-            int idCustomer = 0;
-            int idSupplier = 0;
-            JToken c = J223.SelectToken("performanceContract.body.item.performanceContractData");
+            var idCustomer = 0;
+            var idSupplier = 0;
+            var c = J223.SelectToken("performanceContract.body.item.performanceContractData");
             if (!c.IsNullOrEmpty())
             {
-                string idContract = ((string) c.SelectToken("guid") ?? "").Trim();
+                var idContract = ((string) c.SelectToken("guid") ?? "").Trim();
                 if (String.IsNullOrEmpty(idContract))
                 {
                     Log.Logger("У контракта нет id", File);
                     return;
                 }
-                List<JToken> products = GetElements(c, "positions.position");
-                List<JToken> products2 = GetElements(c, "docs.doc");
-                string pNumber = idContract;
-                string regnum = ((string) c.SelectToken("registrationNumber") ?? "").Trim();
+                var products = GetElements(c, "positions.position");
+                var products2 = GetElements(c, "docs.doc");
+                var pNumber = idContract;
+                var regnum = ((string) c.SelectToken("registrationNumber") ?? "").Trim();
                 //Console.WriteLine(regnum);
-                string signNumber = ((string) c.SelectToken("contractRegNumber") ?? "").Trim();
-                string currentContractStage = "";
-                string placing = "";
-                string Url = ((string) c.SelectToken("urlOOS") ?? "").Trim();
-                DateTime signDate = (DateTime?) c.SelectToken("contractInfo.contractDate") ?? DateTime.MinValue;
-                string singleCustomerReasonCode = "";
-                string singleCustomerReasonName = "";
-                string fz = "223";
-                string notificationNumber = ((string) c.SelectToken("contractInfo.name") ?? "").Trim();
-                int lotNumber = 1;
-                decimal contractPrice = (decimal?) c.SelectToken("positions.total") ?? 0.00m;
+                var signNumber = ((string) c.SelectToken("contractRegNumber") ?? "").Trim();
+                var currentContractStage = "";
+                var placing = "";
+                var Url = ((string) c.SelectToken("urlOOS") ?? "").Trim();
+                var signDate = (DateTime?) c.SelectToken("contractInfo.contractDate") ?? DateTime.MinValue;
+                var singleCustomerReasonCode = "";
+                var singleCustomerReasonName = "";
+                var fz = "223";
+                var notificationNumber = ((string) c.SelectToken("contractInfo.name") ?? "").Trim();
+                var lotNumber = 1;
+                var contractPrice = (decimal?) c.SelectToken("positions.total") ?? 0.00m;
                 if (contractPrice == 0.00m)
                 {
                     contractPrice = (decimal?) c.SelectToken("docs.total") ?? 0.00m;
                 }
-                string currency = "";
+                var currency = "";
                 if (products.Count > 0)
                     currency = ((string) products[0].SelectToken("currency.code") ?? "").Trim();
                 else if (products2.Count > 0)
                     currency = ((string) products2[0].SelectToken("currency.code") ?? "").Trim();
-                int versionNumber = (int?) c.SelectToken("version") ?? 0;
-                int cancel = 0;
-                DateTime executionStartDate = signDate;
-                DateTime executionEndDate = (DateTime?) c.SelectToken("createDateTime") ?? DateTime.MinValue;
-                using (Contract223Context db = new Contract223Context())
+                var versionNumber = (int?) c.SelectToken("version") ?? 0;
+                var cancel = 0;
+                var executionStartDate = signDate;
+                var executionEndDate = (DateTime?) c.SelectToken("createDateTime") ?? DateTime.MinValue;
+                using (var db = new Contract223Context())
                 {
                     if (!String.IsNullOrEmpty(regnum) && versionNumber != 0)
                     {
@@ -98,8 +98,8 @@ namespace ParserContracts44
                         }
                     }
                     Customer cus = null;
-                    string kppCustomer = ((string) c.SelectToken("customer.mainInfo.kpp") ?? "").Trim();
-                    string innCustomer = ((string) c.SelectToken("customer.mainInfo.inn") ?? "").Trim();
+                    var kppCustomer = ((string) c.SelectToken("customer.mainInfo.kpp") ?? "").Trim();
+                    var innCustomer = ((string) c.SelectToken("customer.mainInfo.inn") ?? "").Trim();
                     //Console.WriteLine(innCustomer);
                     if (!String.IsNullOrEmpty(innCustomer))
                     {
@@ -190,45 +190,45 @@ namespace ParserContracts44
                     }
                     if (products.Count > 0)
                     {
-                        List<Product> pr = new List<Product>();
+                        var pr = new List<Product>();
                         foreach (var pr223 in products)
                         {
                             var docs = GetElements(pr223, "docs.doc");
                             if (docs.Count == 0)
                                 continue;
-                            int okpd2GroupCode = 0;
-                            string okpd2GroupLevel1Code = "";
-                            int okpdGroupCode = 0;
-                            string okpdGroupLevel1Code = "";
-                            string nameP = ((string) docs[0].SelectToken("contractPosition.name") ?? "").Trim();
+                            var okpd2GroupCode = 0;
+                            var okpd2GroupLevel1Code = "";
+                            var okpdGroupCode = 0;
+                            var okpdGroupLevel1Code = "";
+                            var nameP = ((string) docs[0].SelectToken("contractPosition.name") ?? "").Trim();
                             //Console.WriteLine(nameP);
                             nameP = Regex.Replace(nameP, @"\s+", " ");
                             if (String.IsNullOrEmpty(nameP))
                                 nameP = "Нет названия";
-                            string okpd2Code =
+                            var okpd2Code =
                                 ((string) docs[0].SelectToken("contractPosition.okpd2.code") ?? "").Trim();
                             if (!String.IsNullOrEmpty(okpd2Code))
                             {
                                 GetOkpd(okpd2Code, out okpd2GroupCode, out okpd2GroupLevel1Code);
                             }
-                            string okpd2Name =
+                            var okpd2Name =
                                 ((string) docs[0].SelectToken("contractPosition.okpd2.name") ?? "").Trim();
-                            string okpdCode = ((string) docs[0].SelectToken("contractPosition.okpd.code") ?? "").Trim();
+                            var okpdCode = ((string) docs[0].SelectToken("contractPosition.okpd.code") ?? "").Trim();
                             if (!String.IsNullOrEmpty(okpdCode))
                             {
                                 GetOkpd(okpdCode, out okpdGroupCode, out okpdGroupLevel1Code);
                             }
-                            string okpdName = ((string) docs[0].SelectToken("contractPosition.okpd.name") ?? "").Trim();
-                            decimal sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
-                            decimal quantity = (decimal?) docs[0].SelectToken("qty") ?? 0.00m;
-                            decimal price = 0.00m;
+                            var okpdName = ((string) docs[0].SelectToken("contractPosition.okpd.name") ?? "").Trim();
+                            var sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
+                            var quantity = (decimal?) docs[0].SelectToken("qty") ?? 0.00m;
+                            var price = 0.00m;
                             if (quantity != 0.00m)
                             {
                                 price = sumP / quantity;
                             }
-                            string sid = "";
-                            string okei = ((string) docs[0].SelectToken("okei.name") ?? "").Trim();
-                            Product p223 = new Product
+                            var sid = "";
+                            var okei = ((string) docs[0].SelectToken("okei.name") ?? "").Trim();
+                            var p223 = new Product
                             {
                                 Name = nameP,
                                 Okpd2Code = okpd2Code,
@@ -254,42 +254,42 @@ namespace ParserContracts44
                     }
                     else if (products2.Count > 0)
                     {
-                        List<Product> pr = new List<Product>();
+                        var pr = new List<Product>();
                         foreach (var pr223 in products2)
                         {
-                            int okpd2GroupCode = 0;
-                            string okpd2GroupLevel1Code = "";
-                            int okpdGroupCode = 0;
-                            string okpdGroupLevel1Code = "";
-                            string nameP = ((string) pr223.SelectToken("contractPosition.name") ?? "").Trim();
+                            var okpd2GroupCode = 0;
+                            var okpd2GroupLevel1Code = "";
+                            var okpdGroupCode = 0;
+                            var okpdGroupLevel1Code = "";
+                            var nameP = ((string) pr223.SelectToken("contractPosition.name") ?? "").Trim();
                             //Console.WriteLine(nameP);
                             nameP = Regex.Replace(nameP, @"\s+", " ");
                             if (String.IsNullOrEmpty(nameP))
                                 nameP = "Нет названия";
-                            string okpd2Code =
+                            var okpd2Code =
                                 ((string) pr223.SelectToken("contractPosition.okpd2.code") ?? "").Trim();
                             if (!String.IsNullOrEmpty(okpd2Code))
                             {
                                 GetOkpd(okpd2Code, out okpd2GroupCode, out okpd2GroupLevel1Code);
                             }
-                            string okpd2Name =
+                            var okpd2Name =
                                 ((string) pr223.SelectToken("contractPosition.okpd2.name") ?? "").Trim();
-                            string okpdCode = ((string) pr223.SelectToken("contractPosition.okpd.code") ?? "").Trim();
+                            var okpdCode = ((string) pr223.SelectToken("contractPosition.okpd.code") ?? "").Trim();
                             if (!String.IsNullOrEmpty(okpdCode))
                             {
                                 GetOkpd(okpdCode, out okpdGroupCode, out okpdGroupLevel1Code);
                             }
-                            string okpdName = ((string) pr223.SelectToken("contractPosition.okpd.name") ?? "").Trim();
-                            decimal sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
-                            decimal quantity = (decimal?) pr223.SelectToken("qty") ?? 0.00m;
-                            decimal price = 0.00m;
+                            var okpdName = ((string) pr223.SelectToken("contractPosition.okpd.name") ?? "").Trim();
+                            var sumP = (decimal?) pr223.SelectToken("price") ?? 0.00m;
+                            var quantity = (decimal?) pr223.SelectToken("qty") ?? 0.00m;
+                            var price = 0.00m;
                             if (quantity != 0.00m)
                             {
                                 price = sumP / quantity;
                             }
-                            string sid = "";
-                            string okei = ((string) pr223.SelectToken("okei.name") ?? "").Trim();
-                            Product p223 = new Product
+                            var sid = "";
+                            var okei = ((string) pr223.SelectToken("okei.name") ?? "").Trim();
+                            var p223 = new Product
                             {
                                 Name = nameP,
                                 Okpd2Code = okpd2Code,

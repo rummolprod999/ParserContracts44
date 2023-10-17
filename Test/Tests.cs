@@ -17,7 +17,7 @@ namespace Test
         [Test]
         public void TestParser()
         {
-            ParserContr44 p = new ParserContr44("last");
+            var p = new ParserContr44("last");
             p.ParsingXml("contract_2366200608816001262_30400522.xml", "32");
             Assert.True(true);
         }
@@ -25,11 +25,11 @@ namespace Test
         [Test]
         public void TestOkpd()
         {
-            string okpd2GroupLevel1Code = "";
-            int okpd2GroupCode = 0;
+            var okpd2GroupLevel1Code = "";
+            var okpd2GroupCode = 0;
             void Test()
             {
-                WorkWithContract44 w = new WorkWithContract44(new JObject(), "test.file", "32");
+                var w = new WorkWithContract44(new JObject(), "test.file", "32");
                 w.GetOkpd("11.22.00", out okpd2GroupCode, out okpd2GroupLevel1Code);
             }
 

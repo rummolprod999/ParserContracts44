@@ -15,9 +15,9 @@ namespace ParserContracts44
 
         public string GetXml(string xml)
         {
-            string[] xmlt = xml.Split('/');
-            int t = xmlt.Length;
-            string txml = "";
+            var xmlt = xml.Split('/');
+            var t = xmlt.Length;
+            var txml = "";
             if (t > 1)
             {
                 txml = xmlt[t - 2] + "/" + xmlt[t - 1];
@@ -89,10 +89,10 @@ namespace ParserContracts44
         {
             if (okpd2Code.Length > 1)
             {
-                int dot = okpd2Code.IndexOf(".");
+                var dot = okpd2Code.IndexOf(".");
                 if (dot != -1)
                 {
-                    string okpd2GroupCodeTemp = okpd2Code.Substring(0, dot);
+                    var okpd2GroupCodeTemp = okpd2Code.Substring(0, dot);
                     okpd2GroupCodeTemp = okpd2GroupCodeTemp.Substring(0, 2);
                     int tempOkpd2GroupCode;
                     if (!Int32.TryParse(okpd2GroupCodeTemp, out tempOkpd2GroupCode))
@@ -112,7 +112,7 @@ namespace ParserContracts44
             }
             if (okpd2Code.Length > 3)
             {
-                int dot = okpd2Code.IndexOf(".");
+                var dot = okpd2Code.IndexOf(".");
                 if (dot != -1)
                 {
                     okpd2GroupLevel1Code = okpd2Code.Substring(dot + 1, 1);
@@ -130,7 +130,7 @@ namespace ParserContracts44
         
         public List<JToken> GetElements(JToken j, string s)
         {
-            List<JToken> els = new List<JToken>();
+            var els = new List<JToken>();
             var els_obj = j.SelectToken(s);
             if (els_obj != null && els_obj.Type != JTokenType.Null)
             {
