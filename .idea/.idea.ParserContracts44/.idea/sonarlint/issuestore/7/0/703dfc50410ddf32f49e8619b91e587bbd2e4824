@@ -1,0 +1,6 @@
+
+~csharpsquid:S2696 "UMake the enclosing instance method 'static' or remove this set on the 'static' field.(êí²Ÿıÿÿÿÿ8îêÔï³1
+~csharpsquid:S2696,"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(–—Øÿÿÿÿÿ8îêÔï³1
+~csharpsquid:S26968"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(ˆÕšÃúÿÿÿÿ8îêÔï³1
+qcsharpsquid:S2696D"HRemove this set, which updates a 'static' field from an instance method.(Í¢»øÿÿÿÿ8ïêÔï³1
+~csharpsquid:S2696P"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(Ş±öÄúÿÿÿÿ8ïêÔï³1

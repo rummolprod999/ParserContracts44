@@ -622,7 +622,7 @@ namespace ParserContracts44
                             $"fz = @fz, notification_number = @notification_number, lot_number = @lot_number, " +
                             $"contract_price = @contract_price, currency = @currency, version_number = @version_number, " +
                             $"execution_start_date = @execution_start_date, execution_end_date = @execution_end_date, " +
-                            $"id_customer = @id_customer, id_supplier = @id_supplier, xml = @xml, dop_info = @dop_info, external_Id = @external_Id, type_eis = @type_eis, type_fz = @type_fz, placement_Date = @placement_Date, publish_Date = @publish_Date, modification_description = @modification_description,  purchase_Code = @purchase_Code, contractProject_Number = @contractProject_Number, plan2020_Number = @plan2020_Number, position2020_Number = @position2020_Number, id_placer_org = @id_placer_org, protocol_Date = @protocol_Date, document_Base = @document_Base,  document_Code = @document_Code, contract_Subject = @contract_Subject, price_Type = @price_Type, price_currency_code = @price_currency_code, price_RUR = @price_RUR, price_VAT = @price_VAT, price_VATRUR = @price_VATRUR, print_Form = @print_Form  WHERE id = @id_od_contract";
+                            $"id_customer = @id_customer, id_supplier = @id_supplier, xml = @xml, dop_info = @dop_info, external_Id = @external_Id, type_eis = @type_eis, type_fz = @type_fz, placement_Date = @placement_Date, publish_Date = @publish_Date, modification_description = @modification_description,  purchase_Code = @purchase_Code, contractProject_Number = @contractProject_Number, plan2020_Number = @plan2020_Number, position2020_Number = @position2020_Number, protocol_Date = @protocol_Date, document_Base = @document_Base,  document_Code = @document_Code, contract_Subject = @contract_Subject, price_Type = @price_Type, price_currency_code = @price_currency_code, price_RUR = @price_RUR, price_VAT = @price_VAT, price_VATRUR = @price_VATRUR, print_Form = @print_Form  WHERE id = @id_od_contract";
                         var cmd9 = new MySqlCommand(updateContract, connect);
                         cmd9.Prepare();
                         cmd9.Parameters.AddWithValue("@p_number", pNumber);
@@ -657,7 +657,6 @@ namespace ParserContracts44
                         cmd9.Parameters.AddWithValue("@contractProject_Number", contractProject_Number);
                         cmd9.Parameters.AddWithValue("@plan2020_Number", plan2020_Number);
                         cmd9.Parameters.AddWithValue("@position2020_Number", position2020_Number);
-                        cmd9.Parameters.AddWithValue("@id_placer_org", id_placer_org);
                         cmd9.Parameters.AddWithValue("@protocol_Date", protocol_Date);
                         cmd9.Parameters.AddWithValue("@document_Base", document_Base);
                         cmd9.Parameters.AddWithValue("@document_Code", document_Code);
@@ -682,7 +681,7 @@ namespace ParserContracts44
                             $"fz = @fz, notification_number = @notification_number, lot_number = @lot_number, " +
                             $"contract_price = @contract_price, currency = @currency, version_number = @version_number, " +
                             $"execution_start_date = @execution_start_date, execution_end_date = @execution_end_date, " +
-                            $"id_customer = @id_customer, id_supplier = @id_supplier, cancel = @cancel, xml = @xml, dop_info = @dop_info, external_Id = @external_Id, type_eis = @type_eis, type_fz = @type_fz, placement_Date = @placement_Date, publish_Date = @publish_Date, modification_description = @modification_description,  purchase_Code = @purchase_Code, contractProject_Number = @contractProject_Number, plan2020_Number = @plan2020_Number, position2020_Number = @position2020_Number, id_placer_org = @id_placer_org, protocol_Date = @protocol_Date, document_Base = @document_Base,  document_Code = @document_Code, contract_Subject = @contract_Subject, price_Type = @price_Type, price_currency_code = @price_currency_code, price_RUR = @price_RUR, price_VAT = @price_VAT, price_VATRUR = @price_VATRUR, print_Form = @print_Form";
+                            $"id_customer = @id_customer, id_supplier = @id_supplier, cancel = @cancel, xml = @xml, dop_info = @dop_info, external_Id = @external_Id, type_eis = @type_eis, type_fz = @type_fz, placement_Date = @placement_Date, publish_Date = @publish_Date, modification_description = @modification_description,  purchase_Code = @purchase_Code, contractProject_Number = @contractProject_Number, plan2020_Number = @plan2020_Number, position2020_Number = @position2020_Number, protocol_Date = @protocol_Date, document_Base = @document_Base,  document_Code = @document_Code, contract_Subject = @contract_Subject, price_Type = @price_Type, price_currency_code = @price_currency_code, price_RUR = @price_RUR, price_VAT = @price_VAT, price_VATRUR = @price_VATRUR, print_Form = @print_Form";
                         var cmd10 = new MySqlCommand(insertContract, connect);
                         cmd10.Prepare();
                         cmd10.Parameters.AddWithValue("@id_contract", idContract);
@@ -718,7 +717,6 @@ namespace ParserContracts44
                         cmd10.Parameters.AddWithValue("@contractProject_Number", contractProject_Number);
                         cmd10.Parameters.AddWithValue("@plan2020_Number", plan2020_Number);
                         cmd10.Parameters.AddWithValue("@position2020_Number", position2020_Number);
-                        cmd10.Parameters.AddWithValue("@id_placer_org", id_placer_org);
                         cmd10.Parameters.AddWithValue("@protocol_Date", protocol_Date);
                         cmd10.Parameters.AddWithValue("@document_Base", document_Base);
                         cmd10.Parameters.AddWithValue("@document_Code", document_Code);

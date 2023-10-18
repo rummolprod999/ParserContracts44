@@ -1,0 +1,7 @@
+
+|csharpsquid:S3776"SRefactor this method to reduce its Cognitive Complexity from 160 to the 15 allowed.(š›’àøÿÿÿÿ8ÒæÔï³1
+csharpsquid:S1186¨"yAdd a nested comment explaining why this method is empty, throw a 'NotSupportedException' or complete the implementation.(ÚªøŒ8ÔæÔï³1
+Bcsharpsquid:S125N"Remove this commented out code.(ÙˆÙü8ÔæÔï³1
+Ccsharpsquid:S125ş"Remove this commented out code.(–¥š8ÕæÔï³1
+Hcsharpsquid:S125"Remove this commented out code.(ü½ô¾úÿÿÿÿ8ÕæÔï³1
+Hcsharpsquid:S125ƒ"Remove this commented out code.(…µœÅşÿÿÿÿ8ÕæÔï³1

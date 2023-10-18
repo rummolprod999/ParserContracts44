@@ -1,0 +1,9 @@
+
+@csharpsquid:S2933
+"Make '_password' 'readonly'.(ìÛôŞ8ÌãÔï³1
+@csharpsquid:S2933"Make '_userName' 'readonly'.(‡‡§÷8ÍãÔï³1
+Bcsharpsquid:S2933"Make '_bufferSize' 'readonly'.(ÜÅÄß8ÍãÔï³1
+mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(‚ğ€ùÿÿÿÿ8ÎãÔï³1
+hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(’ı¦Í8ÎãÔï³1
+hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(€ÊŞ¶8ÎãÔï³1
+mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(õé®üÿÿÿÿ8ÎãÔï³1

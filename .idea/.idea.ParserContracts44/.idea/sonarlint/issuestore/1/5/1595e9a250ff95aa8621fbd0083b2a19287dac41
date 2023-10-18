@@ -1,0 +1,20 @@
+
+xcsharpsquid:S1118	"OAdd a 'protected' constructor or the 'static' keyword to the class declaration.(İ­›Äÿÿÿÿÿ8éÔï³1
+Scsharpsquid:S1172}"*Remove this unused method parameter 'arg'.(ÇòèÙşÿÿÿÿ8éÔï³1
+Ocsharpsquid:S1172±"*Remove this unused method parameter 'arg'.(éå Í8éÔï³1
+Tcsharpsquid:S1172É"*Remove this unused method parameter 'arg'.(“ÁìÌûÿÿÿÿ8ŸéÔï³1
+hcsharpsquid:S2223E"DChange the visibility of 'FileLog' or make it 'const' or 'readonly'.(³Ü§ù8ŸéÔï³1
+scsharpsquid:S2223F"JChange the visibility of 'Periodparsing' or make it 'const' or 'readonly'.(œŞóùıÿÿÿÿ8ŸéÔï³1
+gcsharpsquid:S2223G"CChange the visibility of 'StrArg' or make it 'const' or 'readonly'.(Â¶ãö8ŸéÔï³1
+qcsharpsquid:S2223H"HChange the visibility of 'AddCustomer' or make it 'const' or 'readonly'.(…×‘›øÿÿÿÿ8ŸéÔï³1
+qcsharpsquid:S2223I"HChange the visibility of 'AddSupplier' or make it 'const' or 'readonly'.(ö‘š´şÿÿÿÿ8ŸéÔï³1
+lcsharpsquid:S2223J"HChange the visibility of 'AddContract' or make it 'const' or 'readonly'.(•£õ8ŸéÔï³1
+pcsharpsquid:S2223K"GChange the visibility of 'AddProduct' or make it 'const' or 'readonly'.(À»·Åÿÿÿÿÿ8ŸéÔï³1
+tcsharpsquid:S2223L"KChange the visibility of 'UpdateContract' or make it 'const' or 'readonly'.(Éô§Õıÿÿÿÿ8ŸéÔï³1
+lcsharpsquid:S2223M"HChange the visibility of 'PathProgram' or make it 'const' or 'readonly'.(áØÑ…8 éÔï³1
+tcsharpsquid:S2223N"KChange the visibility of 'TableContracts' or make it 'const' or 'readonly'.(Ø®ì°şÿÿÿÿ8 éÔï³1
+scsharpsquid:S2223O"JChange the visibility of 'TableProducts' or make it 'const' or 'readonly'.(ªœ€Ôøÿÿÿÿ8 éÔï³1
+ocsharpsquid:S2223P"LChange the visibility of 'TableArchive223' or make it 'const' or 'readonly'.(ÿÀâj8 éÔï³1
+Hcsharpsquid:S125½"Remove this commented out code.(ÊĞåúÿÿÿÿ8 éÔï³1
+Bcsharpsquid:S125¿"Remove this commented out code.(¤Äø~8 éÔï³1
+Hcsharpsquid:S125Õ"Remove this commented out code.(¦°ìÁøÿÿÿÿ8 éÔï³1

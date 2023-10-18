@@ -1,0 +1,16 @@
+
+vcsharpsquid:S3776""RRefactor this method to reduce its Cognitive Complexity from 83 to the 15 allowed.(ı£¤Ï8©İÔï³1
+ccsharpsquid:S1854a":Remove this useless assignment to local variable 'cancel'.(Áô©ıÿÿÿÿ8ªİÔï³1
+acsharpsquid:S3264"8Remove the unused event 'AddSupplierEvent' or invoke it.(‰ñÏÖùÿÿÿÿ8ªİÔï³1
+acsharpsquid:S3264"8Remove the unused event 'AddCustomerEvent' or invoke it.(…¼­üÿÿÿÿ8ªİÔï³1
+dcsharpsquid:S3264";Remove the unused event 'UpdateContractEvent' or invoke it.(óš¹÷şÿÿÿÿ8ªİÔï³1
+acsharpsquid:S3264"8Remove the unused event 'AddContractEvent' or invoke it.(û°ûÿÿÿÿ8ªİÔï³1
+Zcsharpsquid:S3264"7Remove the unused event 'AddProductEvent' or invoke it.(´“98ªİÔï³1
+Gcsharpsquid:S125%"Remove this commented out code.(îÛéÔúÿÿÿÿ8ªİÔï³1
+Bcsharpsquid:S1255"Remove this commented out code.(Ü­‰æ8ªİÔï³1
+Gcsharpsquid:S125T"Remove this commented out code.(€ëÙ¬şÿÿÿÿ8«İÔï³1
+Gcsharpsquid:S125g"Remove this commented out code.(ãÍ¨…úÿÿÿÿ8«İÔï³1
+Gcsharpsquid:S125l"Remove this commented out code.(»‘ÜÄüÿÿÿÿ8«İÔï³1
+Ccsharpsquid:S125Ì"Remove this commented out code.(ÉÖ’·8«İÔï³1
+Ccsharpsquid:S125‰"Remove this commented out code.(ÉÖ’·8¬İÔï³1
+Hcsharpsquid:S125À"Remove this commented out code.(ŒÌË¢ıÿÿÿÿ8¬İÔï³1
