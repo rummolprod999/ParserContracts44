@@ -90,7 +90,21 @@ namespace ParserContracts44
                 ((string) J44.SelectToken("export.contract.executionPeriod.startDate") ?? "").Trim();
             var executionEndDate = ((string) J44.SelectToken("export.contract.executionPeriod.endDate") ??
                                     "").Trim();
-            var dopInfo = J44.SelectToken("export.contract.enforcement")?.ToString() ?? "{}";
+            var dopInfo1 = J44.SelectToken("export.contract.enforcement")?.ToString() ?? null;
+            var dopInfo2 = J44.SelectToken("export.contract.finances")?.ToString() ?? null;
+            String dopInfo = null;
+            if (!string.IsNullOrEmpty(dopInfo1))
+            {
+                dopInfo = dopInfo1;
+            }
+            if (!string.IsNullOrEmpty(dopInfo2))
+            {
+                dopInfo += dopInfo2;
+            }
+            if (dopInfo == null)
+            {
+                dopInfo = "{}";
+            }
             var external_Id = ((string) J44.SelectToken("export.contract.externalId") ?? "").Trim();
             var type_eis = "contract";
             var type_Fz = "44";
@@ -145,10 +159,13 @@ namespace ParserContracts44
                         }
                     }
                     var customerRegnumber = ((string) J44.SelectToken("export.contract.customer.regNum") ?? "").Trim();
+                    var cusDopInfo = "";
+                    var customerDopInfo = J44.SelectToken("export.contract.customer.customerAccountsDetails")
+                        ?.ToString() ?? "{}";
                     if (!String.IsNullOrEmpty(customerRegnumber))
                     {
                         var selectCustomer =
-                            $"SELECT id FROM od_customer WHERE regNumber = @customer_regnumber";
+                            $"SELECT id, dop_info FROM od_customer WHERE regNumber = @customer_regnumber";
                         var cmd3 = new MySqlCommand(selectCustomer, connect);
                         cmd3.Prepare();
                         cmd3.Parameters.AddWithValue("@customer_regnumber", customerRegnumber);
@@ -158,7 +175,18 @@ namespace ParserContracts44
                         {
                             reader.Read();
                             idCustomer = reader.GetInt32("id");
+                            cusDopInfo = reader.GetString("dop_info");
                             reader.Close();
+                            if (cusDopInfo == "{}" && customerDopInfo != "{}")
+                            {
+                                var addCustomer =
+                                    $"UPDATE od_customer SET dop_info = @dop_info WHERE id = @id";
+                                var cmd4 = new MySqlCommand(addCustomer, connect);
+                                cmd4.Prepare();
+                                cmd4.Parameters.AddWithValue("@dop_info", customerDopInfo);
+                                cmd4.Parameters.AddWithValue("@id", idCustomer);
+                                cmd4.ExecuteNonQuery();
+                            }
                         }
                         else
                         {
@@ -180,8 +208,6 @@ namespace ParserContracts44
                             var faxCustomer = "";
                             var emailCustomer = "";
                             var contactNameCustomer = "";
-                            var customerDopInfo = J44.SelectToken("export.contract.customer.customerAccountsDetails")
-                                ?.ToString() ?? "{}";
                             var addCustomer =
                                 $"INSERT INTO od_customer SET regNumber = @customer_regnumber, inn = @inn_customer, kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer,contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer,ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer,postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer,email = @email_customer, contact_name = @contact_name_customer, short_name = @short_name, dop_info = @dop_info";
                             var cmd4 = new MySqlCommand(addCustomer, connect);
@@ -374,9 +400,9 @@ namespace ParserContracts44
                                     var postalAddressSupplier = "";
                                     var contactfaxSupplier = "";
                                     var contactNameSupplier = "";
-                                    var supplierDopInfo = "";
+                                    var supplierDopInfo = sup.SelectToken("supplierAccountsDetails")?.ToString() ?? "{}";
                                     var addSupplier =
-                                        $"INSERT INTO od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, contracts_count = @contracts_count, contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, organizationName = @organizationName,postal_address = @postal_address, contactPhone = @contactPhone, contactFax = @contactFax, contactEMail = @contactEMail, contact_name = @contact_name, organizationShortName = @organizationShortName";
+                                        $"INSERT INTO od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, contracts_count = @contracts_count, contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, organizationName = @organizationName,postal_address = @postal_address, contactPhone = @contactPhone, contactFax = @contactFax, contactEMail = @contactEMail, contact_name = @contact_name, organizationShortName = @organizationShortName, dop_info = @dop_info";
                                     var cmd6 = new MySqlCommand(addSupplier, connect);
                                     cmd6.Prepare();
                                     cmd6.Parameters.AddWithValue("@supplier_inn", supplierInn);
@@ -394,6 +420,7 @@ namespace ParserContracts44
                                     cmd6.Parameters.AddWithValue("@contactEMail", contactemailSupplier);
                                     cmd6.Parameters.AddWithValue("@contact_name", contactNameSupplier);
                                     cmd6.Parameters.AddWithValue("@organizationShortName", organizationshortnameSupplier);
+                                    cmd6.Parameters.AddWithValue("@dop_info", supplierDopInfo);
                                     var addS = cmd6.ExecuteNonQuery();
                                     idSupplier = (int) cmd6.LastInsertedId;
                                     AddSupplierEvent?.Invoke(addS);
@@ -404,6 +431,7 @@ namespace ParserContracts44
                     var testSupNew = J44.SelectToken("export.contract.suppliersInfo");
                     if (testSupNew != null && testSupNew.Type != JTokenType.Null)
                     {
+                        var supplierDopInfo = testSupNew.SelectToken("supplierAccountsDetails")?.ToString() ?? "{}";
                         var suppliers = testSupNew.SelectToken("supplierInfo") ?? new JArray();
                         var enumerable = suppliers as IList<JToken> ?? suppliers.ToList();
                         if (enumerable.Any())
@@ -455,8 +483,10 @@ namespace ParserContracts44
                                         ((string) sup.SelectToken(
                                             "individualPersonForeignState.registerInRFTaxBodies.KPP") ?? "").Trim();
                                 }
+
+                                var supDopInfo = "";
                                 var selectSupplier =
-                                    $"SELECT id FROM od_supplier WHERE inn = @supplier_inn AND kpp = @kpp_supplier";
+                                    $"SELECT id, dop_info FROM od_supplier WHERE inn = @supplier_inn AND kpp = @kpp_supplier";
                                 var cmd5 = new MySqlCommand(selectSupplier, connect);
                                 cmd5.Prepare();
                                 cmd5.Parameters.AddWithValue("@supplier_inn", supplierInn);
@@ -467,7 +497,18 @@ namespace ParserContracts44
                                 {
                                     reader.Read();
                                     idSupplier = reader.GetInt32("id");
+                                    supDopInfo = reader.GetString("dop_info");
                                     reader.Close();
+                                    if (supDopInfo == "{}" && supplierDopInfo != "{}")
+                                    {
+                                        var addS =
+                                            $"UPDATE od_supplier SET dop_info = @dop_info WHERE id = @id";
+                                        var cmd4 = new MySqlCommand(addS, connect);
+                                        cmd4.Prepare();
+                                        cmd4.Parameters.AddWithValue("@dop_info", supplierDopInfo);
+                                        cmd4.Parameters.AddWithValue("@id", idSupplier);
+                                        cmd4.ExecuteNonQuery();
+                                    }
                                 }
                                 else
                                 {
@@ -566,7 +607,6 @@ namespace ParserContracts44
                                     var postalAddressSupplier = "";
                                     var contactfaxSupplier = "";
                                     var contactNameSupplier = "";
-                                    var supplierDopInfo = sup.SelectToken("supplierAccountsDetails")?.ToString() ?? "{}";
                                     var addSupplier =
                                         $"INSERT INTO od_supplier SET inn = @supplier_inn, kpp = @kpp_supplier, contracts_count = @contracts_count, contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, organizationName = @organizationName,postal_address = @postal_address, contactPhone = @contactPhone, contactFax = @contactFax, contactEMail = @contactEMail, contact_name = @contact_name, organizationShortName = @organizationShortName, dop_info = @dop_info";
                                     var cmd6 = new MySqlCommand(addSupplier, connect);
@@ -815,6 +855,8 @@ namespace ParserContracts44
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
+                Console.WriteLine(e.Message);
+                Console.WriteLine(File);
                 throw;
             }
         }
@@ -834,11 +876,19 @@ namespace ParserContracts44
                 if (String.IsNullOrEmpty(nameP))
                     nameP = "Нет названия";
                 var okpd2Code = ((string) prod.SelectToken("OKPD2.code") ?? "").Trim();
+                if (String.IsNullOrEmpty(okpd2Code))
+                {
+                    okpd2Code = ((string) prod.SelectToken("KTRU.OKPD2.code") ?? "").Trim();
+                }
                 if (!String.IsNullOrEmpty(okpd2Code))
                 {
                     GetOkpd(okpd2Code, out okpd2GroupCode, out okpd2GroupLevel1Code);
                 }
                 var okpd2Name = ((string) prod.SelectToken("OKPD2.name") ?? "").Trim();
+                if (String.IsNullOrEmpty(okpd2Name))
+                {
+                    okpd2Name = ((string) prod.SelectToken("KTRU.OKPD2.name") ?? "").Trim();
+                }
                 var okpdCode = ((string) prod.SelectToken("OKPD.code") ?? "").Trim();
                 if (!String.IsNullOrEmpty(okpdCode))
                 {
