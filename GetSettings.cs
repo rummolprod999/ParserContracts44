@@ -9,6 +9,8 @@ namespace ParserContracts44
         public readonly string Database;
         public readonly string TempPathContracts44;
         public readonly string LogPathContracts44;
+        public readonly string TempPathCPD44;
+        public readonly string LogPathCPDs44;
         public readonly string TempPathContracts223;
         public readonly string LogPathContracts223;
         public readonly string Prefix;
@@ -44,6 +46,12 @@ namespace ParserContracts44
                         case "logdir_contracts223":
                             LogPathContracts223 = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
                             break;
+                        case "tempdir_cpd":
+                            TempPathCPD44 = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
+                            break;
+                        case "logdir_cpd":
+                            LogPathCPDs44 = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
+                            break;
                         case "prefix":
                             Prefix = xnode.InnerText;
                             break;
@@ -66,7 +74,7 @@ namespace ParserContracts44
                 }
             }
 
-            if (String.IsNullOrEmpty(LogPathContracts44) || String.IsNullOrEmpty(TempPathContracts44) || String.IsNullOrEmpty(Database) || String.IsNullOrEmpty(UserDb) || String.IsNullOrEmpty(Server) || String.IsNullOrEmpty(Years) || String.IsNullOrEmpty(TempPathContracts223) || String.IsNullOrEmpty(LogPathContracts223))
+            if (String.IsNullOrEmpty(LogPathContracts44) || String.IsNullOrEmpty(TempPathContracts44) || String.IsNullOrEmpty(Database) || String.IsNullOrEmpty(UserDb) || String.IsNullOrEmpty(Server) || String.IsNullOrEmpty(Years) || String.IsNullOrEmpty(TempPathContracts223) || String.IsNullOrEmpty(LogPathContracts223)|| String.IsNullOrEmpty(TempPathCPD44) || String.IsNullOrEmpty(LogPathCPDs44))
             {
                 Console.WriteLine("Некоторые поля в файле настроек пустые");
                 Environment.Exit(0);

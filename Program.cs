@@ -11,6 +11,8 @@ namespace ParserContracts44
         private static string _database;
         private static string _tempPath44;
         private static string _logPath44;
+        private static string _tempPathCPD44;
+        private static string _logPathCPD44;
         private static string _tempPath223;
         private static string _logPath223;
         private static string _prefix;
@@ -34,6 +36,10 @@ namespace ParserContracts44
                     case TypeArguments.Last223:
                     case TypeArguments.Daily223:
                         return _tempPath223;
+                    case TypeArguments.CurrCPD44:
+                    case TypeArguments.PrevCPD44:
+                    case TypeArguments.LastCPD44:
+                        return _tempPathCPD44;
                     default:
                         return "";
                 }
@@ -53,6 +59,10 @@ namespace ParserContracts44
                     case TypeArguments.Last223:
                     case TypeArguments.Daily223:
                         return _logPath223;
+                    case TypeArguments.CurrCPD44:
+                    case TypeArguments.PrevCPD44:
+                    case TypeArguments.LastCPD44:
+                        return _logPathCPD44;
                     default:
                         return "";
                 }
@@ -84,7 +94,7 @@ namespace ParserContracts44
             if (args.Length == 0)
             {
                 Console.WriteLine(
-                    "Недостаточно аргументов для запуска, используйте last44 или prev44 или curr44, last223, daily223 в качестве аргумента");
+                    "Недостаточно аргументов для запуска, используйте last44 или prev44 или curr44, last223, daily223, currcpd44, prevcpd44, lastcpd44 в качестве аргумента");
                 return;
             }
 
@@ -109,6 +119,21 @@ namespace ParserContracts44
                     Init(Periodparsing);
                     ParserC44(Periodparsing);
                     break;
+                case "lastcpd44":
+                    Periodparsing = TypeArguments.LastCPD44;
+                    Init(Periodparsing);
+                    ParserCPD44(Periodparsing);
+                    break;
+                case "prevcpd44":
+                    Periodparsing = TypeArguments.PrevCPD44;
+                    Init(Periodparsing);
+                    ParserCPD44(Periodparsing);
+                    break;
+                case "currcpd44":
+                    Periodparsing = TypeArguments.CurrCPD44;
+                    Init(Periodparsing);
+                    ParserCPD44(Periodparsing);
+                    break;
                 case "daily223":
                     Periodparsing = TypeArguments.Daily223;
                     Init(Periodparsing);
@@ -127,12 +152,14 @@ namespace ParserContracts44
             var set = new GetSettings();
             _database = set.Database;
             _logPath44 = set.LogPathContracts44;
+            _logPathCPD44 = set.LogPathCPDs44;
             _logPath223 = set.LogPathContracts223;
             _prefix = set.Prefix;
             _user = set.UserDb;
             _pass = set.PassDb;
             _tempPath44 = set.TempPathContracts44;
             _tempPath223 = set.TempPathContracts223;
+            _tempPathCPD44 = set.TempPathCPD44;
             _server = set.Server;
             _port = set.Port;
             var tmp = set.Years;
@@ -171,6 +198,11 @@ namespace ParserContracts44
                 case TypeArguments.Daily223:
                     FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Contracts223_{LocalDate:dd_MM_yyyy}.log";
                     break;
+                case TypeArguments.CurrCPD44:
+                case TypeArguments.PrevCPD44:
+                case TypeArguments.LastCPD44:
+                    FileLog = $"{LogPath}{Path.DirectorySeparatorChar}ContractProcedureDocs44_{LocalDate:dd_MM_yyyy}.log";
+                    break;
             }
         }
 
@@ -196,6 +228,23 @@ namespace ParserContracts44
             Log.Logger("Обновлено contract", UpdateContract);
             Log.Logger("Добавлено product", AddProduct);
             Log.Logger("Время окончания парсинга Contracts44");
+        }
+        
+        private static void ParserCPD44(TypeArguments arg)
+        {
+            Log.Logger("Время начала парсинга ContractProcedureDocs44");
+            try
+            {
+                var c44 = new ParserCPD44(StrArg);
+                c44.Parsing();
+            }
+            catch (Exception e)
+            {
+                Log.Logger(e);
+            }
+            Log.Logger("Добавлено contract", AddContract);
+            Log.Logger("Обновлено contract", UpdateContract);
+            Log.Logger("Время окончания парсинга ContractProcedureDocs44");
         }
 
         private static void ParserC223(TypeArguments arg)

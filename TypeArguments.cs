@@ -6,6 +6,9 @@
         Curr44,
         Last44,
         Last223,
-        Daily223
+        Daily223,
+        PrevCPD44,
+        CurrCPD44,
+        LastCPD44,
     };
 }

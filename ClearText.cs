@@ -13,6 +13,9 @@
             st = st.Replace("ns7:", "");
             st = st.Replace("ns8:", "");
             st = st.Replace("ns9:", "");
+            st = st.Replace("ns10:", "");
+            st = st.Replace("ns11:", "");
+            st = st.Replace("ns12:", "");
             st = st.Replace("ns1:", "");
             st = st.Replace("oos:", "");
             return st;

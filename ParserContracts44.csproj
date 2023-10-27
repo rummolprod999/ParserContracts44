@@ -73,6 +73,7 @@
     <Compile Include="Contract.cs" />
     <Compile Include="Contract223.cs" />
     <Compile Include="Contract223Context.cs" />
+    <Compile Include="CPD44.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="GetSettings.cs" />
     <Compile Include="IParser.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Parser.cs" />
     <Compile Include="ParserContr223.cs" />
     <Compile Include="ParserContr44.cs" />
+    <Compile Include="ParserCPD44.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
