@@ -38,3 +38,11 @@ A
 Log.cs,5/5/55035e0bc85c983ce2aeea3d9c94ee10e059ffc2
 ;
 Unzipped.cs,6/7/676a4d319fd73c3818d1b1eab0eb556bf03ff130
+@
+TypeArguments.cs,e/1/e1eef1c876839e4632119827e3f0d96e55e7ebcc
+H
+ParserContracts44.csproj,2/7/27b93a7291f2a30a55b7c5f8534a392ec72a15ad
+>
+ParserCPD44.cs,9/b/9b1334fa704dd72948b47bf403bc707c2222eeb3
+8
+CPD44.cs,f/a/fa21b958b369acce474ad284252da95d2c70cf8a

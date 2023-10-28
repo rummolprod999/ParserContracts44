@@ -158,7 +158,7 @@ namespace ParserContracts44
                 cmd9.Parameters.AddWithValue("@cancelDate", cancelDate);
                 var updC = cmd9.ExecuteNonQuery();
                 var idOdContract = (int)cmd9.LastInsertedId;
-                UpdateContractEvent?.Invoke(updC);
+                AddContractEvent?.Invoke(updC);
                 var attach =
                     GetElements(root, "attachmentsInfo.attachmentInfo");
                 attach.AddRange(GetElements(root, "noticeAttachmentsInfo.attachmentInfo"));
