@@ -7,6 +7,8 @@
 	<logdir_contracts223>log_contracts223</logdir_contracts223>
 	<tempdir_cpd>temp_cpd</tempdir_cpd>
 	<logdir_cpd>log_cpd</logdir_cpd> 
+	<tempdir_eacts44>temp_eacts44</tempdir_eacts44>
+	<logdir_eacts44>log_eacts44</logdir_eacts44> 
 	<prefix></prefix>
 	<userdb>parser</userdb>
 	<passdb>Dft56Point</passdb>

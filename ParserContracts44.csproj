@@ -75,6 +75,7 @@
     <Compile Include="Contract223Context.cs" />
     <Compile Include="CPD44.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Eacts44.cs" />
     <Compile Include="GetSettings.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="JsonExtensions.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="ParserContr223.cs" />
     <Compile Include="ParserContr44.cs" />
     <Compile Include="ParserCPD44.cs" />
+    <Compile Include="ParserEacts44.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

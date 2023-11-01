@@ -10,5 +10,8 @@
         PrevCPD44,
         CurrCPD44,
         LastCPD44,
+        PrevEacts44,
+        CurrEacts44,
+        LastEacts44,
     };
 }

@@ -13,6 +13,8 @@ namespace ParserContracts44
         private static string _logPath44;
         private static string _tempPathCPD44;
         private static string _logPathCPD44;
+        private static string _tempPathEacts44;
+        private static string _logPathEacts44;
         private static string _tempPath223;
         private static string _logPath223;
         private static string _prefix;
@@ -40,6 +42,10 @@ namespace ParserContracts44
                     case TypeArguments.PrevCPD44:
                     case TypeArguments.LastCPD44:
                         return _tempPathCPD44;
+                    case TypeArguments.CurrEacts44:
+                    case TypeArguments.PrevEacts44:
+                    case TypeArguments.LastEacts44:
+                        return _tempPathEacts44;
                     default:
                         return "";
                 }
@@ -63,6 +69,10 @@ namespace ParserContracts44
                     case TypeArguments.PrevCPD44:
                     case TypeArguments.LastCPD44:
                         return _logPathCPD44;
+                    case TypeArguments.CurrEacts44:
+                    case TypeArguments.PrevEacts44:
+                    case TypeArguments.LastEacts44:
+                        return _logPathEacts44;
                     default:
                         return "";
                 }
@@ -94,7 +104,7 @@ namespace ParserContracts44
             if (args.Length == 0)
             {
                 Console.WriteLine(
-                    "Недостаточно аргументов для запуска, используйте last44 или prev44 или curr44, last223, daily223, currcpd44, prevcpd44, lastcpd44 в качестве аргумента");
+                    "Недостаточно аргументов для запуска, используйте last44 или prev44 или curr44, last223, daily223, currcpd44, prevcpd44, lastcpd44,curreacts44, preveacts44, lasteacts44 в качестве аргумента");
                 return;
             }
 
@@ -134,6 +144,21 @@ namespace ParserContracts44
                     Init(Periodparsing);
                     ParserCPD44(Periodparsing);
                     break;
+                case "lasteacts44":
+                    Periodparsing = TypeArguments.LastEacts44;
+                    Init(Periodparsing);
+                    ParserEacts44(Periodparsing);
+                    break;
+                case "preveacts44":
+                    Periodparsing = TypeArguments.PrevEacts44;
+                    Init(Periodparsing);
+                    ParserEacts44(Periodparsing);
+                    break;
+                case "curreacts44":
+                    Periodparsing = TypeArguments.CurrEacts44;
+                    Init(Periodparsing);
+                    ParserEacts44(Periodparsing);
+                    break;
                 case "daily223":
                     Periodparsing = TypeArguments.Daily223;
                     Init(Periodparsing);
@@ -153,6 +178,7 @@ namespace ParserContracts44
             _database = set.Database;
             _logPath44 = set.LogPathContracts44;
             _logPathCPD44 = set.LogPathCPDs44;
+            _logPathEacts44 = set.LogPathEacts44;
             _logPath223 = set.LogPathContracts223;
             _prefix = set.Prefix;
             _user = set.UserDb;
@@ -160,6 +186,7 @@ namespace ParserContracts44
             _tempPath44 = set.TempPathContracts44;
             _tempPath223 = set.TempPathContracts223;
             _tempPathCPD44 = set.TempPathCPD44;
+            _tempPathEacts44 = set.TempPathEacts44;
             _server = set.Server;
             _port = set.Port;
             var tmp = set.Years;
@@ -202,6 +229,11 @@ namespace ParserContracts44
                 case TypeArguments.PrevCPD44:
                 case TypeArguments.LastCPD44:
                     FileLog = $"{LogPath}{Path.DirectorySeparatorChar}ContractProcedureDocs44_{LocalDate:dd_MM_yyyy}.log";
+                    break;
+                case TypeArguments.CurrEacts44:
+                case TypeArguments.PrevEacts44:
+                case TypeArguments.LastEacts44:
+                    FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Eacts44_{LocalDate:dd_MM_yyyy}.log";
                     break;
             }
         }
@@ -270,6 +302,23 @@ namespace ParserContracts44
             Log.Logger("Обновлено contract", UpdateContract);
             Log.Logger("Добавлено product", AddProduct);
             Log.Logger("Время окончания парсинга Contracts223");
+        }
+        
+        private static void ParserEacts44(TypeArguments arg)
+        {
+            Log.Logger("Время начала парсинга Eacts44");
+            try
+            {
+                var c44 = new ParserEacts44(StrArg);
+                c44.Parsing();
+            }
+            catch (Exception e)
+            {
+                Log.Logger(e);
+            }
+            Log.Logger("Добавлено Eacts44", AddContract);
+            Log.Logger("Обновлено Eacts44", UpdateContract);
+            Log.Logger("Время окончания парсинга Eacts44");
         }
     }
 }

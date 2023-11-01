@@ -11,36 +11,46 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts44
 {
-    public class ParserCPD44: Parser
+    public class ParserEacts44 : Parser
     {
         protected DataTable DtRegion;
         public readonly string[] ExceptFile = new String[0];
 
-        public ParserCPD44(string arg) : base(arg)
+        public readonly string[] paths = new[] { "customerDocs", "supplierTitles" };
+
+        public ParserEacts44(string a) : base(a)
         {
         }
 
         public override void Parsing()
         {
             DtRegion = GetRegions();
+            foreach (var path in paths)
+            {
+                parse(path);
+            }
+        }
+
+        private void parse(string path)
+        {
             foreach (DataRow row in DtRegion.Rows)
             {
                 var arch = new List<string>();
                 var pathParse = "";
-                var regionPath = (string) row["path"];
+                var regionPath = (string)row["path"];
 
                 switch (Program.Periodparsing)
                 {
-                    case TypeArguments.LastCPD44:
-                        pathParse = $"/fcs_regions/{regionPath}/ContractProcedureDocs/";
+                    case TypeArguments.LastEacts44:
+                        pathParse = $"/fcs_regions/{regionPath}/eacts/{path}/";
                         arch = GetListArchLast(pathParse, regionPath);
                         break;
-                    case TypeArguments.CurrCPD44:
-                        pathParse = $"/fcs_regions/{regionPath}/ContractProcedureDocs/currMonth/";
+                    case TypeArguments.CurrEacts44:
+                        pathParse = $"/fcs_regions/{regionPath}/eacts/{path}/currMonth/";
                         arch = GetListArchCurr(pathParse, regionPath);
                         break;
-                    case TypeArguments.PrevCPD44:
-                        pathParse = $"/fcs_regions/{regionPath}/ContractProcedureDocs/prevMonth/";
+                    case TypeArguments.PrevEacts44:
+                        pathParse = $"/fcs_regions/{regionPath}/eacts/{path}/prevMonth/";
                         arch = GetListArchPrev(pathParse, regionPath);
                         break;
                 }
@@ -53,7 +63,7 @@ namespace ParserContracts44
 
                 foreach (var v in arch)
                 {
-                    GetListFileArch(v, pathParse, (string) row["conf"]);
+                    GetListFileArch(v, pathParse, (string)row["conf"]);
                 }
             }
         }
@@ -83,6 +93,7 @@ namespace ParserContracts44
                                 Log.Logger("Не удалось обработать файл", f, filea);
                             }
                         }
+
                         dirInfo.Delete(true);
                     }
                 }
@@ -117,7 +128,8 @@ namespace ParserContracts44
             var fileInf = new FileInfo(f);
             if (fileInf.Exists)
             {
-                using (var sr = new StreamReader(f, Encoding.Default))
+                var srcEncoding = Encoding.GetEncoding(1251);
+                using (var sr = new StreamReader(f, srcEncoding))
                 {
                     string ftext;
                     ftext = sr.ReadToEnd();
@@ -126,7 +138,7 @@ namespace ParserContracts44
                     doc.LoadXml(ftext);
                     var jsons = JsonConvert.SerializeXmlNode(doc);
                     var json = JObject.Parse(jsons);
-                    var p = new CPD44(json, f, region);
+                    var p = new Eacts44(json, f, region);
                     p.Work44();
                 }
             }
@@ -144,13 +156,13 @@ namespace ParserContracts44
             var arch = new List<string>();
             var archtemp = GetListFtp(pathParse, Wftp44);
             foreach (var a in archtemp
-                .Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
+                         .Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
             {
                 using (var connect = ConnectToDb.GetDbConnection())
                 {
                     connect.Open();
                     var selectArch =
-                        $"SELECT id FROM {Program.Prefix}arhiv_contractProcedureDocs44 WHERE arhiv = @archive AND region =  @region";
+                        $"SELECT id FROM {Program.Prefix}arhiv_eacts44 WHERE arhiv = @archive AND region =  @region";
                     var cmd = new MySqlCommand(selectArch, connect);
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archive", a);
@@ -161,7 +173,7 @@ namespace ParserContracts44
                     if (!resRead)
                     {
                         var addArch =
-                            $"INSERT INTO {Program.Prefix}arhiv_contractProcedureDocs44 SET arhiv = @archive, region =  @region";
+                            $"INSERT INTO {Program.Prefix}arhiv_eacts44 SET arhiv = @archive, region =  @region";
                         var cmd1 = new MySqlCommand(addArch, connect);
                         cmd1.Prepare();
                         cmd1.Parameters.AddWithValue("@archive", a);
@@ -189,7 +201,7 @@ namespace ParserContracts44
                 {
                     connect.Open();
                     var selectArch =
-                        $"SELECT id FROM {Program.Prefix}arhiv_contractProcedureDocs44 WHERE arhiv = @archive AND region =  @region";
+                        $"SELECT id FROM {Program.Prefix}arhiv_eacts44 WHERE arhiv = @archive AND region =  @region";
                     var cmd = new MySqlCommand(selectArch, connect);
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archive", prevA);
@@ -200,7 +212,7 @@ namespace ParserContracts44
                     if (!resRead)
                     {
                         var addArch =
-                            $"INSERT INTO {Program.Prefix}arhiv_contractProcedureDocs44 SET arhiv = @archive, region =  @region";
+                            $"INSERT INTO {Program.Prefix}arhiv_eacts44 SET arhiv = @archive, region =  @region";
                         var cmd1 = new MySqlCommand(addArch, connect);
                         cmd1.Prepare();
                         cmd1.Parameters.AddWithValue("@archive", prevA);
@@ -213,6 +225,5 @@ namespace ParserContracts44
 
             return arch;
         }
-        
     }
-    }
+}
