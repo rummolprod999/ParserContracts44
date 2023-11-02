@@ -33,6 +33,7 @@ namespace ParserContracts44
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     Log.Logger("Не удалось обработать регион ", path);
                 }
             }
@@ -77,6 +78,7 @@ namespace ParserContracts44
                     catch (Exception e)
                     {
                         Log.Logger(e);
+                        Console.WriteLine(e);
                     }
                 }
             }
@@ -105,6 +107,7 @@ namespace ParserContracts44
                             catch (Exception e)
                             {
                                 Log.Logger("Не удалось обработать файл", f, filea);
+                                Console.WriteLine(e);
                             }
                         }
 
