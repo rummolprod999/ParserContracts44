@@ -164,41 +164,8 @@ namespace ParserContracts44
 
         public override List<String> GetListArchLast(string pathParse, string regionPath)
         {
-            var arch = new List<string>();
             var archtemp = GetListFtp(pathParse, Wftp44);
-            /*FtpClient ftp = ClientFtp44();*/
-            //string serachd = $"{Program.LocalDate:yyyyMMdd}";
-            foreach (var a in archtemp)
-            {
-                var prevA = $"last_{a}";
-
-                using (var connect = ConnectToDb.GetDbConnection())
-                {
-                    connect.Open();
-                    var selectArch =
-                        $"SELECT id FROM {Program.Prefix}arhiv_eacts44 WHERE arhiv = @archive AND region =  @region";
-                    var cmd = new MySqlCommand(selectArch, connect);
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@archive", prevA);
-                    cmd.Parameters.AddWithValue("@region", regionPath);
-                    var reader = cmd.ExecuteReader();
-                    var resRead = reader.HasRows;
-                    reader.Close();
-                    if (!resRead)
-                    {
-                        var addArch =
-                            $"INSERT INTO {Program.Prefix}arhiv_eacts44 SET arhiv = @archive, region =  @region";
-                        var cmd1 = new MySqlCommand(addArch, connect);
-                        cmd1.Prepare();
-                        cmd1.Parameters.AddWithValue("@archive", prevA);
-                        cmd1.Parameters.AddWithValue("@region", regionPath);
-                        cmd1.ExecuteNonQuery();
-                        arch.Add(a);
-                    }
-                }
-            }
-
-            return arch;
+            return archtemp.Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)).ToList();
         }
 
         public override List<String> GetListArchCurr(string pathParse, string regionPath)

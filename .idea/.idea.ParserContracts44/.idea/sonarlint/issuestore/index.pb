@@ -54,3 +54,21 @@ Eacts44.cs,1/f/1f46f959740a5a8f117196835d87badd50b9fb19
 :
 
 Product.cs,1/9/19cbc51e1de264698de42ecde6f40e61eb585491
+?
+packages.config,6/0/605843f23b4ad40ab52963fd084990ca9715dcf7
+J
+Properties/AssemblyInfo.cs,7/9/79e5c35bdd805587c6fc0747be5b085ee3bf0172
+D
+Test/packages.config,d/2/d2b5a44321c50f3e423ae026d70358798b7d1d41
+E
+ParserContracts44.sln,0/d/0de1902088253ff855531c144def614ac43573a0
+D
+Archive223Context.cs,a/3/a3e43090e9bac7520bed958beee4106a59cbdbd4
+b
+2ParserContracts44Core/ParserContracts44Core.csproj,d/b/db120429283b0d2c90968d2085d39ea368cf792f
+Z
+*ParserContracts44Core/Archive223Context.cs,e/2/e2446c2308c3016f01673365f53175c7cb597a31
+O
+ParserContracts44Core/Parser.cs,4/6/46ab08d12d63d15f543a5500654b33414779a0a6
+F
+ArchiveContracts223.cs,a/0/a0239f5d0a97deb2089dfe72a5832d7882fe3f85
