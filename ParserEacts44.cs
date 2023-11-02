@@ -27,7 +27,14 @@ namespace ParserContracts44
             DtRegion = GetRegions();
             foreach (var path in paths)
             {
-                parse(path);
+                try
+                {
+                    parse(path);
+                }
+                catch (Exception e)
+                {
+                    Log.Logger("Не удалось обработать регион ", path);
+                }
             }
         }
 
@@ -63,7 +70,14 @@ namespace ParserContracts44
 
                 foreach (var v in arch)
                 {
-                    GetListFileArch(v, pathParse, (string)row["conf"]);
+                    try
+                    {
+                        GetListFileArch(v, pathParse, (string)row["conf"]);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Logger(e);
+                    }
                 }
             }
         }
