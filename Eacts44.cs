@@ -26,7 +26,7 @@ namespace ParserContracts44
 
         public void Work44()
         {
-            var xml = GetXml(File);
+            var xml = GetXmlNew(File);
             var root = ((JObject)J44.SelectToken("ФайлПакет"));
             var IdTrPaket = ((string)root.SelectToken("@ИдТрПакет") ?? "").Trim();
             if (String.IsNullOrEmpty(IdTrPaket))
@@ -116,6 +116,12 @@ namespace ParserContracts44
             var IdFayl = ((string)root.SelectToken("@ИдФайл") ?? "").Trim();
             var IdPrilozh = ((string)root.SelectToken("@ИдПрилож") ?? "").Trim();
             var ReestrNomKont = ((string)root.SelectToken("@РеестрНомКонт") ?? "").Trim();
+            if (ReestrNomKont == "")
+            {
+                var tmpR = xml.Replace(type + "_", "");
+                var q = tmpR.Split('_');
+                ReestrNomKont = q[0];
+            }
             var DataVrFormir = (JsonConvert.SerializeObject(root.SelectToken("@ДатаВрФормир") ?? "") ??
                                 "").Trim('"');
             var TipPrilozh = ((string)root.SelectToken("@ТипПрилож") ?? "").Trim();
@@ -148,7 +154,7 @@ namespace ParserContracts44
                 }
 
                 var updateContract =
-                    $"INSERT INTO eacts44 (id, type, IdTrPaket, SistOtpr, SystPol, IdObyekt, VneshId, IdFayl, IdPrilozh, ReestrNomKont, DataVrFormir, TipPrilozh, VersForm, IdOtpr, IdPol, KontentDokument, KontentPrilozh, Ssylka, TipObyekt, TipFKh) VALUES (null,@type,@idtrpaket,@sistotpr,@systpol,@idobyekt,@vneshid,@idfayl,@idprilozh,@reestrnomkont,@datavrformir,@tipprilozh,@versform,@idotpr,@idpol,@kontentdokument,@kontentprilozh,@ssylka,@tipobyekt,@tipfkh)";
+                    $"INSERT INTO eacts44 (id, type, IdTrPaket, SistOtpr, SystPol, IdObyekt, VneshId, IdFayl, IdPrilozh, ReestrNomKont, DataVrFormir, TipPrilozh, VersForm, IdOtpr, IdPol, KontentDokument, KontentPrilozh, Ssylka, TipObyekt, TipFKh, xml) VALUES (null,@type,@idtrpaket,@sistotpr,@systpol,@idobyekt,@vneshid,@idfayl,@idprilozh,@reestrnomkont,@datavrformir,@tipprilozh,@versform,@idotpr,@idpol,@kontentdokument,@kontentprilozh,@ssylka,@tipobyekt,@tipfkh, @xml)";
                 var cmd9 = new MySqlCommand(updateContract, connect);
                 cmd9.Prepare();
                 cmd9.Parameters.AddWithValue("@type", type);
@@ -170,6 +176,7 @@ namespace ParserContracts44
                 cmd9.Parameters.AddWithValue("@ssylka", Ssylka);
                 cmd9.Parameters.AddWithValue("@tipobyekt", TipObyekt);
                 cmd9.Parameters.AddWithValue("@tipfkh", TipFKh);
+                cmd9.Parameters.AddWithValue("@xml", xml);
                 var updC = cmd9.ExecuteNonQuery();
                 var idOdContract = (int)cmd9.LastInsertedId;
                 AddEacts44Event?.Invoke(updC);

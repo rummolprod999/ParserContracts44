@@ -168,7 +168,8 @@ namespace ParserContracts44
             var archtemp = GetListFtp(pathParse, Wftp44);
             /*FtpClient ftp = ClientFtp44();*/
             //string serachd = $"{Program.LocalDate:yyyyMMdd}";
-            foreach (var a in archtemp)
+            foreach (var a in archtemp
+                .Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
             {
                 var prevA = $"last_{a}";
 
@@ -243,7 +244,8 @@ namespace ParserContracts44
             var archtemp = GetListFtp(pathParse, Wftp44);
             /*FtpClient ftp = ClientFtp44();*/
             //string serachd = $"{Program.LocalDate:yyyyMMdd}";
-            foreach (var a in archtemp)
+            foreach (var a in archtemp
+                         .Where(a => Program.Years.Any(t => a.IndexOf(t, StringComparison.Ordinal) != -1)))
             {
                 var prevA = $"prev_{a}";
 

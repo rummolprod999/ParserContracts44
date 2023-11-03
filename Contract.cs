@@ -24,6 +24,18 @@ namespace ParserContracts44
             }
             return txml;
         }
+        
+        public string GetXmlNew(string xml)
+        {
+            var xmlt = xml.Split('/');
+            var t = xmlt.Length;
+            var txml = "";
+            if (t > 1)
+            {
+                txml = xmlt[t - 1];
+            }
+            return txml;
+        }
 
         protected void AddCustomer(int d)
         {
