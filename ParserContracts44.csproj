@@ -69,10 +69,12 @@
     <Compile Include="Archive223Context.cs" />
     <Compile Include="ArchiveContracts223.cs" />
     <Compile Include="ClearText.cs" />
+    <Compile Include="Contract615.cs" />
     <Compile Include="ConnectToDb.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="Contract223.cs" />
     <Compile Include="Contract223Context.cs" />
+    <Compile Include="ContractProcedure615.cs" />
     <Compile Include="CPD44.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Eacts44.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Parser.cs" />
     <Compile Include="ParserContr223.cs" />
     <Compile Include="ParserContr44.cs" />
+    <Compile Include="ParserContract615.cs" />
     <Compile Include="ParserCPD44.cs" />
     <Compile Include="ParserEacts44.cs" />
     <Compile Include="Product.cs" />

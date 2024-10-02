@@ -13,6 +13,8 @@ namespace ParserContracts44
         private static string _logPath44;
         private static string _tempPathCPD44;
         private static string _logPathCPD44;
+        private static string _tempPathC615;
+        private static string _logPathC615;
         private static string _tempPathEacts44;
         private static string _logPathEacts44;
         private static string _tempPath223;
@@ -46,6 +48,10 @@ namespace ParserContracts44
                     case TypeArguments.PrevEacts44:
                     case TypeArguments.LastEacts44:
                         return _tempPathEacts44;
+                    case TypeArguments.CurrC615:
+                    case TypeArguments.PrevC615:
+                    case TypeArguments.LastC615:
+                        return _tempPathC615;
                     default:
                         return "";
                 }
@@ -73,6 +79,10 @@ namespace ParserContracts44
                     case TypeArguments.PrevEacts44:
                     case TypeArguments.LastEacts44:
                         return _logPathEacts44;
+                    case TypeArguments.CurrC615:
+                    case TypeArguments.PrevC615:
+                    case TypeArguments.LastC615:
+                        return _logPathC615;
                     default:
                         return "";
                 }
@@ -104,7 +114,7 @@ namespace ParserContracts44
             if (args.Length == 0)
             {
                 Console.WriteLine(
-                    "Недостаточно аргументов для запуска, используйте last44 или prev44 или curr44, last223, daily223, currcpd44, prevcpd44, lastcpd44,curreacts44, preveacts44, lasteacts44 в качестве аргумента");
+                    "Недостаточно аргументов для запуска, используйте last44 или prev44 или curr44, last223, daily223, currcpd44, prevcpd44, lastcpd44,curreacts44, preveacts44, lasteacts44, lastc615, prevc615, currc615 в качестве аргумента");
                 return;
             }
 
@@ -169,6 +179,21 @@ namespace ParserContracts44
                     Init(Periodparsing);
                     ParserC223(Periodparsing);
                     break;
+                case "lastc615":
+                    Periodparsing = TypeArguments.LastC615;
+                    Init(Periodparsing);
+                    ParserC615(Periodparsing);
+                    break;
+                case "prevc615":
+                    Periodparsing = TypeArguments.PrevC615;
+                    Init(Periodparsing);
+                    ParserC615(Periodparsing);
+                    break;
+                case "currc615":
+                    Periodparsing = TypeArguments.CurrC615;
+                    Init(Periodparsing);
+                    ParserC615(Periodparsing);
+                    break;
             }
         }
 
@@ -178,6 +203,7 @@ namespace ParserContracts44
             _database = set.Database;
             _logPath44 = set.LogPathContracts44;
             _logPathCPD44 = set.LogPathCPDs44;
+            _logPathC615 = set.LogPathC615;
             _logPathEacts44 = set.LogPathEacts44;
             _logPath223 = set.LogPathContracts223;
             _prefix = set.Prefix;
@@ -186,6 +212,7 @@ namespace ParserContracts44
             _tempPath44 = set.TempPathContracts44;
             _tempPath223 = set.TempPathContracts223;
             _tempPathCPD44 = set.TempPathCPD44;
+            _tempPathC615 = set.TempPathC615;
             _tempPathEacts44 = set.TempPathEacts44;
             _server = set.Server;
             _port = set.Port;
@@ -235,6 +262,11 @@ namespace ParserContracts44
                 case TypeArguments.LastEacts44:
                     FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Eacts44_{LocalDate:dd_MM_yyyy}.log";
                     break;
+                case TypeArguments.CurrC615:
+                case TypeArguments.PrevC615:
+                case TypeArguments.LastC615:
+                    FileLog = $"{LogPath}{Path.DirectorySeparatorChar}Contract615_{LocalDate:dd_MM_yyyy}.log";
+                    break;
             }
         }
 
@@ -277,6 +309,23 @@ namespace ParserContracts44
             Log.Logger("Добавлено contract", AddContract);
             Log.Logger("Обновлено contract", UpdateContract);
             Log.Logger("Время окончания парсинга ContractProcedureDocs44");
+        }
+        
+        private static void ParserC615(TypeArguments arg)
+        {
+            Log.Logger("Время начала парсинга Contract615");
+            try
+            {
+                var c44 = new ParserContract615(StrArg);
+                c44.Parsing();
+            }
+            catch (Exception e)
+            {
+                Log.Logger(e);
+            }
+            Log.Logger("Добавлено contract615", AddContract);
+            Log.Logger("Обновлено contract615", UpdateContract);
+            Log.Logger("Время окончания парсинга Contract615");
         }
 
         private static void ParserC223(TypeArguments arg)

@@ -13,5 +13,8 @@
         PrevEacts44,
         CurrEacts44,
         LastEacts44,
+        PrevC615,
+        CurrC615,
+        LastC615,
     };
 }

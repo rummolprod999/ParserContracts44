@@ -72,3 +72,11 @@ O
 ParserContracts44Core/Parser.cs,4/6/46ab08d12d63d15f543a5500654b33414779a0a6
 F
 ArchiveContracts223.cs,a/0/a0239f5d0a97deb2089dfe72a5832d7882fe3f85
+;
+cOASFASF.cs,a/5/a5c9d9b5cf1648a7756042fc2449c9238c36e2cb
+>
+Contract615.cs,8/4/84aec8f6e232df756cb2bfce6cd07f3ea35d5e0d
+G
+ContractProcedure615.cs,9/9/991c6d6ccb148550decd5b0ea91533c128c4c402
+D
+ParserContract615.cs,7/d/7d23886da1280513db2158db42a5d6589f46cd68

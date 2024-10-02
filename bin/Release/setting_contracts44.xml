@@ -8,7 +8,9 @@
 	<tempdir_cpd>temp_cpd</tempdir_cpd>
 	<logdir_cpd>log_cpd</logdir_cpd> 
 	<tempdir_eacts44>temp_eacts44</tempdir_eacts44>
-	<logdir_eacts44>log_eacts44</logdir_eacts44> 
+	<logdir_eacts44>log_eacts44</logdir_eacts44>
+	<tempdir_c615>temp_c615</tempdir_c615>
+	<logdir_c615>log_c615</logdir_c615> 
 	<prefix></prefix>
 	<userdb>parser</userdb>
 	<passdb>Dft56Point</passdb>
