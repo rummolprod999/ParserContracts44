@@ -64,13 +64,13 @@ namespace ParserContracts44
 
         public WorkWithFtp ClientFtp44_old()
         {
-            var ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "otkluchenie_FTP_s_01_01_2025_podrobnee_v_ATFF", "free");
+            var ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "free", "otkluchenie_FTP_s_01_01_2025_podrobnee_v_ATFF");
             return ftpCl;
         }
         
         public WorkWithFtp ClientFtp223_old()
         {
-            var ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "fz223free", "fz223free");
+            var ftpCl = new WorkWithFtp("ftp://ftp.zakupki.gov.ru", "fz223free", "otkluchenie_FTP_s_01_01_2025_podrobnee_v_ATFF");
             return ftpCl;
         }
         
@@ -83,7 +83,7 @@ namespace ParserContracts44
         
         public FtpClient ClientFtp223()
         {
-            var client = new FtpClient("ftp.zakupki.gov.ru", "fz223free", "fz223free");
+            var client = new FtpClient("ftp.zakupki.gov.ru", "fz223free", "otkluchenie_FTP_s_01_01_2025_podrobnee_v_ATFF");
             client.Connect();
             return client;
         }
