@@ -654,6 +654,21 @@ namespace ParserContracts44
                         cmd8.Prepare();
                         cmd8.Parameters.AddWithValue("@id_od_contract", idOdContract);
                         cmd8.ExecuteNonQuery();
+                        
+                        var deleteAttach =
+                            $"DELETE FROM {Program.Prefix}od_contract_attach WHERE id_od_contract = @id_od_contract";
+                        var cmd55 = new MySqlCommand(deleteAttach, connect);
+                        cmd55.Prepare();
+                        cmd55.Parameters.AddWithValue("@id_od_contract", idOdContract);
+                        cmd55.ExecuteNonQuery();
+                        
+                        var deleteDelPlace =
+                            $"DELETE FROM {Program.Prefix}od_contract_deliveryPlace WHERE id_od_contract = @id_od_contract";
+                        var cmd99 = new MySqlCommand(deleteDelPlace, connect);
+                        cmd99.Prepare();
+                        cmd99.Parameters.AddWithValue("@id_od_contract", idOdContract);
+                        cmd99.ExecuteNonQuery();
+                        
                         var updateContract =
                             $"UPDATE {Program.Prefix}od_contract SET p_number = @p_number, regnum = @regnum, " +
                             $"current_contract_stage = @current_contract_stage, placing = @placing, " +
