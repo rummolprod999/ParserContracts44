@@ -20,7 +20,7 @@ namespace ParserContracts44
         public readonly string[] ExceptFile = new[] {"Failure", "contractProcedure", "contractCancel", "contractAvailableForElAct"};
         private readonly string[] types =
         {
-            "сontract"
+            "contract"
         };
 
         public ParserContr44(string arg) : base(arg)
