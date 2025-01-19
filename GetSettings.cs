@@ -23,6 +23,8 @@ namespace ParserContracts44
         public readonly string Server;
         public readonly int Port;
         public readonly string Years;
+        public readonly int Days;
+        public readonly string Token;
 
         public GetSettings()
         {
@@ -79,6 +81,12 @@ namespace ParserContracts44
                             break;
                         case "server":
                             Server = xnode.InnerText;
+                            break;
+                        case "token":
+                            Token = xnode.InnerText;
+                            break;
+                        case "days":
+                            Days = int.TryParse(xnode.InnerText, out Days) ? int.Parse(xnode.InnerText) : 3;
                             break;
                         case "port":
                             Port = Int32.TryParse(xnode.InnerText, out Port)?Int32.Parse(xnode.InnerText): 3306;

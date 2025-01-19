@@ -24,6 +24,8 @@ namespace ParserContracts44
         private static string _pass;
         private static string _server;
         private static int _port;
+        public static int _days;
+        public static string _token;
         private static List<string> _years = new List<string>();
         public static string Database => _database;
 
@@ -216,6 +218,8 @@ namespace ParserContracts44
             _tempPathEacts44 = set.TempPathEacts44;
             _server = set.Server;
             _port = set.Port;
+            _token = set.Token;
+            _days = set.Days;
             var tmp = set.Years;
             TableContracts = $"{Prefix}od_contract";
             TableProducts = $"{Prefix}od_contract_product";

@@ -12,6 +12,8 @@
 	<tempdir_c615>temp_c615</tempdir_c615>
 	<logdir_c615>log_c615</logdir_c615> 
 	<prefix></prefix>
+	<token>edb04342-8607-49de-b5ee-ecc724fb220b</token>
+	<days>2</days>
 	<userdb>parser</userdb>
 	<passdb>Dft56Point</passdb>
 	<server>localhost</server>
