@@ -43,8 +43,14 @@ namespace ParserContracts44
                         switch (Program.Periodparsing)
                         {
                             case TypeArguments.Curr44:
-                                pathParse = $"";
-                                arch = GetListArchCurr(regionKladr, type, i);
+                                try
+                                {
+                                    arch = GetListArchCurr(regionKladr, type, i);
+                                }
+                                catch (Exception e)
+                                {
+                                    Log.Logger("Ошибка при парсинге xml", e, type, regionKladr);
+                                }
                                 break;
                         }
 
@@ -193,7 +199,7 @@ namespace ParserContracts44
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Log.Logger(e, resp);
                 throw;
             }
             var nodeList = xDoc.SelectNodes("//dataInfo/archiveUrl");
