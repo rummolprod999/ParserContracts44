@@ -17,7 +17,10 @@ namespace ParserContracts44
     public class ParserContr44 : Parser
     {
         protected DataTable DtRegion;
-        public readonly string[] ExceptFile = new[] {"Failure", "contractProcedure", "contractCancel", "contractAvailableForElAct"};
+
+        public readonly string[] ExceptFile = new[]
+            { "Failure", "contractProcedure", "contractCancel", "contractAvailableForElAct" };
+
         private readonly string[] types =
         {
             "contract"
@@ -34,35 +37,35 @@ namespace ParserContracts44
             {
                 foreach (DataRow row in DtRegion.Rows)
                 {
+                    var regionKladr = (string)row["conf"];
                     foreach (var type in types)
                     {
-                        var arch = new List<string>();
-                        var pathParse = "";
-                        var regionKladr = (string)row["conf"];
-
-                        switch (Program.Periodparsing)
+                        try
                         {
-                            case TypeArguments.Curr44:
-                                try
-                                {
+                            var arch = new List<string>();
+                            switch (Program.Periodparsing)
+                            {
+                                case TypeArguments.Curr44:
+
                                     arch = GetListArchCurr(regionKladr, type, i);
-                                }
-                                catch (Exception e)
-                                {
-                                    Log.Logger("Ошибка при парсинге xml", e, type, regionKladr);
-                                }
-                                break;
-                        }
 
-                        if (arch.Count == 0)
-                        {
-                            Log.Logger("Не получили список архивов по региону", row["path"]);
-                            continue;
-                        }
+                                    break;
+                            }
 
-                        foreach (var v in arch)
+                            if (arch.Count == 0)
+                            {
+                                Log.Logger("Не получили список архивов по региону", row["path"]);
+                                continue;
+                            }
+
+                            foreach (var v in arch)
+                            {
+                                GetListFileArch(v, (string)row["conf"]);
+                            }
+                        }
+                        catch (Exception e)
                         {
-                            GetListFileArch(v, (string)row["conf"]);
+                            Log.Logger("Ошибка при парсинге xml", e, type, regionKladr);
                         }
                     }
                 }
@@ -94,6 +97,7 @@ namespace ParserContracts44
                                 Log.Logger("Не удалось обработать файл", f, filea);
                             }
                         }
+
                         dirInfo.Delete(true);
                     }
                 }
@@ -122,7 +126,7 @@ namespace ParserContracts44
                 Log.Logger("Ошибка при парсинге xml", e, f);
             }
         }
-        
+
         private string downloadArchive(string url)
         {
             var count = 5;
@@ -202,6 +206,7 @@ namespace ParserContracts44
                 Log.Logger(e, resp);
                 throw;
             }
+
             var nodeList = xDoc.SelectNodes("//dataInfo/archiveUrl");
             foreach (XmlNode node in nodeList)
             {
@@ -211,7 +216,7 @@ namespace ParserContracts44
 
             return arch;
         }
-        
+
         public static string soap44(string regionKladr, string type, int i)
         {
             var count = 5;
@@ -290,7 +295,7 @@ namespace ParserContracts44
             return arch;
         }
     }
-    
+
     public class TimedWebClient : WebClient
     {
         protected override WebRequest GetWebRequest(Uri address)
