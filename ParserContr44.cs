@@ -130,7 +130,7 @@ namespace ParserContracts44
         private string downloadArchive(string url)
         {
             var count = 5;
-            var sleep = 5000;
+            var sleep = 2000;
             var dest = $"{Program.TempPath}{Path.DirectorySeparatorChar}array.zip";
             while (true)
             {
@@ -301,7 +301,7 @@ namespace ParserContracts44
         protected override WebRequest GetWebRequest(Uri address)
         {
             var wr = base.GetWebRequest(address);
-            wr.Timeout = 300000;
+            wr.Timeout = 30000;
             return wr;
         }
     }
